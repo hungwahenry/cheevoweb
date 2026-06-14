@@ -89,6 +89,7 @@ export function FlagsTable() {
         emptyMessage="No feature flags."
       />
       <FlagEditDialog
+        key={editing?.id ?? "none"}
         flag={editing}
         onOpenChange={(open) => !open && setEditing(null)}
       />

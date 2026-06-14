@@ -1,7 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { ImagePlus, Trash2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +17,9 @@ import { welcomeSchema, type WelcomeValues } from "../schemas";
 export function WelcomeForm() {
   const { data, isLoading } = useWelcome();
   const update = useUpdateWelcome();
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File | null>(null);
+
   const form = useForm<WelcomeValues>({
     resolver: zodResolver(welcomeSchema),
     defaultValues: { headline: "", subheadline: "" },
@@ -27,13 +31,72 @@ export function WelcomeForm() {
     }
   }, [data, form]);
 
-  if (isLoading) return <Skeleton className="h-64 w-full max-w-xl" />;
+  const preview = file
+    ? URL.createObjectURL(file)
+    : (data?.background_url ?? null);
+
+  if (isLoading) return <Skeleton className="h-80 w-full max-w-xl" />;
 
   return (
     <Card className="max-w-xl">
-      <CardContent>
+      <CardContent className="space-y-5">
+        <Field>
+          <FieldLabel>Background image</FieldLabel>
+          <div className="space-y-2">
+            {preview ? (
+              <div className="bg-muted relative aspect-video overflow-hidden rounded-md">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={preview}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : (
+              <div className="bg-muted text-muted-foreground flex aspect-video items-center justify-center rounded-md text-sm">
+                No background set
+              </div>
+            )}
+            <div className="flex gap-2">
+              <input
+                ref={fileInput}
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+              />
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => fileInput.current?.click()}
+              >
+                <ImagePlus />
+                {data?.background_url ? "Replace" : "Upload"}
+              </Button>
+              {data?.background_url && !file && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  disabled={update.isPending}
+                  onClick={() => update.mutate({ removeBackground: true })}
+                >
+                  <Trash2 />
+                  Remove
+                </Button>
+              )}
+            </div>
+          </div>
+        </Field>
+
         <form
-          onSubmit={form.handleSubmit((values) => update.mutate(values))}
+          onSubmit={form.handleSubmit((values) =>
+            update.mutate(
+              { ...values, background: file },
+              { onSuccess: () => setFile(null) },
+            ),
+          )}
           className="space-y-4"
         >
           <Field data-invalid={!!form.formState.errors.headline}>

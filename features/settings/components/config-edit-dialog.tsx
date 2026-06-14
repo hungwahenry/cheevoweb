@@ -24,18 +24,14 @@ export function ConfigEditDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   const { update } = useConfigMutations();
-  const [value, setValue] = useState("");
-  const [boolValue, setBoolValue] = useState(false);
-  const [isPublic, setIsPublic] = useState(false);
-
-  function handleOpenChange(next: boolean) {
-    if (next && config) {
-      setValue(config.value === null ? "" : String(config.value));
-      setBoolValue(config.value === true);
-      setIsPublic(config.is_public);
-    }
-    onOpenChange(next);
-  }
+  // Initialised from props; parent remounts via `key` per config (no shared state).
+  const [value, setValue] = useState(
+    config?.value === null || config?.value === undefined
+      ? ""
+      : String(config.value),
+  );
+  const [boolValue, setBoolValue] = useState(config?.value === true);
+  const [isPublic, setIsPublic] = useState(config?.is_public ?? false);
 
   function coerced(): unknown {
     if (!config) return null;
@@ -46,7 +42,7 @@ export function ConfigEditDialog({
   }
 
   return (
-    <Dialog open={config !== null} onOpenChange={handleOpenChange}>
+    <Dialog open={config !== null} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{config?.key}</DialogTitle>

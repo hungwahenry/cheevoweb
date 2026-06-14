@@ -24,19 +24,13 @@ export function FlagEditDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   const update = useUpdateFlag();
-  const [rollout, setRollout] = useState(0);
-  const [isPublic, setIsPublic] = useState(false);
-
-  function handleOpenChange(next: boolean) {
-    if (next && flag) {
-      setRollout(flag.rollout_pct);
-      setIsPublic(flag.is_public);
-    }
-    onOpenChange(next);
-  }
+  // Initialised from props; the parent remounts this via `key` per flag,
+  // so each open starts from the correct flag's values (no shared state).
+  const [rollout, setRollout] = useState(flag?.rollout_pct ?? 0);
+  const [isPublic, setIsPublic] = useState(flag?.is_public ?? false);
 
   return (
-    <Dialog open={flag !== null} onOpenChange={handleOpenChange}>
+    <Dialog open={flag !== null} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{flag?.key}</DialogTitle>

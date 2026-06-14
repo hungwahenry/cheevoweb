@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { UserPicker, type PickedUser } from "@/components/common/user-picker";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,7 +12,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -28,12 +28,12 @@ export function TransferTicketDialog({
   pending,
   onSubmit,
 }: TransferTicketDialogProps) {
-  const [userId, setUserId] = useState("");
+  const [user, setUser] = useState<PickedUser | null>(null);
   const [reason, setReason] = useState("");
 
   function handleOpenChange(next: boolean) {
     if (!next) {
-      setUserId("");
+      setUser(null);
       setReason("");
     }
     onOpenChange(next);
@@ -45,18 +45,13 @@ export function TransferTicketDialog({
         <DialogHeader>
           <DialogTitle>Transfer ticket</DialogTitle>
           <DialogDescription>
-            Reassign this ticket to another account by its user ID.
+            Reassign this ticket to another account.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <Field>
-            <FieldLabel htmlFor="to-user">New holder (user ID)</FieldLabel>
-            <Input
-              id="to-user"
-              value={userId}
-              onChange={(event) => setUserId(event.target.value)}
-              placeholder="26-character user ID"
-            />
+            <FieldLabel>New holder</FieldLabel>
+            <UserPicker value={user} onChange={setUser} />
           </Field>
           <Field>
             <FieldLabel htmlFor="transfer-reason">Reason (optional)</FieldLabel>
@@ -73,8 +68,8 @@ export function TransferTicketDialog({
             Cancel
           </Button>
           <Button
-            disabled={userId.length !== 26 || pending}
-            onClick={() => onSubmit(userId, reason || undefined)}
+            disabled={!user || pending}
+            onClick={() => user && onSubmit(user.id, reason || undefined)}
           >
             {pending ? <Spinner /> : "Transfer"}
           </Button>

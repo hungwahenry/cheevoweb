@@ -86,6 +86,7 @@ export function ConfigsTable() {
         emptyMessage="No system configs."
       />
       <ConfigEditDialog
+        key={editing?.id ?? "none"}
         config={editing}
         onOpenChange={(open) => !open && setEditing(null)}
       />
