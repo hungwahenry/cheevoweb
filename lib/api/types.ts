@@ -31,3 +31,18 @@ export interface EntityRef {
   thumbnail?: string | null;
   deep_link?: string | null;
 }
+
+/** One admin-action row — embedded in every 360's audit trail and the audit log. */
+export interface AuditEntry {
+  id: string;
+  action: string;
+  admin: EntityRef;
+  target_type: string | null;
+  target_id: string | null;
+  payload: unknown;
+  reason: string | null;
+  ip: string | null;
+  user_agent: string | null;
+  request_id: string | null;
+  created_at: string;
+}
