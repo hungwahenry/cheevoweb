@@ -14,7 +14,7 @@ export function useLogin() {
       login(email, code),
     onSuccess: (user) => {
       queryClient.setQueryData(sessionKey, user);
-      router.replace("/");
+      router.replace("/dashboard");
     },
     onError: (error) => toast.error(getErrorMessage(error)),
   });

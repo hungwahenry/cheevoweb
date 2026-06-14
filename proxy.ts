@@ -2,25 +2,25 @@ import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE } from "@/lib/auth/constants";
 
 /**
- * Route guard (Next 16's renamed `middleware`). Gates page navigation on the presence
- * of the session cookie — actual token validity is enforced by the backend on every
- * call. Excludes /api, static assets, and /login via the matcher.
+ * Route guard (Next 16's renamed `middleware`). Only the dashboard requires a session;
+ * `/` (landing) and `/login` stay public. Token validity is enforced by the backend on
+ * every call — this just gates navigation on cookie presence.
  */
 export function proxy(request: NextRequest): NextResponse {
   const hasSession = request.cookies.has(SESSION_COOKIE);
-  const isLoginRoute = request.nextUrl.pathname === "/login";
+  const { pathname } = request.nextUrl;
 
-  if (!hasSession && !isLoginRoute) {
+  if (pathname.startsWith("/dashboard") && !hasSession) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (hasSession && isLoginRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (pathname === "/login" && hasSession) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/dashboard", "/dashboard/:path*", "/login"],
 };
