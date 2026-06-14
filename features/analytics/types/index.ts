@@ -1,3 +1,5 @@
+import type { EntityRef } from "@/lib/api/types";
+
 export interface AnalyticsOverview {
   users: {
     total: number;
@@ -56,4 +58,37 @@ export interface EngagementPoint {
 export interface EngagementSeries {
   interval: string;
   series: EngagementPoint[];
+}
+
+export interface TopEvent {
+  event: EntityRef;
+  gmv_minor: number;
+  orders: number;
+  tickets: number;
+}
+
+export interface TopOrganiser {
+  organisation: EntityRef;
+  gmv_minor: number;
+  orders: number;
+  events: number;
+}
+
+export interface CategoryRevenue {
+  category: { id: number | null; name: string };
+  gmv_minor: number;
+}
+
+export interface CityRevenue {
+  city: string;
+  gmv_minor: number;
+  orders: number;
+}
+
+export interface Leaderboards {
+  currency: string;
+  top_events: TopEvent[];
+  top_organisers: TopOrganiser[];
+  by_category: CategoryRevenue[];
+  top_cities: CityRevenue[];
 }

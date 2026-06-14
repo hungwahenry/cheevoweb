@@ -2,6 +2,7 @@
 
 import { useAnalyticsRange } from "../hooks/use-analytics-range";
 import { EngagementChart } from "./engagement-chart";
+import { Leaderboards } from "./leaderboards";
 import { OrdersChart } from "./orders-chart";
 import { PaymentsBreakdown } from "./payments-breakdown";
 import { RangeKpis } from "./range-kpis";
@@ -24,6 +25,7 @@ export function AnalyticsView() {
         <PaymentsBreakdown days={days} />
       </div>
       <EngagementChart days={days} />
+      <Leaderboards days={days} />
       <StatusBreakdowns />
     </div>
   );
