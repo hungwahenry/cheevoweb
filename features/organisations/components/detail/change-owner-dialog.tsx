@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -41,15 +41,16 @@ export function ChangeOwnerDialog({
   const [reason, setReason] = useState("");
   const candidates = members.filter((member) => member.role !== "owner");
 
-  useEffect(() => {
-    if (open) {
+  function handleOpenChange(next: boolean) {
+    if (!next) {
       setUserId("");
       setReason("");
     }
-  }, [open]);
+    onOpenChange(next);
+  }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Change owner</DialogTitle>
@@ -84,7 +85,7 @@ export function ChangeOwnerDialog({
           </Field>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)}>
+          <Button variant="ghost" onClick={() => handleOpenChange(false)}>
             Cancel
           </Button>
           <Button
@@ -92,7 +93,7 @@ export function ChangeOwnerDialog({
             onClick={() =>
               change.mutate(
                 { userId, reason: reason || undefined },
-                { onSuccess: () => onOpenChange(false) },
+                { onSuccess: () => handleOpenChange(false) },
               )
             }
           >
