@@ -17,8 +17,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface DataTableProps<TData> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData, unknown>[];
   data: TData[];
   isLoading?: boolean;
   onRowClick?: (row: TData) => void;
