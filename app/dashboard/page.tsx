@@ -1,12 +1,15 @@
+import { PageHeader } from "@/components/layout/page-header";
+import { ActionItems } from "@/features/analytics/components/action-items";
+import { OverviewCards } from "@/features/analytics/components/overview-cards";
+import { RevenueChart } from "@/features/analytics/components/revenue-chart";
+
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground text-sm">
-          Platform overview at a glance.
-        </p>
-      </div>
+      <PageHeader title="Dashboard" description="Platform overview at a glance." />
+      <ActionItems />
+      <OverviewCards />
+      <RevenueChart />
     </div>
   );
 }
