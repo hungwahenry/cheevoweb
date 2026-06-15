@@ -17,15 +17,38 @@ export function formatMoney(minor: number): string {
   }).format(minor / 100);
 }
 
-/** An event's start time in its own timezone, for public share pages. */
-export function formatEventTime(iso: string | null, tz: string | null): string {
-  if (!iso) return "";
-  return new Intl.DateTimeFormat("en-NG", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZone: tz ?? undefined,
-  }).format(new Date(iso));
+export function formatEventWhen(
+  iso: string | null,
+  tz: string | null,
+): string | null {
+  if (!iso) return null;
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: tz ?? undefined,
+    }).format(new Date(iso));
+  } catch {
+    return null;
+  }
+}
+
+export function formatEventPrice(
+  min: number | null,
+  max: number | null,
+  currency: string,
+): string {
+  const money = (minor: number) =>
+    new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(minor / 100);
+  if (min == null || min === 0) return "Free";
+  if (max != null && max !== min) return `${money(min)} – ${money(max)}`;
+  return `From ${money(min)}`;
 }

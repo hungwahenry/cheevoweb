@@ -52,10 +52,16 @@ export type PublicEvent = {
   };
   tickets: PublicTicket[];
   features: PublicFeature[];
+  images: { id: string; url: string }[];
 };
 
 export type Pricing = {
-  feePct: number;
-  feeFlatMinor: number;
-  settleDays: number;
+  flatMinor: number;
+  percentageBps: number;
+  holdWindowDays: number;
+  tier1NairaCeiling: number;
+  tier2NairaCeiling: number;
+  tier1Minor: number;
+  tier2Minor: number;
+  tier3Minor: number;
 };

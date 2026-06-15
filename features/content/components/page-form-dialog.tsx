@@ -62,14 +62,14 @@ export function PageFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="max-h-[90dvh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>{page ? "Edit page" : "New page"}</DialogTitle>
         </DialogHeader>
         <form
           id="page-form"
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4"
+          className="min-w-0 space-y-4"
         >
           <Field data-invalid={!!form.formState.errors.title}>
             <FieldLabel htmlFor="title">Title</FieldLabel>

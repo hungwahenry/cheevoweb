@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicEvent } from "@/features/marketing/api/get-event";
-import { EventView } from "@/features/marketing/components/event-view";
+import { listPublicPages } from "@/features/marketing/api/list-pages";
+import { EventPage } from "@/features/marketing/components/content/event-page";
 
 export async function generateMetadata({
   params,
@@ -24,13 +25,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function EventPage({
+export default async function Event({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const event = await getPublicEvent(slug);
+  const [event, pages] = await Promise.all([
+    getPublicEvent(slug),
+    listPublicPages().catch(() => []),
+  ]);
   if (!event) notFound();
-  return <EventView event={event} />;
+  return <EventPage event={event} pages={pages} />;
 }
