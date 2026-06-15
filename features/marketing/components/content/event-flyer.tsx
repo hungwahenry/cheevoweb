@@ -8,6 +8,7 @@ export function EventFlyer({ event }: { event: PublicEvent }) {
       {event.flyer_type === "video" ? (
         <video
           src={event.flyer_url}
+          poster={event.flyer_poster_url ?? undefined}
           className="size-full object-cover"
           muted
           loop

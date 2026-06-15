@@ -34,6 +34,7 @@ export type PublicEvent = {
   title: string;
   description: string | null;
   flyer_url: string | null;
+  flyer_poster_url: string | null;
   flyer_type: "image" | "video" | null;
   starts_at: string | null;
   ends_at: string | null;
