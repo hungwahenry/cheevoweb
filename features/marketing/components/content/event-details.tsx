@@ -1,10 +1,12 @@
 import { CalendarDays, MapPin, Ticket, type LucideIcon } from "lucide-react";
 import { formatEventPrice, formatEventWhen } from "@/lib/format";
 import type { PublicEvent } from "../../types";
+import { isEventEnded } from "../../event-status";
 
 export function EventDetails({ event }: { event: PublicEvent }) {
   const when = formatEventWhen(event.starts_at, event.timezone);
   const where = [event.venue_name, event.city].filter(Boolean).join(", ");
+  const ended = isEventEnded(event);
   const price = formatEventPrice(
     event.tickets_min_price,
     event.tickets_max_price,
@@ -13,6 +15,11 @@ export function EventDetails({ event }: { event: PublicEvent }) {
 
   return (
     <div className="flex flex-col">
+      {ended ? (
+        <span className="mb-3 self-start rounded-full bg-muted px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/55">
+          Ended
+        </span>
+      ) : null}
       {event.organisation?.name ? (
         <div className="flex items-center gap-2 text-sm text-foreground/60">
           {event.organisation.logo_url ? (

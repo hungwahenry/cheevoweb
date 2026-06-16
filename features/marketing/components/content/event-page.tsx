@@ -1,4 +1,5 @@
 import type { PublicEvent, PublicPageSummary } from "../../types";
+import { isEventEnded } from "../../event-status";
 import { SiteFooterBar } from "../shell/site-footer-bar";
 import { SiteHeader } from "../shell/site-header";
 import { StoreButton } from "../shell/store-button";
@@ -16,6 +17,8 @@ export function EventPage({
   event: PublicEvent;
   pages: PublicPageSummary[];
 }) {
+  const ended = isEventEnded(event);
+
   return (
     <main className="flex min-h-svh flex-col bg-background text-foreground">
       <SiteHeader />
@@ -43,11 +46,12 @@ export function EventPage({
 
         <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6 text-center sm:p-8">
           <h2 className="text-xl font-bold tracking-tight md:text-2xl">
-            Get tickets in the cheevo app
+            {ended ? "This event has ended" : "Get tickets in the cheevo app"}
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-foreground/60">
-            Download cheevo to RSVP, buy your ticket, and keep it in your pocket.
-            Already have the app? This link opens it automatically.
+            {ended
+              ? "Catch the next one — download cheevo to discover events near you."
+              : "Download cheevo to RSVP, buy your ticket, and keep it in your pocket. Already have the app? This link opens it automatically."}
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
             <StoreButton store="apple" />
