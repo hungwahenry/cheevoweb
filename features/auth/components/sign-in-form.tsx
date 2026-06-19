@@ -47,7 +47,7 @@ export function SignInForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>{email ? "Enter your code" : "Admin sign in"}</CardTitle>
+        <CardTitle>{email ? "Enter your code" : "Sign in"}</CardTitle>
         <CardDescription>
           {email
             ? `We sent a 6-digit code to ${email}.`

@@ -34,7 +34,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     return NextResponse.json(
       {
         status: "error",
-        message: "This panel is for administrators only.",
+        message: "You are not allowed to access this panel.",
         code: "not_admin",
       },
       { status: 403 },
