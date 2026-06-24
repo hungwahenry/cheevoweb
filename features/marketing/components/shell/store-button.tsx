@@ -29,7 +29,7 @@ export function StoreButton({
       )}
     >
       <Icon className="size-5 shrink-0" />
-      <span className="flex flex-col leading-none">
+      <span className="flex flex-col whitespace-nowrap leading-none">
         <span className="text-[9px] uppercase tracking-[0.14em] opacity-65">
           {meta.eyebrow}
         </span>
