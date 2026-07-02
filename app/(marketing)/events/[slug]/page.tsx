@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getPublicEvent } from "@/features/marketing/api/get-event";
 import { listPublicPages } from "@/features/marketing/api/list-pages";
 import { EventPage } from "@/features/marketing/components/content/event-page";
+import { APPLE_APP_ID, SITE_URL } from "@/features/marketing/config/site";
 
 export async function generateMetadata({
   params,
@@ -15,13 +16,16 @@ export async function generateMetadata({
   return {
     title: `${event.title} — cheevo`,
     description: event.description?.slice(0, 160) ?? undefined,
+    alternates: { canonical: `${SITE_URL}/events/${slug}` },
     openGraph: {
       title: event.title,
+      url: `${SITE_URL}/events/${slug}`,
       images:
         event.flyer_url && event.flyer_type === "image"
           ? [event.flyer_url]
           : [],
     },
+    itunes: { appId: APPLE_APP_ID, appArgument: `${SITE_URL}/events/${slug}` },
   };
 }
 

@@ -3,6 +3,7 @@ import { listPublicPages } from "@/features/marketing/api/list-pages";
 import { SiteFooterBar } from "@/features/marketing/components/shell/site-footer-bar";
 import { SiteHeader } from "@/features/marketing/components/shell/site-header";
 import { StoreButton } from "@/features/marketing/components/shell/store-button";
+import { StoreRedirect } from "@/features/marketing/components/shell/store-redirect";
 
 export const metadata: Metadata = {
   title: "Get the cheevo app",
@@ -15,6 +16,7 @@ export default async function Download() {
 
   return (
     <main className="flex min-h-svh flex-col bg-background text-foreground">
+      <StoreRedirect />
       <SiteHeader />
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">

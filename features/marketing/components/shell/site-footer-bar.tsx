@@ -27,6 +27,12 @@ export function SiteFooterBar({
             >
               {crossLink.label}
             </Link>
+            <Link href="/pricing" className="transition-colors hover:text-foreground">
+              Pricing
+            </Link>
+            <Link href="/contact" className="transition-colors hover:text-foreground">
+              Contact
+            </Link>
             {pages.map((page) => (
               <Link
                 key={page.slug}

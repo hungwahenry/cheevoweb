@@ -5,6 +5,7 @@ import { MoneySection } from "@/features/marketing/components/organizer/money-se
 import { OrganizerHero } from "@/features/marketing/components/organizer/organizer-hero";
 import { ReplacesSection } from "@/features/marketing/components/organizer/replaces-section";
 import { ToolkitGrid } from "@/features/marketing/components/organizer/toolkit-grid";
+import { Faq } from "@/features/marketing/components/shell/faq";
 import { SiteOutro } from "@/features/marketing/components/shell/site-outro";
 
 export const metadata: Metadata = {
@@ -25,6 +26,35 @@ export default async function Organizers() {
       <ToolkitGrid />
       <ReplacesSection />
       <MoneySection pricing={pricing} />
+      <Faq
+        title="Organiser FAQ"
+        items={[
+          {
+            q: "How do I create an event?",
+            a: "Everything happens in the cheevo Organizer app — create your event, add tickets, and publish in minutes. No separate desktop setup needed.",
+          },
+          {
+            q: "What does it cost?",
+            a: "Free to start — a small service fee is added at checkout that your buyers pay, so you keep 100% of your ticket price. Free events are free to host. Full breakdown on our pricing page.",
+          },
+          {
+            q: "When do I get paid?",
+            a: "Once an event's sales clear a short hold window, request a payout straight to your bank from the app.",
+          },
+          {
+            q: "How do people get in at the door?",
+            a: "Scan attendees' QR tickets with the Organizer app and watch live check-in stats as people arrive.",
+          },
+          {
+            q: "Can I message my attendees?",
+            a: "Yes — send email broadcasts to your ticket-holders and RSVPers right from the app.",
+          },
+          {
+            q: "What can attendees pay with?",
+            a: "Cards and local payment options via Paystack and Flutterwave, in Naira and other supported currencies.",
+          },
+        ]}
+      />
       <SiteOutro
         pages={pages}
         title="Your next event is one tap away."

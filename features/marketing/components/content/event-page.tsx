@@ -5,6 +5,7 @@ import { SiteHeader } from "../shell/site-header";
 import { StoreButton } from "../shell/store-button";
 import { EventBottomBar } from "./event-bottom-bar";
 import { EventDetails } from "./event-details";
+import { EventJsonLd } from "./event-jsonld";
 import { EventFeatures } from "./event-features";
 import { EventFlyer } from "./event-flyer";
 import { EventGallery } from "./event-gallery";
@@ -21,6 +22,7 @@ export function EventPage({
 
   return (
     <main className="flex min-h-svh flex-col bg-background text-foreground">
+      <EventJsonLd event={event} />
       <SiteHeader />
 
       <div className="mx-auto w-full max-w-3xl flex-1 px-6 pb-12 pt-8 md:pt-12">

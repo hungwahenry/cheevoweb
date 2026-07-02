@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { listPublicPages } from "@/features/marketing/api/list-pages";
 import { ConsumerHero } from "@/features/marketing/components/landing/consumer-hero";
 import { ProductStory } from "@/features/marketing/components/landing/product-story";
+import { Faq } from "@/features/marketing/components/shell/faq";
 import { SiteOutro } from "@/features/marketing/components/shell/site-outro";
 
 export const metadata: Metadata = {
@@ -17,6 +18,31 @@ export default async function Home() {
     <>
       <ConsumerHero />
       <ProductStory />
+      <Faq
+        title="Good to know"
+        items={[
+          {
+            q: "How do I get a ticket?",
+            a: "Find an event, tap through to buy, and pay in a couple of taps. Your ticket lives in the cheevo app as a QR code you scan at the door.",
+          },
+          {
+            q: "Do I need the app?",
+            a: "Yes — cheevo is a free iOS and Android app. Download it to browse events, RSVP, and keep your tickets in your pocket.",
+          },
+          {
+            q: "Is it free?",
+            a: "Browsing, RSVPs and free events cost nothing. For paid tickets you always see the exact total before you pay.",
+          },
+          {
+            q: "How do I get in at the door?",
+            a: "Open your ticket in the app and the organiser scans its QR code — no printing, no screenshots.",
+          },
+          {
+            q: "Can't make it anymore?",
+            a: "You can transfer your ticket to another cheevo user right from the app.",
+          },
+        ]}
+      />
       <SiteOutro
         pages={pages}
         title="Never miss what's on."
