@@ -57,8 +57,9 @@ export default async function Organizers() {
       />
       <SiteOutro
         pages={pages}
+        app="organizer"
         title="Your next event is one tap away."
-        body="Download cheevo and start selling tickets today."
+        body="Download the cheevo Organizer app and start selling tickets today."
         crossLink={{ href: "/", label: "For attendees" }}
       />
     </>

@@ -15,11 +15,11 @@ export function ConsumerHero() {
 
         <div className="flex flex-1 flex-col items-center justify-center px-6 pb-16 text-center">
           <h1 className="max-w-4xl text-[clamp(2.75rem,8vw,5.5rem)] font-black leading-[0.98] tracking-[-0.04em]">
-            Find what&apos;s on. Be there.
+            Find events. Get tickets.
           </h1>
           <p className="mt-6 max-w-xl text-base text-foreground/70 md:text-lg">
-            From concerts to game nights — see what&apos;s happening near you,
-            RSVP or grab a ticket, and walk in with it in your pocket.
+            Browse concerts, parties and game nights near you, book in seconds,
+            and show your ticket at the door.
           </p>
           <DownloadCta className="mt-9 justify-center" />
         </div>

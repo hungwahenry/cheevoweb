@@ -24,6 +24,12 @@ const SCENES: Scene[] = [
     body: "Lineup, location, tickets, who's going. RSVP for free or grab a ticket in a couple of taps.",
   },
   {
+    shot: "/screenshots/app/comments.png",
+    eyebrow: "Discuss",
+    title: "Join the conversation",
+    body: "Comments live right on the event — hype the lineup, ask what time doors open, and catch the buzz before you go.",
+  },
+  {
     shot: "/screenshots/app/tickets.png",
     eyebrow: "Walk in",
     title: "Your ticket, in your pocket",

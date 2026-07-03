@@ -11,25 +11,35 @@ export const metadata: Metadata = {
     "Download cheevo to discover events near you, RSVP or grab a ticket, and walk in with it in your pocket.",
 };
 
-export default async function Download() {
-  const pages = await listPublicPages().catch(() => []);
+export default async function Download({
+  searchParams,
+}: {
+  searchParams: Promise<{ app?: string }>;
+}) {
+  const [pages, params] = await Promise.all([
+    listPublicPages().catch(() => []),
+    searchParams,
+  ]);
+  const isOrganizer = params.app === "organizer";
+  const app = isOrganizer ? "organizer" : "attendee";
 
   return (
     <main className="flex min-h-svh flex-col bg-background text-foreground">
-      <StoreRedirect />
+      <StoreRedirect app={app} />
       <SiteHeader />
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
         <h1 className="text-[clamp(2.25rem,6vw,3.5rem)] font-black leading-[1.02] tracking-[-0.035em]">
-          Get the cheevo app
+          {isOrganizer ? "Get the cheevo Organizer app" : "Get the cheevo app"}
         </h1>
         <p className="mt-5 max-w-md text-base text-foreground/65 md:text-lg">
-          Discover events near you, RSVP or grab a ticket, and walk in with it
-          in your pocket.
+          {isOrganizer
+            ? "Create events, sell tickets, scan people in at the door, and cash out — all from your phone."
+            : "Discover events near you, RSVP or grab a ticket, and walk in with it in your pocket."}
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <StoreButton store="apple" />
-          <StoreButton store="google" />
+          <StoreButton store="apple" app={app} />
+          <StoreButton store="google" app={app} />
         </div>
       </div>
 

@@ -25,7 +25,7 @@ export default async function Pricing() {
     pricing.flatMinor + Math.round((ticketMinor * pricing.percentageBps) / 10_000);
   const totalMinor = ticketMinor + feeMinor;
 
-  const headline = [
+  const points = [
     {
       value: `${formatMoney(pricing.flatMinor)} + ${pct}%`,
       title: "Service fee",
@@ -47,30 +47,49 @@ export default async function Pricing() {
     <main className="flex min-h-svh flex-col bg-background text-foreground">
       <SiteHeader />
 
-      <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-16 md:py-24">
-        <h1 className="text-[clamp(2.25rem,6vw,3.5rem)] font-black leading-[1.02] tracking-[-0.035em]">
-          Free to start. You only pay when you sell.
-        </h1>
-        <p className="mt-5 max-w-xl text-base text-foreground/65 md:text-lg">
-          No subscription, no setup fees. The service fee is added at checkout —
-          your buyers see it, and you keep 100% of your ticket price.
-        </p>
+      <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-14 md:px-10 md:py-20">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-10">
+          <div className="flex flex-col">
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/55">
+              Pricing
+            </p>
+            <h1 className="mt-5 text-[clamp(2.25rem,5vw,3.5rem)] font-black leading-[1.02] tracking-[-0.035em]">
+              Free to start. You only pay when you sell.
+            </h1>
+            <p className="mt-5 max-w-md text-base text-foreground/65 md:text-lg">
+              No subscription, no setup fees. The service fee is added at
+              checkout — your buyers see it, and you keep 100% of your ticket
+              price.
+            </p>
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
-          {headline.map((item) => (
-            <div key={item.title} className="flex flex-col gap-2">
-              <span className="text-4xl font-black tracking-tight md:text-5xl">
-                {item.value}
-              </span>
-              <span className="text-sm font-semibold">{item.title}</span>
-              <span className="text-sm leading-relaxed text-foreground/55">
-                {item.body}
-              </span>
+            <div className="mt-10 flex flex-col gap-6">
+              {points.map((item) => (
+                <div key={item.title}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-black tracking-tight md:text-3xl">
+                      {item.value}
+                    </span>
+                    <span className="text-sm font-semibold">{item.title}</span>
+                  </div>
+                  <p className="mt-1 max-w-md text-sm leading-relaxed text-foreground/55">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/screenshots/org/dashboard.png"
+              alt="Your earnings and payouts in the cheevo organizer app"
+              className="w-[400px] max-w-full"
+            />
+          </div>
         </div>
 
-        <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6 sm:p-8">
+        <div className="mt-16 rounded-2xl border border-border bg-muted/40 p-6 sm:p-8">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary">
             Worked example
           </p>
@@ -101,8 +120,8 @@ export default async function Pricing() {
             Organizer app.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <StoreButton store="apple" />
-            <StoreButton store="google" />
+            <StoreButton store="apple" app="organizer" />
+            <StoreButton store="google" app="organizer" />
           </div>
         </div>
 

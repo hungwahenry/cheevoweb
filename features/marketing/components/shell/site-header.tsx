@@ -19,7 +19,7 @@ export function SiteHeader() {
           href="/organizers"
           className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
         >
-          I am an Organizer
+          For Organizers
         </Link>
       </div>
     </header>

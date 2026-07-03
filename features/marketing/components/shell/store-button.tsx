@@ -1,28 +1,31 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { STORE_LINKS } from "../../config/store-links";
+import { type AppTarget, STORE_LINKS } from "../../config/store-links";
 import { ApplePhoneIcon, GooglePhoneIcon } from "./icons";
 
 type Store = "apple" | "google";
 
-const COPY: Record<Store, { eyebrow: string; label: string; href: string }> = {
-  apple: { eyebrow: "Download on the", label: "App Store", href: STORE_LINKS.apple },
-  google: { eyebrow: "Get it on", label: "Google Play", href: STORE_LINKS.google },
+const COPY: Record<Store, { eyebrow: string; label: string }> = {
+  apple: { eyebrow: "Download on the", label: "App Store" },
+  google: { eyebrow: "Get it on", label: "Google Play" },
 };
 
 export function StoreButton({
   store,
+  app = "attendee",
   className,
 }: {
   store: Store;
+  app?: AppTarget;
   className?: string;
 }) {
   const meta = COPY[store];
+  const href = STORE_LINKS[app][store];
   const Icon = store === "apple" ? ApplePhoneIcon : GooglePhoneIcon;
 
   return (
     <Link
-      href={meta.href || "#"}
+      href={href || "#"}
       className={cn(
         "inline-flex items-center gap-2.5 rounded-full bg-foreground px-5 py-3 text-background transition-transform hover:scale-[1.02]",
         className,
