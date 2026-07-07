@@ -1,4 +1,5 @@
 import { Minus, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { formatMoney } from "@/lib/format"
 import type { PublicTicket } from "@/features/public/events/types"
 import { ticketStatus } from "../utils/availability"
@@ -9,30 +10,6 @@ type TicketSelectorProps = {
   onChange: (ticketId: string, quantity: number) => void
   disabled?: boolean
   now: number | null
-}
-
-function StepButton({
-  label,
-  disabled,
-  onClick,
-  children,
-}: {
-  label: string
-  disabled?: boolean
-  onClick: () => void
-  children: React.ReactNode
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      disabled={disabled}
-      onClick={onClick}
-      className="flex size-8 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:bg-muted disabled:opacity-40"
-    >
-      {children}
-    </button>
-  )
 }
 
 function TicketRow({
@@ -84,23 +61,27 @@ function TicketRow({
 
       {status.buyable ? (
         <div className="flex shrink-0 items-center gap-3">
-          <StepButton
-            label={`Remove one ${ticket.name}`}
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label={`Remove one ${ticket.name}`}
             disabled={disabled || qty === 0}
             onClick={() => onChange(ticket.id, qty - 1)}
           >
-            <Minus className="size-4" />
-          </StepButton>
+            <Minus />
+          </Button>
           <span className="w-5 text-center font-semibold tabular-nums">
             {qty}
           </span>
-          <StepButton
-            label={`Add one ${ticket.name}`}
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label={`Add one ${ticket.name}`}
             disabled={disabled || qty >= status.max}
             onClick={() => onChange(ticket.id, Math.min(qty + 1, status.max))}
           >
-            <Plus className="size-4" />
-          </StepButton>
+            <Plus />
+          </Button>
         </div>
       ) : (
         <span className="shrink-0 text-xs font-medium text-foreground/50">

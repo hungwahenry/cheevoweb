@@ -1,9 +1,10 @@
 "use client"
 
-import { Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner"
 import { usePaymentReturn } from "../hooks/use-payment-return"
 
 export function CheckoutReturn() {
@@ -15,19 +16,16 @@ export function CheckoutReturn() {
   }, [phase, token, router])
 
   const ticketsLink = token ? (
-    <Link
-      href={`/orders/${token}`}
-      className="mt-6 inline-flex rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background"
-    >
-      View your tickets
-    </Link>
+    <Button asChild size="lg" className="mt-6">
+      <Link href={`/orders/${token}`}>View your tickets</Link>
+    </Button>
   ) : null
 
   return (
     <div className="mx-auto flex min-h-svh max-w-md flex-col items-center justify-center px-6 text-center">
       {phase === "confirming" || phase === "paid" ? (
         <>
-          <Loader2 className="size-8 animate-spin text-primary" />
+          <Spinner className="size-8 text-primary" />
           <h1 className="mt-6 text-2xl font-black tracking-tight">
             Confirming your payment…
           </h1>

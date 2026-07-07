@@ -2,7 +2,6 @@ import type { PublicEvent } from "@/features/public/events/types"
 import type { PublicPageSummary } from "@/features/public/pages/types"
 import { isEventEnded } from "@/features/public/events/lib/event-status"
 import { EventCheckout } from "@/features/public/checkout/components/event-checkout"
-import type { AppFee } from "@/features/public/checkout/utils/fees"
 import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar"
 import { SiteHeader } from "@/features/public/shell/components/site-header"
 import { StoreButton } from "@/features/public/shell/components/store-button"
@@ -34,11 +33,9 @@ function appCard(ended: boolean, hasTickets: boolean) {
 export function EventPage({
   event,
   pages,
-  appFee,
 }: {
   event: PublicEvent
   pages: PublicPageSummary[]
-  appFee: AppFee
 }) {
   const ended = isEventEnded(event)
   const card = appCard(ended, event.tickets.length > 0)
@@ -85,7 +82,7 @@ export function EventPage({
         <SiteFooterBar pages={pages} crossLink={{ href: "/", label: "Home" }} />
       </div>
 
-      {ended ? null : <EventCheckout event={event} appFee={appFee} />}
+      {ended ? null : <EventCheckout event={event} />}
     </main>
   )
 }

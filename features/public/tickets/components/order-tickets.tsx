@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge"
 import { formatMoney } from "@/lib/format"
 import type { OrderView } from "@/features/public/checkout/types"
 import { TicketQr } from "./ticket-qr"
@@ -12,15 +13,9 @@ export function OrderTickets({ order }: { order: OrderView }) {
         <h1 className="text-2xl font-black tracking-tight md:text-3xl">
           Your tickets
         </h1>
-        <span
-          className={
-            paid
-              ? "rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase"
-              : "rounded-full bg-muted px-3 py-1 text-xs font-semibold tracking-wide text-foreground/60 uppercase"
-          }
-        >
+        <Badge variant={paid ? "default" : "secondary"} className="uppercase">
           {paid ? "Confirmed" : order.status}
-        </span>
+        </Badge>
       </div>
 
       {order.items && order.items.length > 0 ? (

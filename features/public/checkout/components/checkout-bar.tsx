@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { formatEventPrice } from "@/lib/format"
 
 export function CheckoutBar({
@@ -28,20 +29,13 @@ export function CheckoutBar({
           </p>
         </div>
         {buyable ? (
-          <button
-            type="button"
-            onClick={onOpen}
-            className="shrink-0 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-          >
+          <Button size="lg" onClick={onOpen}>
             Get tickets
-          </button>
+          </Button>
         ) : (
-          <Link
-            href="/download"
-            className="shrink-0 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
-          >
-            Get the app
-          </Link>
+          <Button asChild size="lg">
+            <Link href="/download">Get the app</Link>
+          </Button>
         )}
       </div>
     </div>

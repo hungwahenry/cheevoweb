@@ -1,22 +1,30 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
 import { formatMoney } from "@/lib/format"
 import type { PublicTicket } from "@/features/public/events/types"
 import { useGuestCheckout } from "../hooks/use-guest-checkout"
 import { useGuestQuote } from "../hooks/use-guest-quote"
 import { useTicketSelection } from "../hooks/use-ticket-selection"
-import { type AppFee, savingsMinor, subtotalMinor } from "../utils/fees"
 import { GuestDetailsForm } from "./guest-details-form"
 import { OrderSummary } from "./order-summary"
 import { TicketSelector } from "./ticket-selector"
 
+function subtotalMinor(
+  tickets: PublicTicket[],
+  quantities: Record<string, number>
+): number {
+  return tickets.reduce(
+    (sum, ticket) => sum + ticket.gross_price * (quantities[ticket.id] ?? 0),
+    0
+  )
+}
+
 export function CheckoutPanel({
   event,
-  appFee,
 }: {
   event: { id: string; tickets: PublicTicket[] }
-  appFee: AppFee
 }) {
   const [step, setStep] = useState<"select" | "details">("select")
   const [now, setNow] = useState<number | null>(null)
@@ -28,16 +36,11 @@ export function CheckoutPanel({
   }, [])
 
   const { quantities, setQuantity, items, hasSelection } = useTicketSelection()
-  const { quote, isLoading, error: quoteError } = useGuestQuote(event.id, items)
-  const {
-    checkout,
-    isProcessing,
-    error: checkoutError,
-  } = useGuestCheckout(event.id)
+  const { quote, isLoading } = useGuestQuote(event.id, items)
+  const { checkout, isProcessing } = useGuestCheckout(event.id)
 
   const subtotal = subtotalMinor(event.tickets, quantities)
-  const savings = quote ? savingsMinor(quote.fees_minor, subtotal, appFee) : 0
-  const error = checkoutError ?? quoteError
+  const savings = quote?.app_savings_minor ?? 0
 
   function onSelectChange(ticketId: string, quantity: number) {
     setStep("select")
@@ -63,21 +66,15 @@ export function CheckoutPanel({
             savings={savings}
           />
 
-          {error ? (
-            <p className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              {error}
-            </p>
-          ) : null}
-
           {step === "select" ? (
-            <button
-              type="button"
+            <Button
+              size="lg"
+              className="mt-4 w-full"
               disabled={isLoading || !quote}
               onClick={() => setStep("details")}
-              className="mt-4 w-full rounded-full bg-foreground py-3 font-medium text-background transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               Continue
-            </button>
+            </Button>
           ) : (
             <div className="mt-4">
               <GuestDetailsForm

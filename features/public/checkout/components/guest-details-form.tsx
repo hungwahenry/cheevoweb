@@ -1,4 +1,7 @@
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
 import type { GuestBuyer } from "../api/create-order"
 
 const EMAIL_RE = /.+@.+\..+/
@@ -28,50 +31,48 @@ export function GuestDetailsForm({
   return (
     <div className="space-y-3">
       <div>
-        <input
+        <Input
           type="email"
           inputMode="email"
           autoComplete="email"
+          aria-invalid={invalid}
           placeholder="Email — where we send your ticket"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value)
             setInvalid(false)
           }}
-          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-foreground/40"
         />
         {invalid ? (
-          <p className="mt-1 text-xs text-destructive">
+          <p className="mt-1 px-3 text-xs text-destructive">
             Enter a valid email so we can send your ticket.
           </p>
         ) : null}
       </div>
       <div className="flex gap-3">
-        <input
+        <Input
           type="text"
           autoComplete="given-name"
           placeholder="First name (optional)"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-foreground/40"
         />
-        <input
+        <Input
           type="text"
           autoComplete="family-name"
           placeholder="Last name (optional)"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-foreground/40"
         />
       </div>
-      <button
-        type="button"
+      <Button
+        size="lg"
+        className="w-full"
         disabled={submitting}
         onClick={submit}
-        className="w-full rounded-full bg-primary py-3 font-medium text-primary-foreground transition-transform hover:scale-[1.01] disabled:opacity-50"
       >
-        {submitting ? "Starting checkout…" : submitLabel}
-      </button>
+        {submitting ? <Spinner /> : submitLabel}
+      </Button>
       <p className="text-center text-xs text-foreground/50">
         Your ticket is emailed to you and shown on the next screen.
       </p>

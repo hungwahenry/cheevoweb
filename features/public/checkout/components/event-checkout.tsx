@@ -1,19 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer"
 import type { PublicEvent } from "@/features/public/events/types"
-import type { AppFee } from "../utils/fees"
 import { CheckoutBar } from "./checkout-bar"
-import { CheckoutDrawer } from "./checkout-drawer"
 import { CheckoutPanel } from "./checkout-panel"
 
-export function EventCheckout({
-  event,
-  appFee,
-}: {
-  event: PublicEvent
-  appFee: AppFee
-}) {
+export function EventCheckout({ event }: { event: PublicEvent }) {
   const [open, setOpen] = useState(false)
   const buyable = event.tickets.length > 0
 
@@ -27,16 +25,16 @@ export function EventCheckout({
         onOpen={() => setOpen(true)}
       />
       {buyable ? (
-        <CheckoutDrawer
-          open={open}
-          onClose={() => setOpen(false)}
-          title="Get tickets"
-        >
-          <CheckoutPanel
-            event={{ id: event.id, tickets: event.tickets }}
-            appFee={appFee}
-          />
-        </CheckoutDrawer>
+        <Drawer open={open} onOpenChange={setOpen}>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Get tickets</DrawerTitle>
+            </DrawerHeader>
+            <div className="overflow-y-auto px-2 pb-4">
+              <CheckoutPanel event={{ id: event.id, tickets: event.tickets }} />
+            </div>
+          </DrawerContent>
+        </Drawer>
       ) : null}
     </>
   )

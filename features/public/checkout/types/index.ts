@@ -12,6 +12,7 @@ export type Quote = {
   subtotal_minor: number
   fees_minor: number
   total_minor: number
+  app_savings_minor: number
   currency: string
   items: QuoteLine[]
 }
