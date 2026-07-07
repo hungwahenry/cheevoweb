@@ -14,6 +14,7 @@ export function usePaymentReturn() {
   const [phase, setPhase] = useState<ReturnPhase>("confirming")
   const [order, setOrder] = useState<OrderView | null>(null)
   const [token] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null
     const fromUrl = new URLSearchParams(window.location.search).get("token")
     return fromUrl ?? activeCheckout.get()
   })
