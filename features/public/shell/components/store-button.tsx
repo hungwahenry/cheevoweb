@@ -33,16 +33,16 @@ export function StoreButton({
     <Link
       href={href || "#"}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-full bg-foreground px-5 py-3 text-background transition-transform hover:scale-[1.02]",
+        "inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-background transition-transform hover:scale-[1.02] sm:gap-2.5 sm:px-5 sm:py-3",
         className
       )}
     >
-      <Icon className="size-5 shrink-0" />
+      <Icon className="size-4 shrink-0 sm:size-5" />
       <span className="flex flex-col leading-none whitespace-nowrap">
-        <span className="text-[9px] tracking-[0.14em] uppercase opacity-65">
+        <span className="text-[8px] tracking-[0.14em] uppercase opacity-65 sm:text-[9px]">
           {meta.eyebrow}
         </span>
-        <span className="mt-0.5 text-[15px] font-medium tracking-tight">
+        <span className="mt-0.5 text-[13px] font-medium tracking-tight sm:text-[15px]">
           {meta.label}
         </span>
       </span>

@@ -2,9 +2,9 @@ import type { PublicEvent } from "@/features/public/events/types"
 import type { PublicPageSummary } from "@/features/public/pages/types"
 import { isEventEnded } from "@/features/public/events/lib/event-status"
 import { EventCheckout } from "@/features/public/checkout/components/event-checkout"
+import { AppCta } from "@/features/public/shell/components/app-cta"
 import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar"
 import { SiteHeader } from "@/features/public/shell/components/site-header"
-import { StoreButton } from "@/features/public/shell/components/store-button"
 import { EventDetails } from "@/features/public/events/components/event-details"
 import { EventJsonLd } from "@/features/public/events/components/event-jsonld"
 import { EventFeatures } from "@/features/public/events/components/event-features"
@@ -14,17 +14,20 @@ import { EventGallery } from "@/features/public/events/components/event-gallery"
 function appCard(ended: boolean, hasTickets: boolean) {
   if (ended) {
     return {
+      image: "/screenshots/app/feed.png",
       title: "This event has ended",
       body: "Catch the next one — download cheevo to discover events near you.",
     }
   }
   if (!hasTickets) {
     return {
+      image: "/screenshots/app/event-detail.png",
       title: "RSVP in the cheevo app",
       body: "This event uses RSVPs — download cheevo to reserve your spot and keep it in your pocket.",
     }
   }
   return {
+    image: "/screenshots/app/event-detail.png",
     title: "Prefer the app?",
     body: "Buy in the cheevo app for lower fees, and keep every ticket in your pocket.",
   }
@@ -64,18 +67,12 @@ export function EventPage({
         <EventGallery images={event.images} />
         <EventFeatures features={event.features} timezone={event.timezone} />
 
-        <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6 text-center sm:p-8">
-          <h2 className="text-xl font-bold tracking-tight md:text-2xl">
-            {card.title}
-          </h2>
-          <p className="mx-auto mt-2 max-w-md text-sm text-foreground/60">
-            {card.body}
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-            <StoreButton store="apple" />
-            <StoreButton store="google" />
-          </div>
-        </div>
+        <AppCta
+          className="mt-12"
+          image={card.image}
+          title={card.title}
+          body={card.body}
+        />
       </div>
 
       <div className="pb-28">

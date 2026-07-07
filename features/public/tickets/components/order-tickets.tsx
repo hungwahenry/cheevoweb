@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { formatMoney } from "@/lib/format"
 import type { OrderView } from "@/features/public/checkout/types"
+import { AppCta } from "@/features/public/shell/components/app-cta"
 import { TicketCard } from "./ticket-card"
 
 export function OrderTickets({ order }: { order: OrderView }) {
@@ -48,13 +49,12 @@ export function OrderTickets({ order }: { order: OrderView }) {
         </div>
       )}
 
-      <div className="mt-10 rounded-2xl border border-border bg-muted/40 p-6">
-        <p className="font-semibold">Keep your tickets safe</p>
-        <p className="mt-1 text-sm text-foreground/65">
-          Get the cheevo app and sign in with this email to keep every ticket in
-          your pocket — and check in faster at the door.
-        </p>
-      </div>
+      <AppCta
+        className="mt-10"
+        image="/screenshots/app/tickets.png"
+        title="Keep your tickets safe"
+        body="Get the cheevo app and sign in to keep every ticket in your pocket."
+      />
     </div>
   )
 }
