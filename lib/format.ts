@@ -37,6 +37,29 @@ export function formatEventWhen(
   }
 }
 
+export function formatTimeRange(
+  start: string | null,
+  end: string | null,
+  tz: string | null
+): string | null {
+  if (!start) return null
+  const time = (iso: string) => {
+    try {
+      return new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        timeZone: tz ?? undefined,
+      }).format(new Date(iso))
+    } catch {
+      return ""
+    }
+  }
+  const from = time(start)
+  if (!from) return null
+  const to = end ? time(end) : ""
+  return to ? `${from} – ${to}` : from
+}
+
 export function formatEventPrice(
   min: number | null,
   max: number | null,

@@ -62,7 +62,7 @@ export function EventPage({
         ) : null}
 
         <EventGallery images={event.images} />
-        <EventFeatures features={event.features} />
+        <EventFeatures features={event.features} timezone={event.timezone} />
 
         <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6 text-center sm:p-8">
           <h2 className="text-xl font-bold tracking-tight md:text-2xl">

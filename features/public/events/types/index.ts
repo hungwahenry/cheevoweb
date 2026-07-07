@@ -18,6 +18,8 @@ export type PublicFeature = {
   description: string | null
   image_url: string | null
   link: string | null
+  starts_at: string | null
+  ends_at: string | null
 }
 
 export type PublicEvent = {

@@ -21,15 +21,22 @@ export function EventDetails({ event }: { event: PublicEvent }) {
         </span>
       ) : null}
       {event.organisation?.name ? (
-        <div className="flex items-center gap-2 text-sm text-foreground/60">
+        <div className="flex items-center gap-2.5">
           {event.organisation.logo_url ? (
             <img
               src={event.organisation.logo_url}
               alt=""
-              className="size-6 rounded-md object-cover"
+              className="size-8 rounded-full border border-border object-cover"
             />
           ) : null}
-          <span>{event.organisation.name}</span>
+          <div className="leading-tight">
+            <p className="text-[11px] tracking-wider text-foreground/45 uppercase">
+              Hosted by
+            </p>
+            <p className="text-sm font-medium text-foreground/80">
+              {event.organisation.name}
+            </p>
+          </div>
         </div>
       ) : null}
 
