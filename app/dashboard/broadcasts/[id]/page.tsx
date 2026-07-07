@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BroadcastDetail } from "@/features/broadcasts/components/detail/broadcast-detail";
+import { BroadcastDetail } from "@/features/admin/broadcasts/components/detail/broadcast-detail";
 
 export default async function BroadcastDetailPage({
   params,

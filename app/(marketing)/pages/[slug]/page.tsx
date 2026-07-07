@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPublicPage } from "@/features/marketing/api/get-page";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { CmsArticle } from "@/features/marketing/components/content/cms-article";
+import { getPublicPage } from "@/features/public/pages/api/get-page";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { CmsArticle } from "@/features/public/pages/components/cms-article";
 
 export async function generateMetadata({
   params,

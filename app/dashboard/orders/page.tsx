@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { OrdersTable } from "@/features/orders/components/orders-table";
+import { OrdersTable } from "@/features/admin/orders/components/orders-table";
 
 export default function OrdersPage() {
   return (

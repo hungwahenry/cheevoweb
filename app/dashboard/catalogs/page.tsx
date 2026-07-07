@@ -5,8 +5,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { ReportReasonsCatalog } from "@/features/catalogs/components/report-reasons-catalog";
-import { SimpleCatalog } from "@/features/catalogs/components/simple-catalog";
+import { ReportReasonsCatalog } from "@/features/admin/catalogs/components/report-reasons-catalog";
+import { SimpleCatalog } from "@/features/admin/catalogs/components/simple-catalog";
 
 export default function CatalogsPage() {
   return (

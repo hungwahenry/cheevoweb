@@ -5,8 +5,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { PagesTable } from "@/features/content/components/pages-table";
-import { WelcomeForm } from "@/features/content/components/welcome-form";
+import { PagesTable } from "@/features/admin/content/components/pages-table";
+import { WelcomeForm } from "@/features/admin/content/components/welcome-form";
 
 export default function ContentPage() {
   return (

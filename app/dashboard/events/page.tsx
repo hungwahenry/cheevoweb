@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { EventsTable } from "@/features/events/components/events-table";
+import { EventsTable } from "@/features/admin/events/components/events-table";
 
 export default function EventsPage() {
   return (

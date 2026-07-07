@@ -11,8 +11,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLogout } from "@/features/auth/hooks/use-logout";
-import { useSession } from "@/features/auth/hooks/use-session";
+import { useLogout } from "@/features/admin/auth/hooks/use-logout";
+import { useSession } from "@/features/admin/auth/hooks/use-session";
 
 export function UserMenu() {
   const { data: user } = useSession();

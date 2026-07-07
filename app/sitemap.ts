@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { listPublicEvents } from "@/features/marketing/api/list-events";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { SITE_URL } from "@/features/marketing/config/site";
+import { listPublicEvents } from "@/features/public/events/api/list-events";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { SITE_URL } from "@/features/public/shell/config/site";
 
 export const revalidate = 600;
 

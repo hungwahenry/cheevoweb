@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { IssuedTicketsTable } from "@/features/issued-tickets/components/issued-tickets-table";
+import { IssuedTicketsTable } from "@/features/admin/issued-tickets/components/issued-tickets-table";
 
 export default function IssuedTicketsPage() {
   return (

@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { EventDetail } from "@/features/events/components/detail/event-detail";
+import { EventDetail } from "@/features/admin/events/components/detail/event-detail";
 
 export default async function EventDetailPage({
   params,

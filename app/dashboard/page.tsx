@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { ActionItems } from "@/features/analytics/components/action-items";
-import { OverviewCards } from "@/features/analytics/components/overview-cards";
-import { RevenueChart } from "@/features/analytics/components/revenue-chart";
+import { ActionItems } from "@/features/admin/analytics/components/action-items";
+import { OverviewCards } from "@/features/admin/analytics/components/overview-cards";
+import { RevenueChart } from "@/features/admin/analytics/components/revenue-chart";
 
 export default function DashboardPage() {
   return (

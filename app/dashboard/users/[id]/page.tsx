@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { UserDetail } from "@/features/users/components/detail/user-detail";
+import { UserDetail } from "@/features/admin/users/components/detail/user-detail";
 
 export default async function UserDetailPage({
   params,

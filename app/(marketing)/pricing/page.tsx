@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { getPricing } from "@/features/marketing/api/get-pricing";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { Faq } from "@/features/marketing/components/shell/faq";
-import { SiteFooterBar } from "@/features/marketing/components/shell/site-footer-bar";
-import { SiteHeader } from "@/features/marketing/components/shell/site-header";
-import { StoreButton } from "@/features/marketing/components/shell/store-button";
+import { getPricing } from "@/features/public/pricing/api/get-pricing";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { Faq } from "@/features/public/shell/components/faq";
+import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar";
+import { SiteHeader } from "@/features/public/shell/components/site-header";
+import { StoreButton } from "@/features/public/shell/components/store-button";
 import { formatMoney } from "@/lib/format";
 
 export const metadata: Metadata = {

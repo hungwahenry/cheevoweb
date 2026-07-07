@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { getPricing } from "@/features/marketing/api/get-pricing";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { MoneySection } from "@/features/marketing/components/organizer/money-section";
-import { OrganizerHero } from "@/features/marketing/components/organizer/organizer-hero";
-import { ReplacesSection } from "@/features/marketing/components/organizer/replaces-section";
-import { ToolkitGrid } from "@/features/marketing/components/organizer/toolkit-grid";
-import { Faq } from "@/features/marketing/components/shell/faq";
-import { SiteOutro } from "@/features/marketing/components/shell/site-outro";
+import { getPricing } from "@/features/public/pricing/api/get-pricing";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { MoneySection } from "@/features/public/organizers/components/money-section";
+import { OrganizerHero } from "@/features/public/organizers/components/organizer-hero";
+import { ReplacesSection } from "@/features/public/organizers/components/replaces-section";
+import { ToolkitGrid } from "@/features/public/organizers/components/toolkit-grid";
+import { Faq } from "@/features/public/shell/components/faq";
+import { SiteOutro } from "@/features/public/shell/components/site-outro";
 
 export const metadata: Metadata = {
   title: "cheevo for organizers — Sell tickets. Get paid. Move on.",

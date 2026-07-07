@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { SiteFooterBar } from "@/features/marketing/components/shell/site-footer-bar";
-import { SiteHeader } from "@/features/marketing/components/shell/site-header";
-import { CONTACT_EMAIL, WHATSAPP_URL } from "@/features/marketing/config/site";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar";
+import { SiteHeader } from "@/features/public/shell/components/site-header";
+import { CONTACT_EMAIL, WHATSAPP_URL } from "@/features/public/shell/config/site";
 
 export const metadata: Metadata = {
   title: "Contact cheevo",

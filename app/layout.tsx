@@ -3,7 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
 import { Providers } from "@/components/providers/providers"
-import { APPLE_APP_ID } from "@/features/marketing/config/site"
+import { APPLE_APP_ID } from "@/features/public/shell/config/site"
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { SiteFooterBar } from "@/features/marketing/components/shell/site-footer-bar";
-import { SiteHeader } from "@/features/marketing/components/shell/site-header";
-import { StoreButton } from "@/features/marketing/components/shell/store-button";
-import { StoreRedirect } from "@/features/marketing/components/shell/store-redirect";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar";
+import { SiteHeader } from "@/features/public/shell/components/site-header";
+import { StoreButton } from "@/features/public/shell/components/store-button";
+import { StoreRedirect } from "@/features/public/shell/components/store-redirect";
 
 export const metadata: Metadata = {
   title: "Get the cheevo app",

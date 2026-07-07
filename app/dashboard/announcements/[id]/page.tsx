@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { AnnouncementDetail } from "@/features/announcements/components/detail/announcement-detail";
+import { AnnouncementDetail } from "@/features/admin/announcements/components/detail/announcement-detail";
 
 export default async function AnnouncementDetailPage({
   params,

@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { CommentsTable } from "@/features/comments/components/comments-table";
+import { CommentsTable } from "@/features/admin/comments/components/comments-table";
 
 export default function CommentsPage() {
   return (

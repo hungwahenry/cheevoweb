@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { ConsumerHero } from "@/features/marketing/components/landing/consumer-hero";
-import { ProductStory } from "@/features/marketing/components/landing/product-story";
-import { Faq } from "@/features/marketing/components/shell/faq";
-import { SiteOutro } from "@/features/marketing/components/shell/site-outro";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { ConsumerHero } from "@/features/public/home/components/consumer-hero";
+import { ProductStory } from "@/features/public/home/components/product-story";
+import { Faq } from "@/features/public/shell/components/faq";
+import { SiteOutro } from "@/features/public/shell/components/site-outro";
 
 export const metadata: Metadata = {
   title: "cheevo — Find what's on near you",

@@ -5,8 +5,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { ConfigsTable } from "@/features/settings/components/configs-table";
-import { FlagsTable } from "@/features/settings/components/flags-table";
+import { ConfigsTable } from "@/features/admin/settings/components/configs-table";
+import { FlagsTable } from "@/features/admin/settings/components/flags-table";
 
 export default function SettingsPage() {
   return (

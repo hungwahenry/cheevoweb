@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { OrderDetail } from "@/features/orders/components/detail/order-detail";
+import { OrderDetail } from "@/features/admin/orders/components/detail/order-detail";
 
 export default async function OrderDetailPage({
   params,

@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { AnalyticsView } from "@/features/analytics/components/analytics-view";
+import { AnalyticsView } from "@/features/admin/analytics/components/analytics-view";
 
 export default function AnalyticsPage() {
   return (

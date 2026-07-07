@@ -5,8 +5,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { BroadcastsTable } from "@/features/broadcasts/components/broadcasts-table";
-import { SuppressionsTable } from "@/features/broadcasts/components/suppressions/suppressions-table";
+import { BroadcastsTable } from "@/features/admin/broadcasts/components/broadcasts-table";
+import { SuppressionsTable } from "@/features/admin/broadcasts/components/suppressions/suppressions-table";
 
 export default function BroadcastsPage() {
   return (

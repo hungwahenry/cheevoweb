@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { PaymentsTable } from "@/features/payments/components/payments-table";
+import { PaymentsTable } from "@/features/admin/payments/components/payments-table";
 
 export default function PaymentsPage() {
   return (

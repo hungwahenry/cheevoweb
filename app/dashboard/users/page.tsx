@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { UsersTable } from "@/features/users/components/users-table";
+import { UsersTable } from "@/features/admin/users/components/users-table";
 
 export default function UsersPage() {
   return (

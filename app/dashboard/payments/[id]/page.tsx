@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { PaymentDetail } from "@/features/payments/components/detail/payment-detail";
+import { PaymentDetail } from "@/features/admin/payments/components/detail/payment-detail";
 
 export default async function PaymentDetailPage({
   params,

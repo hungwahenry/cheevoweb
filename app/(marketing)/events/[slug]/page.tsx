@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPublicEvent } from "@/features/marketing/api/get-event";
-import { listPublicPages } from "@/features/marketing/api/list-pages";
-import { EventPage } from "@/features/marketing/components/content/event-page";
-import { APPLE_APP_ID, SITE_URL } from "@/features/marketing/config/site";
+import { getPublicEvent } from "@/features/public/events/api/get-event";
+import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { EventPage } from "@/features/public/events/components/event-page";
+import { APPLE_APP_ID, SITE_URL } from "@/features/public/shell/config/site";
 
 export async function generateMetadata({
   params,

@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { AuditLogTable } from "@/features/audit-log/components/audit-log-table";
+import { AuditLogTable } from "@/features/admin/audit-log/components/audit-log-table";
 
 export default function AuditLogPage() {
   return (

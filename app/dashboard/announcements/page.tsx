@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { AnnouncementsTable } from "@/features/announcements/components/announcements-table";
+import { AnnouncementsTable } from "@/features/admin/announcements/components/announcements-table";
 
 export default function AnnouncementsPage() {
   return (

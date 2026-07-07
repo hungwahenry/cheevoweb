@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { OrganisationsTable } from "@/features/organisations/components/organisations-table";
+import { OrganisationsTable } from "@/features/admin/organisations/components/organisations-table";
 
 export default function OrganisationsPage() {
   return (

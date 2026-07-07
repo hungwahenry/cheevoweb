@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { OrganisationDetail } from "@/features/organisations/components/detail/organisation-detail";
+import { OrganisationDetail } from "@/features/admin/organisations/components/detail/organisation-detail";
 
 export default async function OrganisationDetailPage({
   params,

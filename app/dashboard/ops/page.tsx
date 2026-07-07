@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { OpsCommands } from "@/features/ops/components/ops-commands";
-import { OpsHealth } from "@/features/ops/components/ops-health";
+import { OpsCommands } from "@/features/admin/ops/components/ops-commands";
+import { OpsHealth } from "@/features/admin/ops/components/ops-health";
 
 export default function OpsPage() {
   return (

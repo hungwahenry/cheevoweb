@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ReportDetail } from "@/features/reports/components/detail/report-detail";
+import { ReportDetail } from "@/features/admin/reports/components/detail/report-detail";
 
 export default async function ReportDetailPage({
   params,
