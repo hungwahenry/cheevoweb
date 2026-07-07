@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { CheckoutReturn } from "@/features/public/checkout/components/checkout-return"
 
 export const metadata: Metadata = {
-  title: "Confirming payment — cheevo",
+  title: "Confirming payment — Cheevo",
   robots: { index: false, follow: false },
 }
 

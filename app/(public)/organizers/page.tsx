@@ -9,7 +9,7 @@ import { Faq } from "@/features/public/shell/components/faq"
 import { SiteOutro } from "@/features/public/shell/components/site-outro"
 
 export const metadata: Metadata = {
-  title: "cheevo for organizers — Sell tickets. Get paid. Move on.",
+  title: "Cheevo for organizers — Sell tickets. Get paid. Move on.",
   description:
     "Create an event, sell tickets, scan people in at the door, and cash out — all from your phone.",
 }
@@ -31,7 +31,7 @@ export default async function Organizers() {
         items={[
           {
             q: "How do I create an event?",
-            a: "Everything happens in the cheevo Organizer app — create your event, add tickets, and publish in minutes. No separate desktop setup needed.",
+            a: "Everything happens in the Cheevo Organizer app — create your event, add tickets, and publish in minutes. No separate desktop setup needed.",
           },
           {
             q: "What does it cost?",
@@ -59,7 +59,7 @@ export default async function Organizers() {
         pages={pages}
         app="organizer"
         title="Your next event is one tap away."
-        body="Download the cheevo Organizer app and start selling tickets today."
+        body="Download the Cheevo Organizer app and start selling tickets today."
         crossLink={{ href: "/", label: "For attendees" }}
       />
     </>

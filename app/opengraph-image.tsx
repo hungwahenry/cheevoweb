@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 
-export const alt = "cheevo — Find what's on near you"
+export const alt = "Cheevo — Find what's on near you"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -23,7 +23,7 @@ export default async function OpengraphImage() {
         backgroundColor: "#f7f2ea",
       }}
     >
-      <img src={logoSrc} width={480} height={141} alt="cheevo" />
+      <img src={logoSrc} width={480} height={141} alt="Cheevo" />
       <div style={{ fontSize: 46, color: "#0a0a0a", opacity: 0.7 }}>
         Find what&apos;s on. Be there.
       </div>

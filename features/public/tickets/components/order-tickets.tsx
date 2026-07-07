@@ -53,7 +53,7 @@ export function OrderTickets({ order }: { order: OrderView }) {
         className="mt-10"
         image="/screenshots/app/tickets.png"
         title="Keep your tickets safe"
-        body="Get the cheevo app and sign in to keep every ticket in your pocket."
+        body="Get the Cheevo app and sign in to keep every ticket in your pocket."
       />
     </div>
   )

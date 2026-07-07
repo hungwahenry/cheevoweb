@@ -8,7 +8,7 @@ import { StoreButton } from "@/features/public/shell/components/store-button"
 import { formatMoney } from "@/lib/format"
 
 export const metadata: Metadata = {
-  title: "cheevo pricing — Free to start, you only pay when you sell",
+  title: "Cheevo pricing — Free to start, you only pay when you sell",
   description:
     "No subscription or setup fee. A small service fee is added at checkout — your buyers pay it and you keep 100% of your ticket price. Payouts land in your bank.",
 }
@@ -83,7 +83,7 @@ export default async function Pricing() {
           <div className="flex justify-center md:justify-end">
             <img
               src="/screenshots/org/dashboard.png"
-              alt="Your earnings and payouts in the cheevo organizer app"
+              alt="Your earnings and payouts in the Cheevo organizer app"
               className="w-[400px] max-w-full"
             />
           </div>
@@ -116,7 +116,7 @@ export default async function Pricing() {
             Start selling
           </h2>
           <p className="mt-2 max-w-md text-sm text-foreground/60">
-            Create your event, add tickets, and publish — all from the cheevo
+            Create your event, add tickets, and publish — all from the Cheevo
             Organizer app.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">

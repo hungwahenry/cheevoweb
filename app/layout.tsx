@@ -18,19 +18,19 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cheevo.events"),
-  title: "cheevo — Find what's on near you",
+  title: "Cheevo — Find what's on near you",
   description: DESCRIPTION,
-  applicationName: "cheevo",
+  applicationName: "Cheevo",
   openGraph: {
     type: "website",
-    siteName: "cheevo",
+    siteName: "Cheevo",
     url: "https://cheevo.events",
-    title: "cheevo — Find what's on near you",
+    title: "Cheevo — Find what's on near you",
     description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "cheevo — Find what's on near you",
+    title: "Cheevo — Find what's on near you",
     description: DESCRIPTION,
   },
   itunes: { appId: APPLE_APP_ID },

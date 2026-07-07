@@ -51,7 +51,7 @@ export function SignInForm() {
         <CardDescription>
           {email
             ? `We sent a 6-digit code to ${email}.`
-            : "Sign in to the cheevo admin panel."}
+            : "Sign in to the Cheevo admin panel."}
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -54,7 +54,7 @@ export function OrderSummary({
         <p className="pt-1 text-xs text-foreground/60">
           Save {formatMoney(savings)} on fees by buying in the{" "}
           <Link href="/download" className="text-primary hover:underline">
-            cheevo app
+            Cheevo app
           </Link>
           .
         </p>

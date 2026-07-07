@@ -11,9 +11,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const page = await getPublicPage(slug)
-  if (!page) return { title: "Not found — cheevo" }
+  if (!page) return { title: "Not found — Cheevo" }
   return {
-    title: `${page.title} — cheevo`,
+    title: `${page.title} — Cheevo`,
     description: page.meta_description ?? undefined,
   }
 }

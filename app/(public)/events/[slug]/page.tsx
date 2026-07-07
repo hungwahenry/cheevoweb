@@ -12,9 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const event = await getPublicEvent(slug)
-  if (!event) return { title: "Event not found — cheevo" }
+  if (!event) return { title: "Event not found — Cheevo" }
   return {
-    title: `${event.title} — cheevo`,
+    title: `${event.title} — Cheevo`,
     description: event.description?.slice(0, 160) ?? undefined,
     alternates: { canonical: `${SITE_URL}/events/${slug}` },
     openGraph: {

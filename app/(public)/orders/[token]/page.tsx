@@ -5,7 +5,7 @@ import { OrderTickets } from "@/features/public/tickets/components/order-tickets
 import { SiteHeader } from "@/features/public/shell/components/site-header"
 
 export const metadata: Metadata = {
-  title: "Your tickets — cheevo",
+  title: "Your tickets — Cheevo",
   robots: { index: false, follow: false },
 }
 

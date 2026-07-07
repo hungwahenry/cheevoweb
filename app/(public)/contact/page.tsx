@@ -9,9 +9,9 @@ import {
 } from "@/features/public/shell/config/site"
 
 export const metadata: Metadata = {
-  title: "Contact cheevo",
+  title: "Contact Cheevo",
   description:
-    "Talk to the cheevo team — organiser partnerships, support, or press.",
+    "Talk to the Cheevo team — organiser partnerships, support, or press.",
 }
 
 export default async function Contact() {
@@ -26,7 +26,7 @@ export default async function Contact() {
           Get in touch
         </h1>
         <p className="mt-5 max-w-md text-base text-foreground/65 md:text-lg">
-          Hosting an event and want to sell on cheevo? Need a hand, or want to
+          Hosting an event and want to sell on Cheevo? Need a hand, or want to
           partner up? We&apos;d love to hear from you.
         </p>
 
@@ -64,7 +64,7 @@ export default async function Contact() {
         <div className="mt-10 rounded-2xl border border-border bg-muted/40 p-6">
           <p className="font-semibold">Are you an organiser?</p>
           <p className="mt-2 text-sm text-foreground/65">
-            You create and manage events in the cheevo Organizer app. See how it
+            You create and manage events in the Cheevo Organizer app. See how it
             works on the{" "}
             <Link href="/organizers" className="text-primary hover:underline">
               organizers page

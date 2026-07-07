@@ -7,12 +7,12 @@ export function OrganizerHeader() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
         <Link
           href="/organizers"
-          aria-label="cheevo for organizers"
+          aria-label="Cheevo for organizers"
           className="inline-flex"
         >
           <Image
             src="/images/logo.png"
-            alt="cheevo"
+            alt="Cheevo"
             width={1024}
             height={300}
             priority

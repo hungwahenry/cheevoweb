@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button"
 export default function NotFound() {
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 py-16 text-center">
-      <Link href="/" aria-label="cheevo" className="inline-flex">
+      <Link href="/" aria-label="Cheevo" className="inline-flex">
         <Image
           src="/images/logo.png"
-          alt="cheevo"
+          alt="Cheevo"
           width={1024}
           height={300}
           priority

@@ -6,9 +6,9 @@ import { StoreButton } from "@/features/public/shell/components/store-button"
 import { StoreRedirect } from "@/features/public/shell/components/store-redirect"
 
 export const metadata: Metadata = {
-  title: "Get the cheevo app",
+  title: "Get the Cheevo app",
   description:
-    "Download cheevo to discover events near you, RSVP or grab a ticket, and walk in with it in your pocket.",
+    "Download Cheevo to discover events near you, RSVP or grab a ticket, and walk in with it in your pocket.",
 }
 
 export default async function Download({
@@ -30,7 +30,7 @@ export default async function Download({
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
         <h1 className="text-[clamp(2.25rem,6vw,3.5rem)] leading-[1.02] font-black tracking-[-0.035em]">
-          {isOrganizer ? "Get the cheevo Organizer app" : "Get the cheevo app"}
+          {isOrganizer ? "Get the Cheevo Organizer app" : "Get the Cheevo app"}
         </h1>
         <p className="mt-5 max-w-md text-base text-foreground/65 md:text-lg">
           {isOrganizer

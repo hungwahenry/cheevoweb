@@ -1,7 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { UserPicker, type PickedUser } from "@/components/admin/common/user-picker"
+import {
+  UserPicker,
+  type PickedUser,
+} from "@/components/admin/common/user-picker"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

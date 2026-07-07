@@ -25,7 +25,7 @@ export function CheckoutBar({
               : "Free entry"}
           </p>
           <p className="text-xs text-foreground/55">
-            {buyable ? "Lower fees in the app" : "RSVP in the cheevo app"}
+            {buyable ? "Lower fees in the app" : "RSVP in the Cheevo app"}
           </p>
         </div>
         {buyable ? (

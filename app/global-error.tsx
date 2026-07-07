@@ -19,7 +19,7 @@ export default function GlobalError({
     <html lang="en">
       <body className="antialiased">
         <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 py-16 text-center">
-          <img src="/images/logo.png" alt="cheevo" className="h-7 w-auto" />
+          <img src="/images/logo.png" alt="Cheevo" className="h-7 w-auto" />
 
           <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">
             Error

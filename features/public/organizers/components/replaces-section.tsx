@@ -21,7 +21,7 @@ export function ReplacesSection() {
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
         <div>
           <p className="text-[11px] font-medium tracking-[0.22em] text-foreground/45 uppercase">
-            Before cheevo
+            Before Cheevo
           </p>
           <h2 className="mt-4 text-[clamp(1.875rem,4vw,3rem)] leading-[1.1] font-bold tracking-[-0.025em] text-foreground/45">
             A spreadsheet, a group chat, and a cashbox.
@@ -43,7 +43,7 @@ export function ReplacesSection() {
 
         <div>
           <p className="text-[11px] font-medium tracking-[0.22em] text-primary uppercase">
-            With cheevo
+            With Cheevo
           </p>
           <h2 className="mt-4 text-[clamp(1.875rem,4vw,3rem)] leading-[1.1] font-bold tracking-[-0.025em]">
             One app. The whole event.

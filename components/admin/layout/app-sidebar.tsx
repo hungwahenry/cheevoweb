@@ -99,7 +99,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader className="px-3 py-2">
         <Link href="/dashboard" className="text-lg font-bold tracking-tight">
-          cheevo
+          Cheevo
         </Link>
       </SidebarHeader>
       <SidebarContent>

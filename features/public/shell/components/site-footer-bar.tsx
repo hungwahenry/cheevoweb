@@ -15,7 +15,7 @@ export function SiteFooterBar({
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <Image
             src="/images/logo.png"
-            alt="cheevo"
+            alt="Cheevo"
             width={1024}
             height={300}
             className="h-6 w-auto self-start sm:self-center"
@@ -51,7 +51,7 @@ export function SiteFooterBar({
           </nav>
         </div>
         <p className="mt-8 text-xs text-foreground/45">
-          © {new Date().getFullYear()} cheevo · Made in Nigeria
+          © {new Date().getFullYear()} Cheevo · Made in Nigeria
         </p>
       </div>
     </div>

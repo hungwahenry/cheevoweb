@@ -17,7 +17,7 @@ export function DownloadCta({
     app === "organizer"
       ? `${SITE_URL}/download?app=organizer`
       : `${SITE_URL}/download`
-  const appName = app === "organizer" ? "cheevo Organizer" : "cheevo"
+  const appName = app === "organizer" ? "Cheevo Organizer" : "Cheevo"
 
   return (
     <div className={cn("flex flex-wrap items-center gap-4", className)}>

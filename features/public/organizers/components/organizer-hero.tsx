@@ -43,7 +43,7 @@ export function OrganizerHero({ pricing }: { pricing: Pricing }) {
         <div className="flex justify-center md:justify-end">
           <img
             src="/screenshots/org/dashboard.png"
-            alt="The cheevo organizer app"
+            alt="The Cheevo organizer app"
             className="w-[440px] max-w-full"
           />
         </div>

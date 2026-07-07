@@ -5,10 +5,10 @@ export function SiteHeader() {
   return (
     <header className="px-6 py-5 md:px-10 md:py-6">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
-        <Link href="/" aria-label="cheevo" className="inline-flex">
+        <Link href="/" aria-label="Cheevo" className="inline-flex">
           <Image
             src="/images/logo.png"
-            alt="cheevo"
+            alt="Cheevo"
             width={1024}
             height={300}
             priority

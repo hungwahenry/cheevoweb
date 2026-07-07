@@ -16,20 +16,20 @@ function appCard(ended: boolean, hasTickets: boolean) {
     return {
       image: "/screenshots/app/feed.png",
       title: "This event has ended",
-      body: "Catch the next one — download cheevo to discover events near you.",
+      body: "Catch the next one — download Cheevo to discover events near you.",
     }
   }
   if (!hasTickets) {
     return {
       image: "/screenshots/app/event-detail.png",
-      title: "RSVP in the cheevo app",
-      body: "This event uses RSVPs — download cheevo to reserve your spot and keep it in your pocket.",
+      title: "RSVP in the Cheevo app",
+      body: "This event uses RSVPs — download Cheevo to reserve your spot and keep it in your pocket.",
     }
   }
   return {
     image: "/screenshots/app/event-detail.png",
     title: "Prefer the app?",
-    body: "Buy in the cheevo app for lower fees, and keep every ticket in your pocket.",
+    body: "Buy in the Cheevo app for lower fees, and keep every ticket in your pocket.",
   }
 }
 
