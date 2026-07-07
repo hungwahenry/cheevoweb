@@ -3,6 +3,13 @@ export type PublicTicket = {
   name: string
   description: string | null
   gross_price: number
+  status: string
+  sold_out: boolean
+  remaining: number | null
+  sales_starts_at: string | null
+  sales_ends_at: string | null
+  max_per_order: number | null
+  max_per_user: number | null
 }
 
 export type PublicFeature = {

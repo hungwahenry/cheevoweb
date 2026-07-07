@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicEvent } from "@/features/public/events/api/get-event";
 import { listPublicPages } from "@/features/public/pages/api/list-pages";
+import { getPricing } from "@/features/public/pricing/api/get-pricing";
 import { EventPage } from "@/features/public/events/components/event-page";
 import { APPLE_APP_ID, SITE_URL } from "@/features/public/shell/config/site";
 
@@ -35,10 +36,20 @@ export default async function Event({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [event, pages] = await Promise.all([
+  const [event, pages, pricing] = await Promise.all([
     getPublicEvent(slug),
     listPublicPages().catch(() => []),
+    getPricing(),
   ]);
   if (!event) notFound();
-  return <EventPage event={event} pages={pages} />;
+  return (
+    <EventPage
+      event={event}
+      pages={pages}
+      appFee={{
+        flatMinor: pricing.flatMinor,
+        percentageBps: pricing.percentageBps,
+      }}
+    />
+  );
 }
