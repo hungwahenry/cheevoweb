@@ -1,9 +1,19 @@
 const COLUMNS = 5
-const SPEEDS = [52, 68, 58, 74, 62]
+const SPEEDS = [120, 150, 132, 164, 142]
+// Each half of a column must overflow the tall wall container so the -50%
+// loop never runs dry; repeat the column up to this many tiles first.
+const MIN_TILES = 10
+
+function fill(column: string[]): string[] {
+  if (column.length === 0) return column
+  const out: string[] = []
+  while (out.length < MIN_TILES) out.push(...column)
+  return out
+}
 
 export function PhotoWall({ photos }: { photos: string[] }) {
   const columns = Array.from({ length: COLUMNS }, (_, c) =>
-    photos.filter((_, i) => i % COLUMNS === c)
+    fill(photos.filter((_, i) => i % COLUMNS === c))
   )
 
   return (
@@ -20,7 +30,7 @@ export function PhotoWall({ photos }: { photos: string[] }) {
               {[...column, ...column].map((src, i) => (
                 <div
                   key={`${src}-${i}`}
-                  className="aspect-[3/4] overflow-hidden rounded-xl bg-muted"
+                  className="aspect-[3/4] overflow-hidden rounded-xl bg-muted shadow-lg ring-1 shadow-black/10 ring-black/5"
                 >
                   <img
                     src={src}

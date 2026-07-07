@@ -22,24 +22,28 @@ export default async function Home() {
         title="Good to know"
         items={[
           {
+            q: "Do I need the app to buy a ticket?",
+            a: "No. You can buy right here on the web with just your name and email — no account, no download. Your tickets land in your inbox and on a private link you can reopen anytime.",
+          },
+          {
             q: "How do I get a ticket?",
-            a: "Find an event, tap through to buy, and pay in a couple of taps. Your ticket lives in the Cheevo app as a QR code you scan at the door.",
+            a: "Open an event, pick how many you want, and pay with your card or bank. You'll get a QR code for each ticket straight away — nothing to print.",
           },
           {
-            q: "Do I need the app?",
-            a: "Yes — Cheevo is a free iOS and Android app. Download it to browse events, RSVP, and keep your tickets in your pocket.",
-          },
-          {
-            q: "Is it free?",
-            a: "Browsing, RSVPs and free events cost nothing. For paid tickets you always see the exact total before you pay.",
+            q: "Is the app cheaper?",
+            a: "Yes. Booking fees are lower in the Cheevo app than on the web, and it keeps every ticket in one place. You always see the exact total before you pay, either way.",
           },
           {
             q: "How do I get in at the door?",
-            a: "Open your ticket in the app and the organiser scans its QR code — no printing, no screenshots.",
+            a: "Show the QR code for your ticket — from the app or the link we emailed you — and the organiser scans it. No printouts or screenshots needed.",
+          },
+          {
+            q: "Is it free to use?",
+            a: "Browsing events, RSVPs and free events cost nothing. For paid tickets you only pay the ticket price plus a small booking fee, shown upfront.",
           },
           {
             q: "Can't make it anymore?",
-            a: "You can transfer your ticket to another Cheevo user right from the app.",
+            a: "Get the Cheevo app and sign in with the email you bought with to transfer your ticket to someone else. For refunds, check the event's organiser.",
           },
         ]}
       />
