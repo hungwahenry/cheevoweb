@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { Ban, ShieldCheck, Trash2, UserCog } from "lucide-react";
-import { useState } from "react";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Button } from "@/components/ui/button";
-import { useDeleteOrganisation } from "../../hooks/detail/use-delete-organisation";
-import { useSuspendOrganisation } from "../../hooks/detail/use-suspend-organisation";
-import { useUnsuspendOrganisation } from "../../hooks/detail/use-unsuspend-organisation";
-import type { OrganisationDetail } from "../../types";
-import { ChangeOwnerDialog } from "./change-owner-dialog";
+import { Ban, ShieldCheck, Trash2, UserCog } from "lucide-react"
+import { useState } from "react"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Button } from "@/components/ui/button"
+import { useDeleteOrganisation } from "../../hooks/detail/use-delete-organisation"
+import { useSuspendOrganisation } from "../../hooks/detail/use-suspend-organisation"
+import { useUnsuspendOrganisation } from "../../hooks/detail/use-unsuspend-organisation"
+import type { OrganisationDetail } from "../../types"
+import { ChangeOwnerDialog } from "./change-owner-dialog"
 
 export function OrganisationActions({ org }: { org: OrganisationDetail }) {
   const [dialog, setDialog] = useState<null | "suspend" | "delete" | "owner">(
-    null,
-  );
-  const suspend = useSuspendOrganisation(org.id);
-  const unsuspend = useUnsuspendOrganisation(org.id);
-  const remove = useDeleteOrganisation(org.id);
-  const close = () => setDialog(null);
+    null
+  )
+  const suspend = useSuspendOrganisation(org.id)
+  const unsuspend = useUnsuspendOrganisation(org.id)
+  const remove = useDeleteOrganisation(org.id)
+  const close = () => setDialog(null)
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -72,5 +72,5 @@ export function OrganisationActions({ org }: { org: OrganisationDetail }) {
         members={org.members}
       />
     </div>
-  );
+  )
 }

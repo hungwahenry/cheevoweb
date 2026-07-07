@@ -1,44 +1,44 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
-import { Switch } from "@/components/ui/switch";
-import { useConfigMutations } from "../hooks/use-config-mutations";
-import type { SystemConfig } from "../types";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { Switch } from "@/components/ui/switch"
+import { useConfigMutations } from "../hooks/use-config-mutations"
+import type { SystemConfig } from "../types"
 
 export function ConfigEditDialog({
   config,
   onOpenChange,
 }: {
-  config: SystemConfig | null;
-  onOpenChange: (open: boolean) => void;
+  config: SystemConfig | null
+  onOpenChange: (open: boolean) => void
 }) {
-  const { update } = useConfigMutations();
+  const { update } = useConfigMutations()
   // Initialised from props; parent remounts via `key` per config (no shared state).
   const [value, setValue] = useState(
     config?.value === null || config?.value === undefined
       ? ""
-      : String(config.value),
-  );
-  const [boolValue, setBoolValue] = useState(config?.value === true);
-  const [isPublic, setIsPublic] = useState(config?.is_public ?? false);
+      : String(config.value)
+  )
+  const [boolValue, setBoolValue] = useState(config?.value === true)
+  const [isPublic, setIsPublic] = useState(config?.is_public ?? false)
 
   function coerced(): unknown {
-    if (!config) return null;
-    if (config.type === "bool") return boolValue;
-    if (config.type === "int") return Number.parseInt(value, 10);
-    if (config.type === "decimal") return Number.parseFloat(value);
-    return value;
+    if (!config) return null
+    if (config.type === "bool") return boolValue
+    if (config.type === "int") return Number.parseInt(value, 10)
+    if (config.type === "decimal") return Number.parseFloat(value)
+    return value
   }
 
   return (
@@ -49,7 +49,9 @@ export function ConfigEditDialog({
         </DialogHeader>
         <div className="space-y-4">
           {config?.description && (
-            <p className="text-muted-foreground text-sm">{config.description}</p>
+            <p className="text-sm text-muted-foreground">
+              {config.description}
+            </p>
           )}
           <Field>
             <FieldLabel htmlFor="config-value">Value</FieldLabel>
@@ -68,7 +70,10 @@ export function ConfigEditDialog({
               />
             )}
           </Field>
-          <Field orientation="horizontal" className="items-center justify-between">
+          <Field
+            orientation="horizontal"
+            className="items-center justify-between"
+          >
             <FieldLabel htmlFor="config-public">Visible to clients</FieldLabel>
             <Switch
               id="config-public"
@@ -86,8 +91,11 @@ export function ConfigEditDialog({
             onClick={() =>
               config &&
               update.mutate(
-                { id: config.id, payload: { value: coerced(), is_public: isPublic } },
-                { onSuccess: () => onOpenChange(false) },
+                {
+                  id: config.id,
+                  payload: { value: coerced(), is_public: isPublic },
+                },
+                { onSuccess: () => onOpenChange(false) }
               )
             }
           >
@@ -96,5 +104,5 @@ export function ConfigEditDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

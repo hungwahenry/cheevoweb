@@ -1,35 +1,30 @@
-"use client";
+"use client"
 
-import { format } from "date-fns";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { format } from "date-fns"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useRevenue } from "../hooks/use-revenue";
-import type { AnalyticsInterval } from "../types";
+} from "@/components/ui/chart"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useRevenue } from "../hooks/use-revenue"
+import type { AnalyticsInterval } from "../types"
 
 const config = {
   orders: { label: "Orders", color: "var(--chart-2)" },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 interface OrdersChartProps {
-  interval?: AnalyticsInterval;
-  days?: number;
+  interval?: AnalyticsInterval
+  days?: number
 }
 
 export function OrdersChart({ interval = "day", days = 30 }: OrdersChartProps) {
-  const { data, isLoading } = useRevenue(interval, days);
-  const series = data?.series ?? [];
+  const { data, isLoading } = useRevenue(interval, days)
+  const series = data?.series ?? []
 
   return (
     <Card>
@@ -40,7 +35,7 @@ export function OrdersChart({ interval = "day", days = 30 }: OrdersChartProps) {
         {isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : series.length === 0 ? (
-          <p className="text-muted-foreground py-20 text-center text-sm">
+          <p className="py-20 text-center text-sm text-muted-foreground">
             No paid orders in this range.
           </p>
         ) : (
@@ -76,5 +71,5 @@ export function OrdersChart({ interval = "day", days = 30 }: OrdersChartProps) {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

@@ -1,18 +1,13 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function DetailSection({
   title,
   action,
   children,
 }: {
-  title: string;
-  action?: React.ReactNode;
-  children: React.ReactNode;
+  title: string
+  action?: React.ReactNode
+  children: React.ReactNode
 }) {
   return (
     <Card>
@@ -22,9 +17,9 @@ export function DetailSection({
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  );
+  )
 }
 
 export function Empty({ children = "None." }: { children?: string }) {
-  return <p className="text-muted-foreground text-sm">{children}</p>;
+  return <p className="text-sm text-muted-foreground">{children}</p>
 }

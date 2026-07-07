@@ -1,9 +1,9 @@
-import { api } from "@/lib/api/client";
+import { api } from "@/lib/api/client"
 
 export function updateCatalog<T>(
   resource: string,
   id: string | number,
-  payload: Record<string, unknown>,
+  payload: Record<string, unknown>
 ): Promise<T> {
-  return api.patch<T>(`/admin/${resource}/${id}`, payload);
+  return api.patch<T>(`/admin/${resource}/${id}`, payload)
 }

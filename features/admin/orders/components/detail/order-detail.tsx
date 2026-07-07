@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { AuditTrail } from "@/components/common/audit-trail";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatMoney } from "@/lib/format";
-import { useOrder } from "../../hooks/detail/use-order";
-import { ORDER_STATUS_VARIANT } from "../orders-table";
-import { OrderActions } from "./order-actions";
+import { AuditTrail } from "@/components/common/audit-trail"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatMoney } from "@/lib/format"
+import { useOrder } from "../../hooks/detail/use-order"
+import { ORDER_STATUS_VARIANT } from "../orders-table"
+import { OrderActions } from "./order-actions"
 
 export function OrderDetail({ id }: { id: string }) {
-  const { data: order, isLoading, isError } = useOrder(id);
+  const { data: order, isLoading, isError } = useOrder(id)
 
   if (isLoading) {
-    return <Skeleton className="h-40 w-full" />;
+    return <Skeleton className="h-40 w-full" />
   }
   if (isError || !order) {
-    return <Empty>This order could not be loaded.</Empty>;
+    return <Empty>This order could not be loaded.</Empty>
   }
 
   return (
@@ -84,7 +84,7 @@ export function OrderDetail({ id }: { id: string }) {
                 key={ticket.id}
                 className="flex items-center justify-between gap-3 text-sm"
               >
-                <code className="text-muted-foreground text-xs">
+                <code className="text-xs text-muted-foreground">
                   {ticket.code.slice(-10)}
                 </code>
                 <Badge variant="outline" className="capitalize">
@@ -102,5 +102,5 @@ export function OrderDetail({ id }: { id: string }) {
         <AuditTrail entries={order.audit_trail} />
       </DetailSection>
     </div>
-  );
+  )
 }

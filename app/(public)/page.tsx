@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
-import { listPublicPages } from "@/features/public/pages/api/list-pages";
-import { ConsumerHero } from "@/features/public/home/components/consumer-hero";
-import { ProductStory } from "@/features/public/home/components/product-story";
-import { Faq } from "@/features/public/shell/components/faq";
-import { SiteOutro } from "@/features/public/shell/components/site-outro";
+import type { Metadata } from "next"
+import { listPublicPages } from "@/features/public/pages/api/list-pages"
+import { ConsumerHero } from "@/features/public/home/components/consumer-hero"
+import { ProductStory } from "@/features/public/home/components/product-story"
+import { Faq } from "@/features/public/shell/components/faq"
+import { SiteOutro } from "@/features/public/shell/components/site-outro"
 
 export const metadata: Metadata = {
   title: "cheevo — Find what's on near you",
   description:
     "Concerts, parties, popups and more — discover events near you, RSVP or grab a ticket, and walk in with it in your pocket.",
-};
+}
 
 export default async function Home() {
-  const pages = await listPublicPages().catch(() => []);
+  const pages = await listPublicPages().catch(() => [])
 
   return (
     <>
@@ -50,5 +50,5 @@ export default async function Home() {
         crossLink={{ href: "/organizers", label: "For organizers" }}
       />
     </>
-  );
+  )
 }

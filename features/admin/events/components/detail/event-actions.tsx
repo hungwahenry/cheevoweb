@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { EyeOff, Lock, LockOpen, Trash2, History } from "lucide-react";
-import { useState } from "react";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Button } from "@/components/ui/button";
-import { useEventActions } from "../../hooks/detail/use-event-actions";
-import type { EventDetail } from "../../types";
+import { EyeOff, Lock, LockOpen, Trash2, History } from "lucide-react"
+import { useState } from "react"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Button } from "@/components/ui/button"
+import { useEventActions } from "../../hooks/detail/use-event-actions"
+import type { EventDetail } from "../../types"
 
 export function EventActions({ event }: { event: EventDetail }) {
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const actions = useEventActions(event.id);
+  const [deleteOpen, setDeleteOpen] = useState(false)
+  const actions = useEventActions(event.id)
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -66,9 +66,11 @@ export function EventActions({ event }: { event: EventDetail }) {
         destructive
         pending={actions.remove.isPending}
         onConfirm={(reason) =>
-          actions.remove.mutate(reason, { onSuccess: () => setDeleteOpen(false) })
+          actions.remove.mutate(reason, {
+            onSuccess: () => setDeleteOpen(false),
+          })
         }
       />
     </div>
-  );
+  )
 }

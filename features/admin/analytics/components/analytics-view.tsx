@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useAnalyticsRange } from "../hooks/use-analytics-range";
-import { EngagementChart } from "./engagement-chart";
-import { Leaderboards } from "./leaderboards";
-import { OrdersChart } from "./orders-chart";
-import { PaymentsBreakdown } from "./payments-breakdown";
-import { RangeKpis } from "./range-kpis";
-import { RangePicker } from "./range-picker";
-import { RevenueChart } from "./revenue-chart";
-import { StatusBreakdowns } from "./status-breakdowns";
+import { useAnalyticsRange } from "../hooks/use-analytics-range"
+import { EngagementChart } from "./engagement-chart"
+import { Leaderboards } from "./leaderboards"
+import { OrdersChart } from "./orders-chart"
+import { PaymentsBreakdown } from "./payments-breakdown"
+import { RangeKpis } from "./range-kpis"
+import { RangePicker } from "./range-picker"
+import { RevenueChart } from "./revenue-chart"
+import { StatusBreakdowns } from "./status-breakdowns"
 
 export function AnalyticsView() {
-  const [{ days, interval }] = useAnalyticsRange();
+  const [{ days, interval }] = useAnalyticsRange()
 
   return (
     <div className="space-y-4">
@@ -28,5 +28,5 @@ export function AnalyticsView() {
       <Leaderboards days={days} />
       <StatusBreakdowns />
     </div>
-  );
+  )
 }

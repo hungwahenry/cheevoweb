@@ -1,13 +1,8 @@
-"use client";
+"use client"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { formatMoney } from "@/lib/format";
-import type { CityRevenue } from "../types";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { formatMoney } from "@/lib/format"
+import type { CityRevenue } from "../types"
 
 export function TopCities({ items }: { items: CityRevenue[] }) {
   return (
@@ -17,7 +12,7 @@ export function TopCities({ items }: { items: CityRevenue[] }) {
       </CardHeader>
       <CardContent>
         {items.length === 0 ? (
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             No located buyers in this range.
           </p>
         ) : (
@@ -37,5 +32,5 @@ export function TopCities({ items }: { items: CityRevenue[] }) {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

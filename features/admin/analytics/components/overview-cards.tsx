@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { StatCard } from "@/components/common/stat-card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatMoney } from "@/lib/format";
-import { useOverview } from "../hooks/use-overview";
+import { StatCard } from "@/components/common/stat-card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatMoney } from "@/lib/format"
+import { useOverview } from "../hooks/use-overview"
 
-const n = (value: number) => value.toLocaleString();
+const n = (value: number) => value.toLocaleString()
 
 export function OverviewCards() {
-  const { data, isLoading } = useOverview();
+  const { data, isLoading } = useOverview()
 
   if (isLoading || !data) {
     return (
@@ -17,13 +17,19 @@ export function OverviewCards() {
           <Skeleton key={i} className="h-24" />
         ))}
       </div>
-    );
+    )
   }
 
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-      <StatCard label="GMV (all time)" value={formatMoney(data.gmv.total_minor)} />
-      <StatCard label="GMV (30d)" value={formatMoney(data.gmv.last_30d_minor)} />
+      <StatCard
+        label="GMV (all time)"
+        value={formatMoney(data.gmv.total_minor)}
+      />
+      <StatCard
+        label="GMV (30d)"
+        value={formatMoney(data.gmv.last_30d_minor)}
+      />
       <StatCard label="Paid orders" value={n(data.orders.paid)} />
       <StatCard label="Published events" value={n(data.events.published)} />
       <StatCard label="Users" value={n(data.users.total)} />
@@ -31,5 +37,5 @@ export function OverviewCards() {
       <StatCard label="Organisers" value={n(data.users.organisers)} />
       <StatCard label="Organisations" value={n(data.organisations.total)} />
     </div>
-  );
+  )
 }

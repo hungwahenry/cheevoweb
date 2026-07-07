@@ -1,9 +1,9 @@
-import { api } from "@/lib/api/client";
+import { api } from "@/lib/api/client"
 
 export function approvePayout(
   id: string,
   method: "provider" | "manual",
-  note?: string,
+  note?: string
 ): Promise<unknown> {
-  return api.post(`/admin/payouts/${id}/approve`, { method, note });
+  return api.post(`/admin/payouts/${id}/approve`, { method, note })
 }

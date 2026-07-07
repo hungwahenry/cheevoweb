@@ -1,52 +1,52 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Flag, MoreHorizontal } from "lucide-react";
-import { parseAsBoolean, useQueryState } from "nuqs";
-import { useState } from "react";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Flag, MoreHorizontal } from "lucide-react"
+import { parseAsBoolean, useQueryState } from "nuqs"
+import { useState } from "react"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Switch } from "@/components/ui/switch";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useCommentActions } from "../hooks/use-comment-actions";
-import { useComments } from "../hooks/use-comments";
-import type { Comment } from "../types";
+} from "@/components/ui/dropdown-menu"
+import { Switch } from "@/components/ui/switch"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useCommentActions } from "../hooks/use-comment-actions"
+import { useComments } from "../hooks/use-comments"
+import type { Comment } from "../types"
 
 export function CommentsTable() {
-  const [{ page, per_page }, setTable] = useTableParams();
+  const [{ page, per_page }, setTable] = useTableParams()
   const [flaggedOnly, setFlaggedOnly] = useQueryState(
     "flagged",
-    parseAsBoolean.withDefault(false),
-  );
-  const [deleting, setDeleting] = useState<Comment | null>(null);
-  const actions = useCommentActions();
+    parseAsBoolean.withDefault(false)
+  )
+  const [deleting, setDeleting] = useState<Comment | null>(null)
+  const actions = useCommentActions()
 
   const { data, isLoading, isFetching } = useComments({
     page,
     per_page,
     flagged_only: flaggedOnly || undefined,
-  });
+  })
 
   const columns: ColumnDef<Comment>[] = [
     {
       id: "comment",
       header: "Comment",
       cell: ({ row }) => (
-        <div className="min-w-0 max-w-md">
+        <div className="max-w-md min-w-0">
           <p className="truncate text-sm">
             {row.original.body ?? (row.original.gif ? "[GIF]" : "—")}
           </p>
-          <p className="text-muted-foreground truncate text-xs">
+          <p className="truncate text-xs text-muted-foreground">
             {row.original.author.label} · {row.original.event.label}
           </p>
         </div>
@@ -62,14 +62,14 @@ export function CommentsTable() {
             {row.original.flags_count}
           </Badge>
         ) : (
-          <span className="text-muted-foreground text-sm">—</span>
+          <span className="text-sm text-muted-foreground">—</span>
         ),
     },
     {
       accessorKey: "created_at",
       header: "Posted",
       cell: ({ row }) => (
-        <span className="text-muted-foreground text-sm">
+        <span className="text-sm text-muted-foreground">
           {formatDate(row.original.created_at)}
         </span>
       ),
@@ -104,7 +104,7 @@ export function CommentsTable() {
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <div className="space-y-4">
@@ -112,8 +112,8 @@ export function CommentsTable() {
         <Switch
           checked={flaggedOnly}
           onCheckedChange={(checked) => {
-            void setFlaggedOnly(checked);
-            void setTable({ page: 1 });
+            void setFlaggedOnly(checked)
+            void setTable({ page: 1 })
           }}
         />
         Flagged only
@@ -146,11 +146,11 @@ export function CommentsTable() {
           if (deleting) {
             actions.remove.mutate(
               { id: deleting.id, reason },
-              { onSuccess: () => setDeleting(null) },
-            );
+              { onSuccess: () => setDeleting(null) }
+            )
           }
         }}
       />
     </div>
-  );
+  )
 }

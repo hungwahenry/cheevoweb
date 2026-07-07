@@ -1,37 +1,37 @@
-"use client";
+"use client"
 
-import { Ban, CalendarClock, Send, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { DetailHeader } from "@/components/common/detail-header";
-import { Empty } from "@/components/common/detail-section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDateTime } from "@/lib/format";
-import { useAnnouncement } from "../../hooks/detail/use-announcement";
-import { useAnnouncementActions } from "../../hooks/detail/use-announcement-actions";
-import { BroadcastComposer } from "../broadcast-composer";
-import { ANNOUNCEMENT_STATUS_VARIANT } from "../announcements-table";
-import { BroadcastStats } from "./broadcast-stats";
-import { ScheduleDialog } from "./schedule-dialog";
+import { Ban, CalendarClock, Send, Trash2 } from "lucide-react"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { DetailHeader } from "@/components/common/detail-header"
+import { Empty } from "@/components/common/detail-section"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDateTime } from "@/lib/format"
+import { useAnnouncement } from "../../hooks/detail/use-announcement"
+import { useAnnouncementActions } from "../../hooks/detail/use-announcement-actions"
+import { BroadcastComposer } from "../broadcast-composer"
+import { ANNOUNCEMENT_STATUS_VARIANT } from "../announcements-table"
+import { BroadcastStats } from "./broadcast-stats"
+import { ScheduleDialog } from "./schedule-dialog"
 
 export function AnnouncementDetail({ id }: { id: string }) {
-  const { data: broadcast, isLoading, isError } = useAnnouncement(id);
-  const actions = useAnnouncementActions(id);
+  const { data: broadcast, isLoading, isError } = useAnnouncement(id)
+  const actions = useAnnouncementActions(id)
   const [dialog, setDialog] = useState<null | "send" | "schedule" | "delete">(
-    null,
-  );
+    null
+  )
 
-  if (isLoading) return <Skeleton className="h-40 w-full" />;
+  if (isLoading) return <Skeleton className="h-40 w-full" />
   if (isError || !broadcast) {
-    return <Empty>This broadcast could not be loaded.</Empty>;
+    return <Empty>This broadcast could not be loaded.</Empty>
   }
 
-  const isDraft = broadcast.status === "draft";
-  const isScheduled = broadcast.status === "scheduled";
-  const close = () => setDialog(null);
+  const isDraft = broadcast.status === "draft"
+  const isScheduled = broadcast.status === "scheduled"
+  const close = () => setDialog(null)
 
   return (
     <div className="space-y-6">
@@ -127,9 +127,7 @@ export function AnnouncementDetail({ id }: { id: string }) {
         open={dialog === "schedule"}
         onOpenChange={(open) => !open && close()}
         pending={actions.schedule.isPending}
-        onConfirm={(iso) =>
-          actions.schedule.mutate(iso, { onSuccess: close })
-        }
+        onConfirm={(iso) => actions.schedule.mutate(iso, { onSuccess: close })}
       />
       <ConfirmDialog
         open={dialog === "delete"}
@@ -139,5 +137,5 @@ export function AnnouncementDetail({ id }: { id: string }) {
         onConfirm={() => actions.remove.mutate(undefined, { onSuccess: close })}
       />
     </div>
-  );
+  )
 }

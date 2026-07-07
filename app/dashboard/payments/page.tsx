@@ -1,5 +1,5 @@
-import { PageHeader } from "@/components/layout/page-header";
-import { PaymentsTable } from "@/features/admin/payments/components/payments-table";
+import { PageHeader } from "@/components/layout/page-header"
+import { PaymentsTable } from "@/features/admin/payments/components/payments-table"
 
 export default function PaymentsPage() {
   return (
@@ -7,5 +7,5 @@ export default function PaymentsPage() {
       <PageHeader title="Payments" description="Provider payment records." />
       <PaymentsTable />
     </div>
-  );
+  )
 }

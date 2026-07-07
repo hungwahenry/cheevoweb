@@ -1,15 +1,22 @@
-"use client";
+"use client"
 
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { StatGrid } from "@/components/common/stat-grid";
-import type { AnnouncementDetail } from "../../types";
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { StatGrid } from "@/components/common/stat-grid"
+import type { AnnouncementDetail } from "../../types"
 
-export function BroadcastStats({ broadcast }: { broadcast: AnnouncementDetail }) {
+export function BroadcastStats({
+  broadcast,
+}: {
+  broadcast: AnnouncementDetail
+}) {
   return (
     <div className="space-y-6">
       <StatGrid
         stats={[
-          { label: "Recipients", value: broadcast.stats.recipients.toLocaleString() },
+          {
+            label: "Recipients",
+            value: broadcast.stats.recipients.toLocaleString(),
+          },
           { label: "Email", value: broadcast.stats.email.toLocaleString() },
           { label: "Push", value: broadcast.stats.push.toLocaleString() },
           { label: "In-app", value: broadcast.stats.inapp.toLocaleString() },
@@ -30,7 +37,7 @@ export function BroadcastStats({ broadcast }: { broadcast: AnnouncementDetail })
                 key={link.id}
                 className="flex items-center justify-between gap-3 text-sm"
               >
-                <span className="text-muted-foreground truncate">
+                <span className="truncate text-muted-foreground">
                   {link.url}
                 </span>
                 <span className="shrink-0 tabular-nums">
@@ -44,5 +51,5 @@ export function BroadcastStats({ broadcast }: { broadcast: AnnouncementDetail })
         )}
       </DetailSection>
     </div>
-  );
+  )
 }

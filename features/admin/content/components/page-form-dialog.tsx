@@ -1,36 +1,36 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import { pageSchema, type PageValues } from "../schemas";
-import type { Page } from "../types";
+} from "@/components/ui/dialog"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { pageSchema, type PageValues } from "../schemas"
+import type { Page } from "../types"
 
 const EMPTY: PageValues = {
   title: "",
   slug: "",
   body_html: "",
   meta_description: "",
-};
+}
 
 interface PageFormDialogProps {
-  open: boolean;
-  page: Page | null;
-  pending?: boolean;
-  onOpenChange: (open: boolean) => void;
-  onSubmit: (values: PageValues) => void;
+  open: boolean
+  page: Page | null
+  pending?: boolean
+  onOpenChange: (open: boolean) => void
+  onSubmit: (values: PageValues) => void
 }
 
 export function PageFormDialog({
@@ -43,7 +43,7 @@ export function PageFormDialog({
   const form = useForm<PageValues>({
     resolver: zodResolver(pageSchema),
     defaultValues: EMPTY,
-  });
+  })
 
   useEffect(() => {
     if (open) {
@@ -55,10 +55,10 @@ export function PageFormDialog({
               body_html: page.body_html,
               meta_description: page.meta_description ?? "",
             }
-          : EMPTY,
-      );
+          : EMPTY
+      )
     }
-  }, [open, page, form]);
+  }, [open, page, form])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -112,5 +112,5 @@ export function PageFormDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

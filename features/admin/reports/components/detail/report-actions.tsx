@@ -1,26 +1,26 @@
-"use client";
+"use client"
 
-import { Gavel, PlayCircle, XCircle } from "lucide-react";
-import { useState } from "react";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Button } from "@/components/ui/button";
-import { useReportActions } from "../../hooks/detail/use-report-actions";
-import type { ReportDetail } from "../../types";
-import { ActionReportDialog } from "./action-report-dialog";
+import { Gavel, PlayCircle, XCircle } from "lucide-react"
+import { useState } from "react"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Button } from "@/components/ui/button"
+import { useReportActions } from "../../hooks/detail/use-report-actions"
+import type { ReportDetail } from "../../types"
+import { ActionReportDialog } from "./action-report-dialog"
 
 export function ReportActions({ report }: { report: ReportDetail }) {
-  const [dialog, setDialog] = useState<null | "action" | "dismiss">(null);
-  const { review, action, dismiss } = useReportActions(report.id);
-  const close = () => setDialog(null);
+  const [dialog, setDialog] = useState<null | "action" | "dismiss">(null)
+  const { review, action, dismiss } = useReportActions(report.id)
+  const close = () => setDialog(null)
   const isResolved =
-    report.status === "actioned" || report.status === "dismissed";
+    report.status === "actioned" || report.status === "dismissed"
 
   if (isResolved) {
     return (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         Resolved {report.status === "actioned" ? "(actioned)" : "(dismissed)"}
       </span>
-    );
+    )
   }
 
   return (
@@ -49,10 +49,7 @@ export function ReportActions({ report }: { report: ReportDetail }) {
         onOpenChange={(open) => !open && close()}
         pending={action.isPending}
         onSubmit={(outcome, note) =>
-          action.mutate(
-            { action: outcome, note },
-            { onSuccess: close },
-          )
+          action.mutate({ action: outcome, note }, { onSuccess: close })
         }
       />
       <ReasonDialog
@@ -64,5 +61,5 @@ export function ReportActions({ report }: { report: ReportDetail }) {
         onConfirm={(note) => dismiss.mutate(note, { onSuccess: close })}
       />
     </div>
-  );
+  )
 }

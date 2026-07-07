@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,23 +9,23 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import { usePayoutActions } from "../../hooks/detail/use-payout-actions";
+} from "@/components/ui/select"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { usePayoutActions } from "../../hooks/detail/use-payout-actions"
 
 interface ApprovePayoutDialogProps {
-  payoutId: string;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  payoutId: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export function ApprovePayoutDialog({
@@ -33,16 +33,16 @@ export function ApprovePayoutDialog({
   open,
   onOpenChange,
 }: ApprovePayoutDialogProps) {
-  const { approve } = usePayoutActions(payoutId);
-  const [method, setMethod] = useState<"provider" | "manual">("provider");
-  const [note, setNote] = useState("");
+  const { approve } = usePayoutActions(payoutId)
+  const [method, setMethod] = useState<"provider" | "manual">("provider")
+  const [note, setNote] = useState("")
 
   function handleOpenChange(next: boolean) {
     if (!next) {
-      setMethod("provider");
-      setNote("");
+      setMethod("provider")
+      setNote("")
     }
-    onOpenChange(next);
+    onOpenChange(next)
   }
 
   return (
@@ -92,7 +92,7 @@ export function ApprovePayoutDialog({
             onClick={() =>
               approve.mutate(
                 { method, note: note || undefined },
-                { onSuccess: () => handleOpenChange(false) },
+                { onSuccess: () => handleOpenChange(false) }
               )
             }
           >
@@ -101,5 +101,5 @@ export function ApprovePayoutDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

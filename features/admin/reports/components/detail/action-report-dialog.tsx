@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,24 +9,24 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import type { ReportAction } from "../../types";
+} from "@/components/ui/select"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import type { ReportAction } from "../../types"
 
 interface ActionReportDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  pending?: boolean;
-  onSubmit: (action: ReportAction, note: string) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  pending?: boolean
+  onSubmit: (action: ReportAction, note: string) => void
 }
 
 export function ActionReportDialog({
@@ -35,15 +35,15 @@ export function ActionReportDialog({
   pending,
   onSubmit,
 }: ActionReportDialogProps) {
-  const [action, setAction] = useState<ReportAction>("delete_target");
-  const [note, setNote] = useState("");
+  const [action, setAction] = useState<ReportAction>("delete_target")
+  const [note, setNote] = useState("")
 
   function handleOpenChange(next: boolean) {
     if (!next) {
-      setAction("delete_target");
-      setNote("");
+      setAction("delete_target")
+      setNote("")
     }
-    onOpenChange(next);
+    onOpenChange(next)
   }
 
   return (
@@ -95,5 +95,5 @@ export function ActionReportDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

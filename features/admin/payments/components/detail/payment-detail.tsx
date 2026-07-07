@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import { AuditTrail } from "@/components/common/audit-trail";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDateTime, formatMoney } from "@/lib/format";
-import { usePayment } from "../../hooks/detail/use-payment";
-import { PAYMENT_STATUS_VARIANT } from "../payments-table";
-import { PaymentActions } from "./payment-actions";
+import { AuditTrail } from "@/components/common/audit-trail"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDateTime, formatMoney } from "@/lib/format"
+import { usePayment } from "../../hooks/detail/use-payment"
+import { PAYMENT_STATUS_VARIANT } from "../payments-table"
+import { PaymentActions } from "./payment-actions"
 
 function Json({ value }: { value: unknown }) {
-  if (value === null || value === undefined) return <Empty>None.</Empty>;
+  if (value === null || value === undefined) return <Empty>None.</Empty>
   return (
-    <pre className="bg-muted text-muted-foreground max-h-64 overflow-auto rounded-md p-3 text-xs">
+    <pre className="max-h-64 overflow-auto rounded-md bg-muted p-3 text-xs text-muted-foreground">
       {JSON.stringify(value, null, 2)}
     </pre>
-  );
+  )
 }
 
 export function PaymentDetail({ id }: { id: string }) {
-  const { data: payment, isLoading, isError } = usePayment(id);
+  const { data: payment, isLoading, isError } = usePayment(id)
 
-  if (isLoading) return <Skeleton className="h-40 w-full" />;
+  if (isLoading) return <Skeleton className="h-40 w-full" />
   if (isError || !payment) {
-    return <Empty>This payment could not be loaded.</Empty>;
+    return <Empty>This payment could not be loaded.</Empty>
   }
 
   return (
@@ -62,7 +62,9 @@ export function PaymentDetail({ id }: { id: string }) {
           {
             label: "Provider ref",
             value: (
-              <span className="text-sm">{payment.provider_reference ?? "—"}</span>
+              <span className="text-sm">
+                {payment.provider_reference ?? "—"}
+              </span>
             ),
           },
         ]}
@@ -89,5 +91,5 @@ export function PaymentDetail({ id }: { id: string }) {
         <AuditTrail entries={payment.audit_trail} />
       </DetailSection>
     </div>
-  );
+  )
 }

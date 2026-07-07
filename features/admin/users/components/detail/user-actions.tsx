@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { Ban, KeyRound, ShieldCheck } from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useRevokeSessions } from "../../hooks/detail/use-revoke-sessions";
-import { useUnsuspendUser } from "../../hooks/detail/use-unsuspend-user";
-import type { UserDetail } from "../../types";
-import { SuspendUserDialog } from "./suspend-user-dialog";
+import { Ban, KeyRound, ShieldCheck } from "lucide-react"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { useRevokeSessions } from "../../hooks/detail/use-revoke-sessions"
+import { useUnsuspendUser } from "../../hooks/detail/use-unsuspend-user"
+import type { UserDetail } from "../../types"
+import { SuspendUserDialog } from "./suspend-user-dialog"
 
 export function UserActions({ user }: { user: UserDetail }) {
-  const [suspendOpen, setSuspendOpen] = useState(false);
-  const unsuspend = useUnsuspendUser(user.id);
-  const revoke = useRevokeSessions(user.id);
+  const [suspendOpen, setSuspendOpen] = useState(false)
+  const unsuspend = useUnsuspendUser(user.id)
+  const revoke = useRevokeSessions(user.id)
 
   return (
     <div className="flex items-center gap-2">
@@ -44,5 +44,5 @@ export function UserActions({ user }: { user: UserDetail }) {
         onOpenChange={setSuspendOpen}
       />
     </div>
-  );
+  )
 }

@@ -1,30 +1,30 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Pencil } from "lucide-react";
-import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { DataTable } from "@/components/data-table/data-table";
-import { useFlags } from "../hooks/use-flags";
-import { useUpdateFlag } from "../hooks/use-update-flag";
-import type { FeatureFlag } from "../types";
-import { FlagEditDialog } from "./flag-edit-dialog";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Pencil } from "lucide-react"
+import { useState } from "react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Switch } from "@/components/ui/switch"
+import { DataTable } from "@/components/data-table/data-table"
+import { useFlags } from "../hooks/use-flags"
+import { useUpdateFlag } from "../hooks/use-update-flag"
+import type { FeatureFlag } from "../types"
+import { FlagEditDialog } from "./flag-edit-dialog"
 
 export function FlagsTable() {
-  const { data, isLoading } = useFlags();
-  const update = useUpdateFlag();
-  const [editing, setEditing] = useState<FeatureFlag | null>(null);
+  const { data, isLoading } = useFlags()
+  const update = useUpdateFlag()
+  const [editing, setEditing] = useState<FeatureFlag | null>(null)
 
   const columns: ColumnDef<FeatureFlag>[] = [
     {
       id: "flag",
       header: "Flag",
       cell: ({ row }) => (
-        <div className="min-w-0 max-w-md">
+        <div className="max-w-md min-w-0">
           <code className="text-sm font-medium">{row.original.key}</code>
-          <p className="text-muted-foreground truncate text-xs">
+          <p className="truncate text-xs text-muted-foreground">
             {row.original.description}
           </p>
         </div>
@@ -49,7 +49,9 @@ export function FlagsTable() {
       accessorKey: "rollout_pct",
       header: "Rollout",
       cell: ({ row }) => (
-        <span className="text-sm tabular-nums">{row.original.rollout_pct}%</span>
+        <span className="text-sm tabular-nums">
+          {row.original.rollout_pct}%
+        </span>
       ),
     },
     {
@@ -78,7 +80,7 @@ export function FlagsTable() {
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <>
@@ -94,5 +96,5 @@ export function FlagsTable() {
         onOpenChange={(open) => !open && setEditing(null)}
       />
     </>
-  );
+  )
 }

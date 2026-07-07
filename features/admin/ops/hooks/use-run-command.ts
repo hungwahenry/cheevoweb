@@ -1,16 +1,16 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
-import { getErrorMessage } from "@/lib/api/errors";
-import { runCommand } from "../api/run-command";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/lib/api/errors"
+import { runCommand } from "../api/run-command"
 
 export function useRunCommand() {
-  const qc = useQueryClient();
+  const qc = useQueryClient()
   return useMutation({
     mutationFn: (command: string) => runCommand(command),
     onSuccess: (data) => {
-      toast.success(`${data.command} ran successfully.`);
-      void qc.invalidateQueries({ queryKey: ["ops-health"] });
+      toast.success(`${data.command} ran successfully.`)
+      void qc.invalidateQueries({ queryKey: ["ops-health"] })
     },
     onError: (e) => toast.error(getErrorMessage(e)),
-  });
+  })
 }

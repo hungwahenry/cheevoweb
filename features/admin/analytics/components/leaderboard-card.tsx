@@ -1,19 +1,14 @@
-"use client";
+"use client"
 
-import { EntityRefItem } from "@/components/common/entity-ref";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import type { EntityRef } from "@/lib/api/types";
-import { formatMoney } from "@/lib/format";
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import type { EntityRef } from "@/lib/api/types"
+import { formatMoney } from "@/lib/format"
 
 export interface LeaderboardRow {
-  entity: EntityRef;
-  sublabel: string;
-  value: number;
+  entity: EntityRef
+  sublabel: string
+  value: number
 }
 
 export function LeaderboardCard({
@@ -21,9 +16,9 @@ export function LeaderboardCard({
   rows,
   empty,
 }: {
-  title: string;
-  rows: LeaderboardRow[];
-  empty: string;
+  title: string
+  rows: LeaderboardRow[]
+  empty: string
 }) {
   return (
     <Card>
@@ -32,7 +27,7 @@ export function LeaderboardCard({
       </CardHeader>
       <CardContent>
         {rows.length === 0 ? (
-          <p className="text-muted-foreground text-sm">{empty}</p>
+          <p className="text-sm text-muted-foreground">{empty}</p>
         ) : (
           <div className="space-y-1">
             {rows.map((row) => (
@@ -51,5 +46,5 @@ export function LeaderboardCard({
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

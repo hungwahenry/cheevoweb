@@ -1,42 +1,44 @@
-"use client";
+"use client"
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Checkbox } from "@/components/ui/checkbox"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { useSegmentOptions } from "../hooks/use-segment-options";
-import type { Segment } from "../types";
+} from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { useSegmentOptions } from "../hooks/use-segment-options"
+import type { Segment } from "../types"
 
-const ROLES = ["attendee", "organiser", "admin"];
+const ROLES = ["attendee", "organiser", "admin"]
 
 interface SegmentBuilderProps {
-  value: Segment;
-  onChange: (segment: Segment) => void;
+  value: Segment
+  onChange: (segment: Segment) => void
 }
 
 export function SegmentBuilder({ value, onChange }: SegmentBuilderProps) {
-  const { data: options } = useSegmentOptions();
-  const set = (patch: Partial<Segment>) => onChange({ ...value, ...patch });
+  const { data: options } = useSegmentOptions()
+  const set = (patch: Partial<Segment>) => onChange({ ...value, ...patch })
 
-  function toggle<T>(list: T[] | undefined, item: T, on: boolean): T[] | undefined {
-    const next = on ? [...(list ?? []), item] : (list ?? []).filter((v) => v !== item);
-    return next.length ? next : undefined;
+  function toggle<T>(
+    list: T[] | undefined,
+    item: T,
+    on: boolean
+  ): T[] | undefined {
+    const next = on
+      ? [...(list ?? []), item]
+      : (list ?? []).filter((v) => v !== item)
+    return next.length ? next : undefined
   }
 
   const ordered =
-    value.has_ordered === undefined
-      ? "any"
-      : value.has_ordered
-        ? "yes"
-        : "no";
+    value.has_ordered === undefined ? "any" : value.has_ordered ? "yes" : "no"
 
   return (
     <div className="grid gap-5 md:grid-cols-2">
@@ -44,7 +46,10 @@ export function SegmentBuilder({ value, onChange }: SegmentBuilderProps) {
         <FieldLabel>Roles</FieldLabel>
         <div className="flex flex-wrap gap-4 pt-1">
           {ROLES.map((role) => (
-            <label key={role} className="flex items-center gap-2 text-sm capitalize">
+            <label
+              key={role}
+              className="flex items-center gap-2 text-sm capitalize"
+            >
               <Checkbox
                 checked={value.roles?.includes(role) ?? false}
                 onCheckedChange={(checked) =>
@@ -115,7 +120,9 @@ export function SegmentBuilder({ value, onChange }: SegmentBuilderProps) {
                   <Checkbox
                     checked={value.cities?.includes(city) ?? false}
                     onCheckedChange={(checked) =>
-                      set({ cities: toggle(value.cities, city, checked === true) })
+                      set({
+                        cities: toggle(value.cities, city, checked === true),
+                      })
                     }
                   />
                   <span className="truncate">{city}</span>
@@ -126,5 +133,5 @@ export function SegmentBuilder({ value, onChange }: SegmentBuilderProps) {
         </Field>
       )}
     </div>
-  );
+  )
 }

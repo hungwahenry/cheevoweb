@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   AlertDialog,
@@ -9,18 +9,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/alert-dialog"
+import { cn } from "@/lib/utils"
 
 interface ConfirmDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  title: string;
-  description?: React.ReactNode;
-  confirmLabel?: string;
-  destructive?: boolean;
-  pending?: boolean;
-  onConfirm: () => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  title: string
+  description?: React.ReactNode
+  confirmLabel?: string
+  destructive?: boolean
+  pending?: boolean
+  onConfirm: () => void
 }
 
 export function ConfirmDialog({
@@ -47,12 +47,11 @@ export function ConfirmDialog({
           <AlertDialogAction
             disabled={pending}
             onClick={(event) => {
-              event.preventDefault();
-              onConfirm();
+              event.preventDefault()
+              onConfirm()
             }}
             className={cn(
-              destructive &&
-                "bg-destructive text-white hover:bg-destructive/90",
+              destructive && "bg-destructive text-white hover:bg-destructive/90"
             )}
           >
             {confirmLabel}
@@ -60,5 +59,5 @@ export function ConfirmDialog({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }

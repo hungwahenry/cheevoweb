@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { useOverview } from "../hooks/use-overview";
-import { BreakdownDonut } from "./breakdown-donut";
+import { Skeleton } from "@/components/ui/skeleton"
+import { useOverview } from "../hooks/use-overview"
+import { BreakdownDonut } from "./breakdown-donut"
 
 export function StatusBreakdowns() {
-  const { data, isLoading } = useOverview();
+  const { data, isLoading } = useOverview()
 
   if (isLoading || !data) {
     return (
@@ -13,7 +13,7 @@ export function StatusBreakdowns() {
         <Skeleton className="h-56" />
         <Skeleton className="h-56" />
       </div>
-    );
+    )
   }
 
   return (
@@ -59,5 +59,5 @@ export function StatusBreakdowns() {
         ]}
       />
     </div>
-  );
+  )
 }

@@ -4,7 +4,7 @@
 const FINGERPRINTS = (process.env.ANDROID_CERT_SHA256 ?? "")
   .split(",")
   .map((fingerprint) => fingerprint.trim())
-  .filter(Boolean);
+  .filter(Boolean)
 
 export function GET() {
   return Response.json(
@@ -19,6 +19,6 @@ export function GET() {
             },
           },
         ]
-      : [],
-  );
+      : []
+  )
 }

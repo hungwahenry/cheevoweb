@@ -1,17 +1,15 @@
-import { PageHeader } from "@/components/layout/page-header";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import { PagesTable } from "@/features/admin/content/components/pages-table";
-import { WelcomeForm } from "@/features/admin/content/components/welcome-form";
+import { PageHeader } from "@/components/layout/page-header"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { PagesTable } from "@/features/admin/content/components/pages-table"
+import { WelcomeForm } from "@/features/admin/content/components/welcome-form"
 
 export default function ContentPage() {
   return (
     <div className="space-y-6">
-      <PageHeader title="Content" description="Static pages and the welcome screen." />
+      <PageHeader
+        title="Content"
+        description="Static pages and the welcome screen."
+      />
       <Tabs defaultValue="pages">
         <TabsList>
           <TabsTrigger value="pages">Pages</TabsTrigger>
@@ -25,5 +23,5 @@ export default function ContentPage() {
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

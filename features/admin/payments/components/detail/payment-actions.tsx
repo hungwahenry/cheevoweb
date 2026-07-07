@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { CheckCircle2, RefreshCw } from "lucide-react";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { Button } from "@/components/ui/button";
-import { usePaymentActions } from "../../hooks/detail/use-payment-actions";
-import type { PaymentDetail } from "../../types";
+import { CheckCircle2, RefreshCw } from "lucide-react"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { Button } from "@/components/ui/button"
+import { usePaymentActions } from "../../hooks/detail/use-payment-actions"
+import type { PaymentDetail } from "../../types"
 
 export function PaymentActions({ payment }: { payment: PaymentDetail }) {
-  const [markOpen, setMarkOpen] = useState(false);
-  const { resync, markSuccess } = usePaymentActions(payment.id);
+  const [markOpen, setMarkOpen] = useState(false)
+  const { resync, markSuccess } = usePaymentActions(payment.id)
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -43,5 +43,5 @@ export function PaymentActions({ payment }: { payment: PaymentDetail }) {
         }
       />
     </div>
-  );
+  )
 }

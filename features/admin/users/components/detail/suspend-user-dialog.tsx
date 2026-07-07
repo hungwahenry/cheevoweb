@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,17 +10,17 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import { useSuspendUser } from "../../hooks/detail/use-suspend-user";
-import { suspendUserSchema, type SuspendUserValues } from "../../schemas";
+} from "@/components/ui/dialog"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { useSuspendUser } from "../../hooks/detail/use-suspend-user"
+import { suspendUserSchema, type SuspendUserValues } from "../../schemas"
 
 interface SuspendUserDialogProps {
-  userId: string;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  userId: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export function SuspendUserDialog({
@@ -28,19 +28,19 @@ export function SuspendUserDialog({
   open,
   onOpenChange,
 }: SuspendUserDialogProps) {
-  const suspend = useSuspendUser(userId);
+  const suspend = useSuspendUser(userId)
   const form = useForm<SuspendUserValues>({
     resolver: zodResolver(suspendUserSchema),
     defaultValues: { reason: "" },
-  });
+  })
 
   function onSubmit(values: SuspendUserValues) {
     suspend.mutate(values.reason, {
       onSuccess: () => {
-        onOpenChange(false);
-        form.reset();
+        onOpenChange(false)
+        form.reset()
       },
-    });
+    })
   }
 
   return (
@@ -85,5 +85,5 @@ export function SuspendUserDialog({
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

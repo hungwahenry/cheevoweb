@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { CheckCircle2, RefreshCw, ThumbsUp, XCircle } from "lucide-react";
-import { useState } from "react";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Button } from "@/components/ui/button";
-import { usePayoutActions } from "../../hooks/detail/use-payout-actions";
-import type { Payout } from "../../types";
-import { ApprovePayoutDialog } from "./approve-payout-dialog";
+import { CheckCircle2, RefreshCw, ThumbsUp, XCircle } from "lucide-react"
+import { useState } from "react"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Button } from "@/components/ui/button"
+import { usePayoutActions } from "../../hooks/detail/use-payout-actions"
+import type { Payout } from "../../types"
+import { ApprovePayoutDialog } from "./approve-payout-dialog"
 
 export function PayoutActions({ payout }: { payout: Payout }) {
   const [dialog, setDialog] = useState<null | "approve" | "reject" | "paid">(
-    null,
-  );
-  const { reject, markPaid, retry } = usePayoutActions(payout.id);
-  const close = () => setDialog(null);
-  const { status } = payout;
+    null
+  )
+  const { reject, markPaid, retry } = usePayoutActions(payout.id)
+  const close = () => setDialog(null)
+  const { status } = payout
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -73,5 +73,5 @@ export function PayoutActions({ payout }: { payout: Payout }) {
         onConfirm={(note) => markPaid.mutate(note, { onSuccess: close })}
       />
     </div>
-  );
+  )
 }

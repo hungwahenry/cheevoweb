@@ -11,25 +11,23 @@ export default async function OpengraphImage() {
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 32,
-          backgroundColor: "#f7f2ea",
-        }}
-      >
-        <img src={logoSrc} width={480} height={141} alt="cheevo" />
-        <div style={{ fontSize: 46, color: "#0a0a0a", opacity: 0.7 }}>
-          Find what&apos;s on. Be there.
-        </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 32,
+        backgroundColor: "#f7f2ea",
+      }}
+    >
+      <img src={logoSrc} width={480} height={141} alt="cheevo" />
+      <div style={{ fontSize: 46, color: "#0a0a0a", opacity: 0.7 }}>
+        Find what&apos;s on. Be there.
       </div>
-    ),
-    size,
+    </div>,
+    size
   )
 }

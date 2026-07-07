@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { Ban, CheckCircle2, Undo2 } from "lucide-react";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { ReasonDialog } from "@/components/common/reason-dialog";
-import { Button } from "@/components/ui/button";
-import { formatMoney } from "@/lib/format";
-import { useOrderActions } from "../../hooks/detail/use-order-actions";
-import type { OrderDetail } from "../../types";
+import { Ban, CheckCircle2, Undo2 } from "lucide-react"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { ReasonDialog } from "@/components/common/reason-dialog"
+import { Button } from "@/components/ui/button"
+import { formatMoney } from "@/lib/format"
+import { useOrderActions } from "../../hooks/detail/use-order-actions"
+import type { OrderDetail } from "../../types"
 
 export function OrderActions({ order }: { order: OrderDetail }) {
-  const [refundOpen, setRefundOpen] = useState(false);
-  const [cancelOpen, setCancelOpen] = useState(false);
-  const { refund, cancel, markPaid } = useOrderActions(order.id);
+  const [refundOpen, setRefundOpen] = useState(false)
+  const [cancelOpen, setCancelOpen] = useState(false)
+  const { refund, cancel, markPaid } = useOrderActions(order.id)
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -50,7 +50,7 @@ export function OrderActions({ order }: { order: OrderDetail }) {
         onConfirm={(reason) =>
           refund.mutate(
             { amountMinor: order.total_minor, reason },
-            { onSuccess: () => setRefundOpen(false) },
+            { onSuccess: () => setRefundOpen(false) }
           )
         }
       />
@@ -66,5 +66,5 @@ export function OrderActions({ order }: { order: OrderDetail }) {
         }
       />
     </div>
-  );
+  )
 }

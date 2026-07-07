@@ -1,24 +1,24 @@
-import type { Metadata } from "next";
-import { getPricing } from "@/features/public/pricing/api/get-pricing";
-import { listPublicPages } from "@/features/public/pages/api/list-pages";
-import { MoneySection } from "@/features/public/organizers/components/money-section";
-import { OrganizerHero } from "@/features/public/organizers/components/organizer-hero";
-import { ReplacesSection } from "@/features/public/organizers/components/replaces-section";
-import { ToolkitGrid } from "@/features/public/organizers/components/toolkit-grid";
-import { Faq } from "@/features/public/shell/components/faq";
-import { SiteOutro } from "@/features/public/shell/components/site-outro";
+import type { Metadata } from "next"
+import { getPricing } from "@/features/public/pricing/api/get-pricing"
+import { listPublicPages } from "@/features/public/pages/api/list-pages"
+import { MoneySection } from "@/features/public/organizers/components/money-section"
+import { OrganizerHero } from "@/features/public/organizers/components/organizer-hero"
+import { ReplacesSection } from "@/features/public/organizers/components/replaces-section"
+import { ToolkitGrid } from "@/features/public/organizers/components/toolkit-grid"
+import { Faq } from "@/features/public/shell/components/faq"
+import { SiteOutro } from "@/features/public/shell/components/site-outro"
 
 export const metadata: Metadata = {
   title: "cheevo for organizers — Sell tickets. Get paid. Move on.",
   description:
     "Create an event, sell tickets, scan people in at the door, and cash out — all from your phone.",
-};
+}
 
 export default async function Organizers() {
   const [pricing, pages] = await Promise.all([
     getPricing(),
     listPublicPages().catch(() => []),
-  ]);
+  ])
 
   return (
     <>
@@ -63,5 +63,5 @@ export default async function Organizers() {
         crossLink={{ href: "/", label: "For attendees" }}
       />
     </>
-  );
+  )
 }

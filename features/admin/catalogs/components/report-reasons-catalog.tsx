@@ -1,28 +1,28 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { Badge } from "@/components/ui/badge";
-import { useCatalog } from "../hooks/use-catalog";
-import { useCatalogMutations } from "../hooks/use-catalog-mutations";
-import type { ReportReasonValues } from "../schemas";
-import type { ReportReason } from "../types";
-import { CatalogTable } from "./catalog-table";
-import { ReportReasonForm } from "./report-reason-form";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { Badge } from "@/components/ui/badge"
+import { useCatalog } from "../hooks/use-catalog"
+import { useCatalogMutations } from "../hooks/use-catalog-mutations"
+import type { ReportReasonValues } from "../schemas"
+import type { ReportReason } from "../types"
+import { CatalogTable } from "./catalog-table"
+import { ReportReasonForm } from "./report-reason-form"
 
-const RESOURCE = "report-reasons";
+const RESOURCE = "report-reasons"
 
 export function ReportReasonsCatalog() {
-  const { data, isLoading } = useCatalog<ReportReason>(RESOURCE);
+  const { data, isLoading } = useCatalog<ReportReason>(RESOURCE)
   const { create, update, remove } = useCatalogMutations(
     RESOURCE,
-    "Report reason",
-  );
+    "Report reason"
+  )
   const [editing, setEditing] = useState<ReportReason | null | undefined>(
-    undefined,
-  );
-  const [deleting, setDeleting] = useState<ReportReason | null>(null);
+    undefined
+  )
+  const [deleting, setDeleting] = useState<ReportReason | null>(null)
 
   const columns: ColumnDef<ReportReason>[] = [
     { accessorKey: "label", header: "Label" },
@@ -30,7 +30,7 @@ export function ReportReasonsCatalog() {
       accessorKey: "slug",
       header: "Slug",
       cell: ({ row }) => (
-        <code className="text-muted-foreground text-xs">
+        <code className="text-xs text-muted-foreground">
           {row.original.slug}
         </code>
       ),
@@ -58,17 +58,17 @@ export function ReportReasonsCatalog() {
           <Badge variant="secondary">Hidden</Badge>
         ),
     },
-  ];
+  ]
 
   function submit(values: ReportReasonValues) {
-    const payload = { ...values, description: values.description || null };
+    const payload = { ...values, description: values.description || null }
     if (editing) {
       update.mutate(
         { id: editing.id, payload },
-        { onSuccess: () => setEditing(undefined) },
-      );
+        { onSuccess: () => setEditing(undefined) }
+      )
     } else {
-      create.mutate(payload, { onSuccess: () => setEditing(undefined) });
+      create.mutate(payload, { onSuccess: () => setEditing(undefined) })
     }
   }
 
@@ -88,24 +88,24 @@ export function ReportReasonsCatalog() {
         item={editing ?? null}
         pending={create.isPending || update.isPending}
         onOpenChange={(open) => {
-          if (!open) setEditing(undefined);
+          if (!open) setEditing(undefined)
         }}
         onSubmit={submit}
       />
       <ConfirmDialog
         open={deleting !== null}
         onOpenChange={(open) => {
-          if (!open) setDeleting(null);
+          if (!open) setDeleting(null)
         }}
         title={`Delete ${deleting?.label ?? ""}?`}
         description="Reasons already referenced by reports can't be deleted."
         pending={remove.isPending}
         onConfirm={() => {
           if (deleting) {
-            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) });
+            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) })
           }
         }}
       />
     </>
-  );
+  )
 }

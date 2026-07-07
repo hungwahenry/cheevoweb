@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
+import { parseAsInteger, parseAsString, useQueryStates } from "nuqs"
 
 /**
  * URL-synced pagination + search shared by every list view. Feature-specific
@@ -13,6 +13,6 @@ export function useTableParams(defaultPerPage = 25) {
       per_page: parseAsInteger.withDefault(defaultPerPage),
       q: parseAsString.withDefault(""),
     },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 }

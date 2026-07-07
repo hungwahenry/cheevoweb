@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,25 +9,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import { useChangeOwner } from "../../hooks/detail/use-change-owner";
-import type { OrgMemberRef } from "../../types";
+} from "@/components/ui/select"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { useChangeOwner } from "../../hooks/detail/use-change-owner"
+import type { OrgMemberRef } from "../../types"
 
 interface ChangeOwnerDialogProps {
-  orgId: string;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  members: OrgMemberRef[];
+  orgId: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  members: OrgMemberRef[]
 }
 
 export function ChangeOwnerDialog({
@@ -36,17 +36,17 @@ export function ChangeOwnerDialog({
   onOpenChange,
   members,
 }: ChangeOwnerDialogProps) {
-  const change = useChangeOwner(orgId);
-  const [userId, setUserId] = useState("");
-  const [reason, setReason] = useState("");
-  const candidates = members.filter((member) => member.role !== "owner");
+  const change = useChangeOwner(orgId)
+  const [userId, setUserId] = useState("")
+  const [reason, setReason] = useState("")
+  const candidates = members.filter((member) => member.role !== "owner")
 
   function handleOpenChange(next: boolean) {
     if (!next) {
-      setUserId("");
-      setReason("");
+      setUserId("")
+      setReason("")
     }
-    onOpenChange(next);
+    onOpenChange(next)
   }
 
   return (
@@ -93,7 +93,7 @@ export function ChangeOwnerDialog({
             onClick={() =>
               change.mutate(
                 { userId, reason: reason || undefined },
-                { onSuccess: () => handleOpenChange(false) },
+                { onSuccess: () => handleOpenChange(false) }
               )
             }
           >
@@ -102,5 +102,5 @@ export function ChangeOwnerDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

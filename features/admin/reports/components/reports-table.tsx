@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useReports } from "../hooks/use-reports";
-import type { ReportRow, ReportStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useReports } from "../hooks/use-reports"
+import type { ReportRow, ReportStatus } from "../types"
 
-const STATUS = ["all", "open", "under_review", "actioned", "dismissed"] as const;
+const STATUS = ["all", "open", "under_review", "actioned", "dismissed"] as const
 
 export const REPORT_STATUS_VARIANT: Record<
   ReportStatus,
@@ -29,7 +29,7 @@ export const REPORT_STATUS_VARIANT: Record<
   under_review: "secondary",
   actioned: "default",
   dismissed: "outline",
-};
+}
 
 const columns: ColumnDef<ReportRow>[] = [
   {
@@ -38,7 +38,7 @@ const columns: ColumnDef<ReportRow>[] = [
     cell: ({ row }) => (
       <div className="min-w-0">
         <p className="truncate font-medium">{row.original.reason.label}</p>
-        <p className="text-muted-foreground truncate text-xs capitalize">
+        <p className="truncate text-xs text-muted-foreground capitalize">
           {row.original.target?.label ??
             row.original.target_type.replace("_", " ")}
         </p>
@@ -68,26 +68,26 @@ const columns: ColumnDef<ReportRow>[] = [
     accessorKey: "created_at",
     header: "Reported",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.created_at)}
       </span>
     ),
   },
-];
+]
 
 export function ReportsTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ status }, setFilters] = useQueryStates(
     { status: parseAsStringLiteral(STATUS).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = useReports({
     page,
     per_page,
     status: status === "all" ? undefined : status,
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -95,8 +95,8 @@ export function ReportsTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-44">
@@ -111,7 +111,10 @@ export function ReportsTable() {
           </SelectContent>
         </Select>
         {status !== "all" && (
-          <Button variant="ghost" onClick={() => void setFilters({ status: "all" })}>
+          <Button
+            variant="ghost"
+            onClick={() => void setFilters({ status: "all" })}
+          >
             Reset
           </Button>
         )}
@@ -133,5 +136,5 @@ export function ReportsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

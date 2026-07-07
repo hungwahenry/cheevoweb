@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import * as Sentry from "@sentry/nextjs";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import * as Sentry from "@sentry/nextjs"
+import Image from "next/image"
+import Link from "next/link"
+import { useEffect } from "react"
+import { Button } from "@/components/ui/button"
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
-    Sentry.captureException(error);
-  }, [error]);
+    Sentry.captureException(error)
+  }, [error])
 
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 py-16 text-center">
@@ -29,7 +29,7 @@ export default function Error({
         />
       </Link>
 
-      <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
+      <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">
         Error
       </p>
 
@@ -55,5 +55,5 @@ export default function Error({
         </Button>
       </div>
     </main>
-  );
+  )
 }

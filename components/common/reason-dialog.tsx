@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -12,25 +12,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/components/ui/dialog"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
 
 const schema = z.object({
   reason: z.string().trim().min(1, "A reason is required").max(1000),
-});
-type Values = z.infer<typeof schema>;
+})
+type Values = z.infer<typeof schema>
 
 interface ReasonDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  title: string;
-  description?: string;
-  confirmLabel?: string;
-  destructive?: boolean;
-  pending?: boolean;
-  onConfirm: (reason: string) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  title: string
+  description?: string
+  confirmLabel?: string
+  destructive?: boolean
+  pending?: boolean
+  onConfirm: (reason: string) => void
 }
 
 /** Shared dialog for moderation actions that require a written reason (logged to audit). */
@@ -47,11 +47,11 @@ export function ReasonDialog({
   const form = useForm<Values>({
     resolver: zodResolver(schema),
     defaultValues: { reason: "" },
-  });
+  })
 
   useEffect(() => {
-    if (open) form.reset({ reason: "" });
-  }, [open, form]);
+    if (open) form.reset({ reason: "" })
+  }, [open, form])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -88,5 +88,5 @@ export function ReasonDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

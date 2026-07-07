@@ -1,19 +1,14 @@
-"use client";
+"use client"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Skeleton } from "@/components/ui/skeleton";
-import { usePayments } from "../hooks/use-payments";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Skeleton } from "@/components/ui/skeleton"
+import { usePayments } from "../hooks/use-payments"
 
-const pct = (rate: number) => `${(rate * 100).toFixed(1)}%`;
+const pct = (rate: number) => `${(rate * 100).toFixed(1)}%`
 
 export function PaymentsBreakdown({ days = 30 }: { days?: number }) {
-  const { data, isLoading } = usePayments(days);
+  const { data, isLoading } = usePayments(days)
 
   return (
     <Card>
@@ -27,20 +22,20 @@ export function PaymentsBreakdown({ days = 30 }: { days?: number }) {
           <>
             <div>
               <div className="flex items-baseline justify-between">
-                <span className="text-muted-foreground text-sm">
+                <span className="text-sm text-muted-foreground">
                   Overall success rate
                 </span>
                 <span className="text-2xl font-semibold tabular-nums">
                   {pct(data.totals.success_rate)}
                 </span>
               </div>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-muted-foreground">
                 {data.totals.successful.toLocaleString()} of{" "}
                 {data.totals.total.toLocaleString()} succeeded
               </p>
             </div>
             {Object.keys(data.by_provider).length === 0 ? (
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 No payments in this range.
               </p>
             ) : (
@@ -50,7 +45,8 @@ export function PaymentsBreakdown({ days = 30 }: { days?: number }) {
                     <div className="flex items-center justify-between text-sm">
                       <span className="capitalize">{provider}</span>
                       <span className="text-muted-foreground tabular-nums">
-                        {pct(stats.success_rate)} · {stats.total.toLocaleString()}
+                        {pct(stats.success_rate)} ·{" "}
+                        {stats.total.toLocaleString()}
                       </span>
                     </div>
                     <Progress value={stats.success_rate * 100} />
@@ -62,5 +58,5 @@ export function PaymentsBreakdown({ days = 30 }: { days?: number }) {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

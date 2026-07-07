@@ -1,41 +1,41 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { DataTableSearch } from "@/components/data-table/data-table-search";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useEvents } from "../hooks/use-events";
-import type { EventRow, EventStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { DataTableSearch } from "@/components/data-table/data-table-search"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useEvents } from "../hooks/use-events"
+import type { EventRow, EventStatus } from "../types"
 
-const STATUS = ["all", "draft", "published", "past"] as const;
+const STATUS = ["all", "draft", "published", "past"] as const
 
 const STATUS_VARIANT: Record<EventStatus, "default" | "secondary" | "outline"> =
   {
     published: "default",
     draft: "secondary",
     past: "outline",
-  };
+  }
 
 const columns: ColumnDef<EventRow>[] = [
   {
     id: "event",
     header: "Event",
     cell: ({ row }) => {
-      const event = row.original;
+      const event = row.original
       return (
         <div className="flex items-center gap-3">
           <Avatar className="size-8 rounded-md">
@@ -50,19 +50,22 @@ const columns: ColumnDef<EventRow>[] = [
           </Avatar>
           <div className="min-w-0">
             <p className="truncate font-medium">{event.title}</p>
-            <p className="text-muted-foreground truncate text-xs">
+            <p className="truncate text-xs text-muted-foreground">
               {event.organisation.label}
             </p>
           </div>
         </div>
-      );
+      )
     },
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <Badge variant={STATUS_VARIANT[row.original.status]} className="capitalize">
+      <Badge
+        variant={STATUS_VARIANT[row.original.status]}
+        className="capitalize"
+      >
         {row.original.status}
       </Badge>
     ),
@@ -71,29 +74,29 @@ const columns: ColumnDef<EventRow>[] = [
     accessorKey: "starts_at",
     header: "Starts",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.starts_at)}
       </span>
     ),
   },
-];
+]
 
 export function EventsTable() {
-  const router = useRouter();
-  const [{ page, per_page, q }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page, q }, setTable] = useTableParams()
   const [{ status }, setFilters] = useQueryStates(
     { status: parseAsStringLiteral(STATUS).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = useEvents({
     page,
     per_page,
     q: q || undefined,
     status: status === "all" ? undefined : status,
-  });
+  })
 
-  const isFiltered = q !== "" || status !== "all";
+  const isFiltered = q !== "" || status !== "all"
 
   return (
     <div className="space-y-4">
@@ -106,8 +109,8 @@ export function EventsTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-36">
@@ -124,8 +127,8 @@ export function EventsTable() {
           <Button
             variant="ghost"
             onClick={() => {
-              void setTable({ q: "", page: 1 });
-              void setFilters({ status: "all" });
+              void setTable({ q: "", page: 1 })
+              void setFilters({ status: "all" })
             }}
           >
             Reset
@@ -149,5 +152,5 @@ export function EventsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
 import {
   type ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"
 import {
   Table,
   TableBody,
@@ -13,15 +13,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/ui/table"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface DataTableProps<TData> {
-  columns: ColumnDef<TData, unknown>[];
-  data: TData[];
-  isLoading?: boolean;
-  onRowClick?: (row: TData) => void;
-  emptyMessage?: string;
+  columns: ColumnDef<TData, unknown>[]
+  data: TData[]
+  isLoading?: boolean
+  onRowClick?: (row: TData) => void
+  emptyMessage?: string
 }
 
 /** Presentational, server-paginated table. Features supply columns + a query hook. */
@@ -37,7 +37,7 @@ export function DataTable<TData>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-  });
+  })
 
   return (
     <div className="rounded-md border">
@@ -51,7 +51,7 @@ export function DataTable<TData>({
                     ? null
                     : flexRender(
                         header.column.columnDef.header,
-                        header.getContext(),
+                        header.getContext()
                       )}
                 </TableHead>
               ))}
@@ -87,7 +87,7 @@ export function DataTable<TData>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="text-muted-foreground h-24 text-center"
+                className="h-24 text-center text-muted-foreground"
               >
                 {emptyMessage}
               </TableCell>
@@ -96,5 +96,5 @@ export function DataTable<TData>({
         </TableBody>
       </Table>
     </div>
-  );
+  )
 }

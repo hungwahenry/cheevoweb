@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { AuditTrail } from "@/components/common/audit-trail";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDate, formatDateTime, formatMoney } from "@/lib/format";
-import { useEvent } from "../../hooks/detail/use-event";
-import { EventActions } from "./event-actions";
+import { AuditTrail } from "@/components/common/audit-trail"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDate, formatDateTime, formatMoney } from "@/lib/format"
+import { useEvent } from "../../hooks/detail/use-event"
+import { EventActions } from "./event-actions"
 
 export function EventDetail({ id }: { id: string }) {
-  const { data: event, isLoading, isError } = useEvent(id);
+  const { data: event, isLoading, isError } = useEvent(id)
 
   if (isLoading) {
     return (
@@ -20,10 +20,10 @@ export function EventDetail({ id }: { id: string }) {
         <Skeleton className="h-20 w-full" />
         <Skeleton className="h-24 w-full" />
       </div>
-    );
+    )
   }
   if (isError || !event) {
-    return <Empty>This event could not be loaded.</Empty>;
+    return <Empty>This event could not be loaded.</Empty>
   }
 
   return (
@@ -40,7 +40,7 @@ export function EventDetail({ id }: { id: string }) {
               <Badge variant="outline">Comments locked</Badge>
             )}
             {event.starts_at && (
-              <span className="text-muted-foreground text-sm">
+              <span className="text-sm text-muted-foreground">
                 {formatDateTime(event.starts_at)}
               </span>
             )}
@@ -52,7 +52,10 @@ export function EventDetail({ id }: { id: string }) {
       <StatGrid
         stats={[
           { label: "Revenue", value: formatMoney(event.stats.revenue_minor) },
-          { label: "Tickets sold", value: event.stats.tickets_sold.toLocaleString() },
+          {
+            label: "Tickets sold",
+            value: event.stats.tickets_sold.toLocaleString(),
+          },
           { label: "Orders", value: event.stats.orders_count },
           { label: "RSVPs", value: event.stats.rsvps_count },
           { label: "Comments", value: event.stats.comments_count },
@@ -72,7 +75,7 @@ export function EventDetail({ id }: { id: string }) {
                 >
                   <div className="min-w-0">
                     <p className="truncate font-medium">{ticket.name}</p>
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-xs text-muted-foreground">
                       {ticket.sold_count}
                       {ticket.quantity ? ` / ${ticket.quantity}` : ""} sold ·{" "}
                       {ticket.status}
@@ -115,5 +118,5 @@ export function EventDetail({ id }: { id: string }) {
         <AuditTrail entries={event.audit_trail} />
       </DetailSection>
     </div>
-  );
+  )
 }

@@ -1,47 +1,47 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
-import { Spinner } from "@/components/ui/spinner";
-import { useLogin } from "../hooks/use-login";
-import { useSendOtp } from "../hooks/use-send-otp";
-import { emailSchema, type EmailValues } from "../schemas";
+} from "@/components/ui/input-otp"
+import { Spinner } from "@/components/ui/spinner"
+import { useLogin } from "../hooks/use-login"
+import { useSendOtp } from "../hooks/use-send-otp"
+import { emailSchema, type EmailValues } from "../schemas"
 
 export function SignInForm() {
-  const [email, setEmail] = useState<string | null>(null);
-  const [code, setCode] = useState("");
-  const sendOtp = useSendOtp();
-  const login = useLogin();
+  const [email, setEmail] = useState<string | null>(null)
+  const [code, setCode] = useState("")
+  const sendOtp = useSendOtp()
+  const login = useLogin()
 
   const form = useForm<EmailValues>({
     resolver: zodResolver(emailSchema),
     defaultValues: { email: "" },
-  });
+  })
 
   async function onSubmitEmail(values: EmailValues) {
-    await sendOtp.mutateAsync(values.email);
-    setEmail(values.email);
+    await sendOtp.mutateAsync(values.email)
+    setEmail(values.email)
   }
 
   function onSubmitCode(value: string) {
-    if (!email) return;
-    login.mutate({ email, code: value });
+    if (!email) return
+    login.mutate({ email, code: value })
   }
 
   return (
@@ -81,8 +81,8 @@ export function SignInForm() {
               variant="ghost"
               size="sm"
               onClick={() => {
-                setEmail(null);
-                setCode("");
+                setEmail(null)
+                setCode("")
               }}
             >
               Use a different email
@@ -113,5 +113,5 @@ export function SignInForm() {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

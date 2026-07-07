@@ -1,35 +1,35 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Pencil, RotateCcw } from "lucide-react";
-import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { DataTable } from "@/components/data-table/data-table";
-import { useConfigMutations } from "../hooks/use-config-mutations";
-import { useConfigs } from "../hooks/use-configs";
-import type { SystemConfig } from "../types";
-import { ConfigEditDialog } from "./config-edit-dialog";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Pencil, RotateCcw } from "lucide-react"
+import { useState } from "react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { DataTable } from "@/components/data-table/data-table"
+import { useConfigMutations } from "../hooks/use-config-mutations"
+import { useConfigs } from "../hooks/use-configs"
+import type { SystemConfig } from "../types"
+import { ConfigEditDialog } from "./config-edit-dialog"
 
 function display(value: unknown): string {
-  if (value === null || value === undefined) return "—";
-  if (typeof value === "boolean") return value ? "true" : "false";
-  return String(value);
+  if (value === null || value === undefined) return "—"
+  if (typeof value === "boolean") return value ? "true" : "false"
+  return String(value)
 }
 
 export function ConfigsTable() {
-  const { data, isLoading } = useConfigs();
-  const { reset } = useConfigMutations();
-  const [editing, setEditing] = useState<SystemConfig | null>(null);
+  const { data, isLoading } = useConfigs()
+  const { reset } = useConfigMutations()
+  const [editing, setEditing] = useState<SystemConfig | null>(null)
 
   const columns: ColumnDef<SystemConfig>[] = [
     {
       id: "config",
       header: "Setting",
       cell: ({ row }) => (
-        <div className="min-w-0 max-w-sm">
+        <div className="max-w-sm min-w-0">
           <code className="text-sm font-medium">{row.original.key}</code>
-          <p className="text-muted-foreground truncate text-xs">
+          <p className="truncate text-xs text-muted-foreground">
             {row.original.description}
           </p>
         </div>
@@ -75,7 +75,7 @@ export function ConfigsTable() {
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <>
@@ -91,5 +91,5 @@ export function ConfigsTable() {
         onOpenChange={(open) => !open && setEditing(null)}
       />
     </>
-  );
+  )
 }

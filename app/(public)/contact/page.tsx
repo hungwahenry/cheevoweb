@@ -1,25 +1,28 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { listPublicPages } from "@/features/public/pages/api/list-pages";
-import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar";
-import { SiteHeader } from "@/features/public/shell/components/site-header";
-import { CONTACT_EMAIL, WHATSAPP_URL } from "@/features/public/shell/config/site";
+import type { Metadata } from "next"
+import Link from "next/link"
+import { listPublicPages } from "@/features/public/pages/api/list-pages"
+import { SiteFooterBar } from "@/features/public/shell/components/site-footer-bar"
+import { SiteHeader } from "@/features/public/shell/components/site-header"
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_URL,
+} from "@/features/public/shell/config/site"
 
 export const metadata: Metadata = {
   title: "Contact cheevo",
   description:
     "Talk to the cheevo team — organiser partnerships, support, or press.",
-};
+}
 
 export default async function Contact() {
-  const pages = await listPublicPages().catch(() => []);
+  const pages = await listPublicPages().catch(() => [])
 
   return (
     <main className="flex min-h-svh flex-col bg-background text-foreground">
       <SiteHeader />
 
       <div className="mx-auto w-full max-w-2xl flex-1 px-6 py-16 md:py-24">
-        <h1 className="text-[clamp(2.25rem,6vw,3.5rem)] font-black leading-[1.02] tracking-[-0.035em]">
+        <h1 className="text-[clamp(2.25rem,6vw,3.5rem)] leading-[1.02] font-black tracking-[-0.035em]">
           Get in touch
         </h1>
         <p className="mt-5 max-w-md text-base text-foreground/65 md:text-lg">
@@ -32,7 +35,7 @@ export default async function Contact() {
             href={`mailto:${CONTACT_EMAIL}`}
             className="rounded-2xl border border-border p-6 transition-colors hover:bg-muted/40"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-primary uppercase">
               Email
             </p>
             <p className="mt-2 font-semibold">{CONTACT_EMAIL}</p>
@@ -47,7 +50,7 @@ export default async function Contact() {
               rel="noreferrer"
               className="rounded-2xl border border-border p-6 transition-colors hover:bg-muted/40"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-primary uppercase">
                 WhatsApp
               </p>
               <p className="mt-2 font-semibold">Message us</p>
@@ -79,5 +82,5 @@ export default async function Contact() {
         <SiteFooterBar pages={pages} crossLink={{ href: "/", label: "Home" }} />
       </div>
     </main>
-  );
+  )
 }

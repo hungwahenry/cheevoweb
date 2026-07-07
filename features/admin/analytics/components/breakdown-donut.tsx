@@ -1,37 +1,32 @@
-"use client";
+"use client"
 
-import { Cell, Pie, PieChart } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Cell, Pie, PieChart } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart";
+} from "@/components/ui/chart"
 
 export interface DonutSlice {
-  key: string;
-  label: string;
-  value: number;
-  color: string;
+  key: string
+  label: string
+  value: number
+  color: string
 }
 
 export function BreakdownDonut({
   title,
   slices,
 }: {
-  title: string;
-  slices: DonutSlice[];
+  title: string
+  slices: DonutSlice[]
 }) {
-  const total = slices.reduce((sum, slice) => sum + slice.value, 0);
+  const total = slices.reduce((sum, slice) => sum + slice.value, 0)
   const config: ChartConfig = Object.fromEntries(
-    slices.map((slice) => [slice.key, { label: slice.label }]),
-  );
+    slices.map((slice) => [slice.key, { label: slice.label }])
+  )
 
   return (
     <Card>
@@ -40,12 +35,14 @@ export function BreakdownDonut({
       </CardHeader>
       <CardContent className="flex items-center gap-6">
         {total === 0 ? (
-          <p className="text-muted-foreground py-10 text-sm">No data yet.</p>
+          <p className="py-10 text-sm text-muted-foreground">No data yet.</p>
         ) : (
           <>
             <ChartContainer config={config} className="aspect-square h-36">
               <PieChart>
-                <ChartTooltip content={<ChartTooltipContent nameKey="label" />} />
+                <ChartTooltip
+                  content={<ChartTooltipContent nameKey="label" />}
+                />
                 <Pie
                   data={slices}
                   dataKey="value"
@@ -77,5 +74,5 @@ export function BreakdownDonut({
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

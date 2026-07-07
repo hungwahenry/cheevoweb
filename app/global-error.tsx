@@ -1,30 +1,27 @@
-"use client";
+"use client"
 
-import * as Sentry from "@sentry/nextjs";
-import { useEffect } from "react";
-import "./globals.css";
+import * as Sentry from "@sentry/nextjs"
+import { useEffect } from "react"
+import "./globals.css"
 
 export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
-    Sentry.captureException(error);
-  }, [error]);
+    Sentry.captureException(error)
+  }, [error])
 
   return (
     <html lang="en">
       <body className="antialiased">
         <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 py-16 text-center">
-          {/* Plain <img>: global-error replaces the root layout, so keep this
-          boundary free of next/image and other app context. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo.png" alt="cheevo" className="h-7 w-auto" />
 
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
+          <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">
             Error
           </p>
 
@@ -49,5 +46,5 @@ export default function GlobalError({
         </main>
       </body>
     </html>
-  );
+  )
 }

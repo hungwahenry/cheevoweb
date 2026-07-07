@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate, formatMoney } from "@/lib/format";
-import { useOrders } from "../hooks/use-orders";
-import type { OrderRow, OrderStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate, formatMoney } from "@/lib/format"
+import { useOrders } from "../hooks/use-orders"
+import type { OrderRow, OrderStatus } from "../types"
 
-const STATUS = ["all", "pending", "paid", "cancelled", "refunded"] as const;
+const STATUS = ["all", "pending", "paid", "cancelled", "refunded"] as const
 
 export const ORDER_STATUS_VARIANT: Record<
   OrderStatus,
@@ -29,7 +29,7 @@ export const ORDER_STATUS_VARIANT: Record<
   pending: "secondary",
   refunded: "outline",
   cancelled: "destructive",
-};
+}
 
 const columns: ColumnDef<OrderRow>[] = [
   {
@@ -38,7 +38,7 @@ const columns: ColumnDef<OrderRow>[] = [
     cell: ({ row }) => (
       <div className="min-w-0">
         <p className="truncate font-medium">{row.original.buyer.label}</p>
-        <p className="text-muted-foreground truncate text-xs">
+        <p className="truncate text-xs text-muted-foreground">
           {row.original.event.label}
         </p>
       </div>
@@ -69,26 +69,26 @@ const columns: ColumnDef<OrderRow>[] = [
     accessorKey: "created_at",
     header: "Created",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.created_at)}
       </span>
     ),
   },
-];
+]
 
 export function OrdersTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ status }, setFilters] = useQueryStates(
     { status: parseAsStringLiteral(STATUS).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = useOrders({
     page,
     per_page,
     status: status === "all" ? undefined : status,
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -96,8 +96,8 @@ export function OrdersTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-40">
@@ -112,7 +112,10 @@ export function OrdersTable() {
           </SelectContent>
         </Select>
         {status !== "all" && (
-          <Button variant="ghost" onClick={() => void setFilters({ status: "all" })}>
+          <Button
+            variant="ghost"
+            onClick={() => void setFilters({ status: "all" })}
+          >
             Reset
           </Button>
         )}
@@ -134,5 +137,5 @@ export function OrdersTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

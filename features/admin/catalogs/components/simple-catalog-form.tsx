@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
-import { Switch } from "@/components/ui/switch";
-import { simpleCatalogSchema, type SimpleCatalogValues } from "../schemas";
-import type { SimpleCatalogItem } from "../types";
+} from "@/components/ui/dialog"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { Switch } from "@/components/ui/switch"
+import { simpleCatalogSchema, type SimpleCatalogValues } from "../schemas"
+import type { SimpleCatalogItem } from "../types"
 
 interface SimpleCatalogFormProps {
-  open: boolean;
-  item: SimpleCatalogItem | null;
-  singular: string;
-  hasBaseUrl?: boolean;
-  pending?: boolean;
-  onOpenChange: (open: boolean) => void;
-  onSubmit: (values: SimpleCatalogValues) => void;
+  open: boolean
+  item: SimpleCatalogItem | null
+  singular: string
+  hasBaseUrl?: boolean
+  pending?: boolean
+  onOpenChange: (open: boolean) => void
+  onSubmit: (values: SimpleCatalogValues) => void
 }
 
 const EMPTY: SimpleCatalogValues = {
@@ -34,7 +34,7 @@ const EMPTY: SimpleCatalogValues = {
   sort_order: 0,
   is_active: true,
   base_url: "",
-};
+}
 
 export function SimpleCatalogForm({
   open,
@@ -48,7 +48,7 @@ export function SimpleCatalogForm({
   const form = useForm<SimpleCatalogValues>({
     resolver: zodResolver(simpleCatalogSchema),
     defaultValues: EMPTY,
-  });
+  })
 
   useEffect(() => {
     if (open) {
@@ -61,17 +61,19 @@ export function SimpleCatalogForm({
               is_active: item.is_active,
               base_url: item.base_url ?? "",
             }
-          : EMPTY,
-      );
+          : EMPTY
+      )
     }
-  }, [open, item, form]);
+  }, [open, item, form])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            {item ? `Edit ${singular.toLowerCase()}` : `New ${singular.toLowerCase()}`}
+            {item
+              ? `Edit ${singular.toLowerCase()}`
+              : `New ${singular.toLowerCase()}`}
           </DialogTitle>
         </DialogHeader>
         <form
@@ -102,7 +104,9 @@ export function SimpleCatalogForm({
                 {...form.register("base_url")}
               />
               {form.formState.errors.base_url && (
-                <FieldError>{form.formState.errors.base_url.message}</FieldError>
+                <FieldError>
+                  {form.formState.errors.base_url.message}
+                </FieldError>
               )}
             </Field>
           )}
@@ -142,5 +146,5 @@ export function SimpleCatalogForm({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

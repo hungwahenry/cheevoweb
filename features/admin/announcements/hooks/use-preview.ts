@@ -1,6 +1,6 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { previewBroadcast } from "../api/preview-broadcast";
-import type { BroadcastKind, Segment } from "../types";
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { previewBroadcast } from "../api/preview-broadcast"
+import type { BroadcastKind, Segment } from "../types"
 
 export function usePreview(kind: BroadcastKind, audience: Segment) {
   return useQuery({
@@ -8,5 +8,5 @@ export function usePreview(kind: BroadcastKind, audience: Segment) {
     queryFn: () => previewBroadcast(kind, audience),
     placeholderData: keepPreviousData,
     staleTime: 10_000,
-  });
+  })
 }

@@ -1,17 +1,12 @@
-"use client";
+"use client"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { formatMoney } from "@/lib/format";
-import type { CategoryRevenue } from "../types";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { formatMoney } from "@/lib/format"
+import type { CategoryRevenue } from "../types"
 
 export function RevenueByCategory({ items }: { items: CategoryRevenue[] }) {
-  const max = Math.max(1, ...items.map((item) => item.gmv_minor));
+  const max = Math.max(1, ...items.map((item) => item.gmv_minor))
 
   return (
     <Card>
@@ -20,7 +15,7 @@ export function RevenueByCategory({ items }: { items: CategoryRevenue[] }) {
       </CardHeader>
       <CardContent className="space-y-3">
         {items.length === 0 ? (
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             No paid orders in this range.
           </p>
         ) : (
@@ -38,5 +33,5 @@ export function RevenueByCategory({ items }: { items: CategoryRevenue[] }) {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

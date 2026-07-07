@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate, formatMoney } from "@/lib/format";
-import { usePayouts } from "../hooks/use-payouts";
-import type { Payout, PayoutStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate, formatMoney } from "@/lib/format"
+import { usePayouts } from "../hooks/use-payouts"
+import type { Payout, PayoutStatus } from "../types"
 
 const STATUS = [
   "all",
@@ -27,7 +27,7 @@ const STATUS = [
   "paid",
   "rejected",
   "failed",
-] as const;
+] as const
 
 export const PAYOUT_STATUS_VARIANT: Record<
   PayoutStatus,
@@ -39,7 +39,7 @@ export const PAYOUT_STATUS_VARIANT: Record<
   processing: "outline",
   rejected: "destructive",
   failed: "destructive",
-};
+}
 
 const columns: ColumnDef<Payout>[] = [
   {
@@ -48,7 +48,7 @@ const columns: ColumnDef<Payout>[] = [
     cell: ({ row }) => (
       <div className="min-w-0">
         <p className="truncate font-medium">{row.original.organisation.name}</p>
-        <p className="text-muted-foreground truncate text-xs">
+        <p className="truncate text-xs text-muted-foreground">
           {row.original.account_name ?? row.original.bank_name ?? "—"}
         </p>
       </div>
@@ -58,7 +58,9 @@ const columns: ColumnDef<Payout>[] = [
     accessorKey: "net_minor",
     header: "Net",
     cell: ({ row }) => (
-      <span className="tabular-nums">{formatMoney(row.original.net_minor)}</span>
+      <span className="tabular-nums">
+        {formatMoney(row.original.net_minor)}
+      </span>
     ),
   },
   {
@@ -77,26 +79,26 @@ const columns: ColumnDef<Payout>[] = [
     accessorKey: "requested_at",
     header: "Requested",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.requested_at)}
       </span>
     ),
   },
-];
+]
 
 export function PayoutsTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ status }, setFilters] = useQueryStates(
     { status: parseAsStringLiteral(STATUS).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = usePayouts({
     page,
     per_page,
     status: status === "all" ? undefined : status,
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -104,8 +106,8 @@ export function PayoutsTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-40">
@@ -122,7 +124,10 @@ export function PayoutsTable() {
           </SelectContent>
         </Select>
         {status !== "all" && (
-          <Button variant="ghost" onClick={() => void setFilters({ status: "all" })}>
+          <Button
+            variant="ghost"
+            onClick={() => void setFilters({ status: "all" })}
+          >
             Reset
           </Button>
         )}
@@ -144,5 +149,5 @@ export function PayoutsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Plus } from "lucide-react";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { MoreHorizontal, Plus } from "lucide-react"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { DataTable } from "@/components/data-table/data-table";
-import { formatDate } from "@/lib/format";
-import { usePageMutations } from "../hooks/use-page-mutations";
-import { usePages } from "../hooks/use-pages";
-import type { PageValues } from "../schemas";
-import type { Page } from "../types";
-import { PageFormDialog } from "./page-form-dialog";
+} from "@/components/ui/dropdown-menu"
+import { DataTable } from "@/components/data-table/data-table"
+import { formatDate } from "@/lib/format"
+import { usePageMutations } from "../hooks/use-page-mutations"
+import { usePages } from "../hooks/use-pages"
+import type { PageValues } from "../schemas"
+import type { Page } from "../types"
+import { PageFormDialog } from "./page-form-dialog"
 
 export function PagesTable() {
-  const { data, isLoading } = usePages();
-  const { create, update, remove, setPublished } = usePageMutations();
-  const [editing, setEditing] = useState<Page | null | undefined>(undefined);
-  const [deleting, setDeleting] = useState<Page | null>(null);
+  const { data, isLoading } = usePages()
+  const { create, update, remove, setPublished } = usePageMutations()
+  const [editing, setEditing] = useState<Page | null | undefined>(undefined)
+  const [deleting, setDeleting] = useState<Page | null>(null)
 
   function submit(values: PageValues) {
     const payload = {
       ...values,
       meta_description: values.meta_description || null,
-    };
+    }
     if (editing) {
       update.mutate(
         { id: editing.id, payload },
-        { onSuccess: () => setEditing(undefined) },
-      );
+        { onSuccess: () => setEditing(undefined) }
+      )
     } else {
-      create.mutate(payload, { onSuccess: () => setEditing(undefined) });
+      create.mutate(payload, { onSuccess: () => setEditing(undefined) })
     }
   }
 
@@ -48,7 +48,7 @@ export function PagesTable() {
       cell: ({ row }) => (
         <div className="min-w-0">
           <p className="truncate font-medium">{row.original.title}</p>
-          <code className="text-muted-foreground text-xs">
+          <code className="text-xs text-muted-foreground">
             /{row.original.slug}
           </code>
         </div>
@@ -68,7 +68,7 @@ export function PagesTable() {
       accessorKey: "updated_at",
       header: "Updated",
       cell: ({ row }) => (
-        <span className="text-muted-foreground text-sm">
+        <span className="text-sm text-muted-foreground">
           {formatDate(row.original.updated_at)}
         </span>
       ),
@@ -109,7 +109,7 @@ export function PagesTable() {
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <div className="space-y-4">
@@ -142,10 +142,10 @@ export function PagesTable() {
         pending={remove.isPending}
         onConfirm={() => {
           if (deleting) {
-            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) });
+            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) })
           }
         }}
       />
     </div>
-  );
+  )
 }

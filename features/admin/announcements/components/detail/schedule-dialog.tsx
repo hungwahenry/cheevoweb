@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
 
 interface ScheduleDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  pending?: boolean;
-  onConfirm: (isoDate: string) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  pending?: boolean
+  onConfirm: (isoDate: string) => void
 }
 
 export function ScheduleDialog({
@@ -26,11 +26,11 @@ export function ScheduleDialog({
   pending,
   onConfirm,
 }: ScheduleDialogProps) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("")
 
   function handleOpenChange(next: boolean) {
-    if (!next) setValue("");
-    onOpenChange(next);
+    if (!next) setValue("")
+    onOpenChange(next)
   }
 
   return (
@@ -61,5 +61,5 @@ export function ScheduleDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

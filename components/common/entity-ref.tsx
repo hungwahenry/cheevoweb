@@ -9,11 +9,11 @@ import {
   ShoppingCart,
   Ticket,
   User,
-} from "lucide-react";
-import Link from "next/link";
-import type { ComponentType } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import type { EntityRef } from "@/lib/api/types";
+} from "lucide-react"
+import Link from "next/link"
+import type { ComponentType } from "react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import type { EntityRef } from "@/lib/api/types"
 
 const TYPE_ICON: Record<string, ComponentType<{ className?: string }>> = {
   user: User,
@@ -25,17 +25,17 @@ const TYPE_ICON: Record<string, ComponentType<{ className?: string }>> = {
   comment: MessageSquare,
   broadcast: Megaphone,
   ticket: Ticket,
-};
+}
 
 /** Backend deep links are `/admin/...`; the panel serves them under `/dashboard/...`. */
 function entityHref(ref: EntityRef): string | null {
-  if (!ref.deep_link) return null;
-  return ref.deep_link.replace(/^\/admin\//, "/dashboard/");
+  if (!ref.deep_link) return null
+  return ref.deep_link.replace(/^\/admin\//, "/dashboard/")
 }
 
 /** The real image (flyer/logo/avatar) when present, otherwise a per-type icon — never initials. */
 function EntityThumb({ entity }: { entity: EntityRef }) {
-  const Icon = TYPE_ICON[entity.type] ?? Box;
+  const Icon = TYPE_ICON[entity.type] ?? Box
 
   return (
     <Avatar className="size-9 rounded-md">
@@ -45,16 +45,16 @@ function EntityThumb({ entity }: { entity: EntityRef }) {
         className="object-cover"
       />
       <AvatarFallback className="rounded-md">
-        <Icon className="text-muted-foreground size-4" />
+        <Icon className="size-4 text-muted-foreground" />
       </AvatarFallback>
     </Avatar>
-  );
+  )
 }
 
 interface EntityRefItemProps {
-  entity: EntityRef;
-  sublabel?: string | null;
-  trailing?: React.ReactNode;
+  entity: EntityRef
+  sublabel?: string | null
+  trailing?: React.ReactNode
 }
 
 export function EntityRefItem({
@@ -62,7 +62,7 @@ export function EntityRefItem({
   sublabel,
   trailing,
 }: EntityRefItemProps) {
-  const href = entityHref(entity);
+  const href = entityHref(entity)
 
   const body = (
     <div className="flex min-w-0 items-center gap-2.5">
@@ -70,20 +70,20 @@ export function EntityRefItem({
       <div className="min-w-0">
         <p className="truncate text-sm font-medium">{entity.label}</p>
         {(sublabel ?? entity.sublabel) && (
-          <p className="text-muted-foreground truncate text-xs">
+          <p className="truncate text-xs text-muted-foreground">
             {sublabel ?? entity.sublabel}
           </p>
         )}
       </div>
     </div>
-  );
+  )
 
   return (
     <div className="flex items-center justify-between gap-3">
       {href ? (
         <Link
           href={href}
-          className="hover:bg-accent -m-1.5 min-w-0 flex-1 rounded-md p-1.5"
+          className="-m-1.5 min-w-0 flex-1 rounded-md p-1.5 hover:bg-accent"
         >
           {body}
         </Link>
@@ -92,5 +92,5 @@ export function EntityRefItem({
       )}
       {trailing}
     </div>
-  );
+  )
 }

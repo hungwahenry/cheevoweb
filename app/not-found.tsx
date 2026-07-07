@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
@@ -16,7 +16,7 @@ export default function NotFound() {
         />
       </Link>
 
-      <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
+      <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">
         404
       </p>
 
@@ -25,7 +25,8 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mx-auto max-w-md text-foreground/60">
-          The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved.
+          The page you&rsquo;re looking for doesn&rsquo;t exist or may have
+          moved.
         </p>
       </div>
 
@@ -38,5 +39,5 @@ export default function NotFound() {
         </Button>
       </div>
     </main>
-  );
+  )
 }

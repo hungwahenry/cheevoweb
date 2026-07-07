@@ -1,12 +1,7 @@
-import { PageHeader } from "@/components/layout/page-header";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import { ReportReasonsCatalog } from "@/features/admin/catalogs/components/report-reasons-catalog";
-import { SimpleCatalog } from "@/features/admin/catalogs/components/simple-catalog";
+import { PageHeader } from "@/components/layout/page-header"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ReportReasonsCatalog } from "@/features/admin/catalogs/components/report-reasons-catalog"
+import { SimpleCatalog } from "@/features/admin/catalogs/components/simple-catalog"
 
 export default function CatalogsPage() {
   return (
@@ -43,5 +38,5 @@ export default function CatalogsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

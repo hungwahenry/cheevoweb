@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   Banknote,
   BarChart3,
@@ -21,7 +21,7 @@ import {
   Ticket,
   Users,
   Wrench,
-} from "lucide-react";
+} from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -31,7 +31,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/sidebar"
 
 const NAV_GROUPS = [
   {
@@ -85,15 +85,15 @@ const NAV_GROUPS = [
       { title: "Audit log", href: "/dashboard/audit-log", icon: ScrollText },
     ],
   },
-] as const;
+] as const
 
 function isActive(pathname: string, href: string): boolean {
-  if (href === "/dashboard") return pathname === href;
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (href === "/dashboard") return pathname === href
+  return pathname === href || pathname.startsWith(`${href}/`)
 }
 
 export function AppSidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <Sidebar>
@@ -126,5 +126,5 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
     </Sidebar>
-  );
+  )
 }

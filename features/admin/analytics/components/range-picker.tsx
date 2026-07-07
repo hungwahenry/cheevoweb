@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Select,
@@ -6,22 +6,22 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 import {
   RANGE_DAYS,
   RANGE_INTERVALS,
   useAnalyticsRange,
-} from "../hooks/use-analytics-range";
+} from "../hooks/use-analytics-range"
 
 const DAY_LABEL: Record<number, string> = {
   7: "Last 7 days",
   30: "Last 30 days",
   90: "Last 90 days",
   365: "Last year",
-};
+}
 
 export function RangePicker() {
-  const [{ days, interval }, setRange] = useAnalyticsRange();
+  const [{ days, interval }, setRange] = useAnalyticsRange()
 
   return (
     <div className="flex items-center gap-2">
@@ -58,5 +58,5 @@ export function RangePicker() {
         </SelectContent>
       </Select>
     </div>
-  );
+  )
 }

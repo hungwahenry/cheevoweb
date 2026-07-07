@@ -1,14 +1,14 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { BroadcastDetail } from "@/features/admin/broadcasts/components/detail/broadcast-detail";
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { BroadcastDetail } from "@/features/admin/broadcasts/components/detail/broadcast-detail"
 
 export default async function BroadcastDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>
 }) {
-  const { id } = await params;
+  const { id } = await params
   return (
     <div className="space-y-6">
       <Button asChild variant="ghost" size="sm" className="-ml-2">
@@ -19,5 +19,5 @@ export default async function BroadcastDetailPage({
       </Button>
       <BroadcastDetail id={id} />
     </div>
-  );
+  )
 }

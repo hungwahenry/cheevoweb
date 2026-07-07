@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { Play } from "lucide-react";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Spinner } from "@/components/ui/spinner";
-import { useCommands } from "../hooks/use-commands";
-import { useRunCommand } from "../hooks/use-run-command";
+import { Play } from "lucide-react"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Spinner } from "@/components/ui/spinner"
+import { useCommands } from "../hooks/use-commands"
+import { useRunCommand } from "../hooks/use-run-command"
 
 export function OpsCommands() {
-  const { data, isLoading } = useCommands();
-  const run = useRunCommand();
-  const [confirming, setConfirming] = useState<string | null>(null);
+  const { data, isLoading } = useCommands()
+  const run = useRunCommand()
+  const [confirming, setConfirming] = useState<string | null>(null)
 
   if (isLoading || !data) {
-    return <Skeleton className="h-48 w-full" />;
+    return <Skeleton className="h-48 w-full" />
   }
 
   return (
@@ -27,7 +27,7 @@ export function OpsCommands() {
             <CardContent className="flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <code className="text-sm font-medium">{command.command}</code>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-xs text-muted-foreground">
                   {command.description}
                 </p>
               </div>
@@ -59,10 +59,10 @@ export function OpsCommands() {
         pending={run.isPending}
         onConfirm={() => {
           if (confirming) {
-            run.mutate(confirming, { onSuccess: () => setConfirming(null) });
+            run.mutate(confirming, { onSuccess: () => setConfirming(null) })
           }
         }}
       />
     </>
-  );
+  )
 }

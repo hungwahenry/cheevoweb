@@ -1,33 +1,33 @@
-"use client";
+"use client"
 
-import { Ban } from "lucide-react";
-import { AuditTrail } from "@/components/common/audit-trail";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useState } from "react";
-import { useBroadcast } from "../../hooks/detail/use-broadcast";
-import { useCancelBroadcast } from "../../hooks/detail/use-cancel-broadcast";
-import { BROADCAST_STATUS_VARIANT } from "../broadcasts-table";
+import { Ban } from "lucide-react"
+import { AuditTrail } from "@/components/common/audit-trail"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useState } from "react"
+import { useBroadcast } from "../../hooks/detail/use-broadcast"
+import { useCancelBroadcast } from "../../hooks/detail/use-cancel-broadcast"
+import { BROADCAST_STATUS_VARIANT } from "../broadcasts-table"
 
 export function BroadcastDetail({ id }: { id: string }) {
-  const { data: broadcast, isLoading, isError } = useBroadcast(id);
-  const [cancelOpen, setCancelOpen] = useState(false);
-  const cancel = useCancelBroadcast(id);
+  const { data: broadcast, isLoading, isError } = useBroadcast(id)
+  const [cancelOpen, setCancelOpen] = useState(false)
+  const cancel = useCancelBroadcast(id)
 
-  if (isLoading) return <Skeleton className="h-40 w-full" />;
+  if (isLoading) return <Skeleton className="h-40 w-full" />
   if (isError || !broadcast) {
-    return <Empty>This broadcast could not be loaded.</Empty>;
+    return <Empty>This broadcast could not be loaded.</Empty>
   }
 
   const cancellable =
-    broadcast.status === "queued" || broadcast.status === "sending";
+    broadcast.status === "queued" || broadcast.status === "sending"
 
   return (
     <div className="space-y-6">
@@ -63,10 +63,18 @@ export function BroadcastDetail({ id }: { id: string }) {
 
       <StatGrid
         stats={[
-          { label: "Recipients", value: broadcast.recipients_count.toLocaleString() },
+          {
+            label: "Recipients",
+            value: broadcast.recipients_count.toLocaleString(),
+          },
           { label: "Sent", value: broadcast.sent_count.toLocaleString() },
           { label: "Failed", value: broadcast.failed_count.toLocaleString() },
-          { label: "Audience", value: <span className="text-sm capitalize">{broadcast.audience}</span> },
+          {
+            label: "Audience",
+            value: (
+              <span className="text-sm capitalize">{broadcast.audience}</span>
+            ),
+          },
         ]}
       />
 
@@ -94,5 +102,5 @@ export function BroadcastDetail({ id }: { id: string }) {
         }
       />
     </div>
-  );
+  )
 }

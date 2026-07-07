@@ -1,32 +1,32 @@
-import "server-only";
-import { ApiError } from "@/lib/api/errors";
-import type { Envelope } from "@/lib/api/types";
-import { env } from "@/lib/env";
+import "server-only"
+import { ApiError } from "@/lib/api/errors"
+import type { Envelope } from "@/lib/api/types"
+import { env } from "@/lib/env"
 
 type PublicFetchInit = RequestInit & {
-  next?: { revalidate?: number; tags?: string[] };
-};
+  next?: { revalidate?: number; tags?: string[] }
+}
 
 export async function publicFetch<T>(
   path: string,
-  init?: PublicFetchInit,
+  init?: PublicFetchInit
 ): Promise<T> {
   const response = await fetch(`${env.backendUrl}/api/v1/${path}`, {
     ...init,
     headers: { accept: "application/json", ...(init?.headers ?? {}) },
-  });
+  })
 
   const body = (await response.json().catch(() => null)) as
     | (Envelope<T> & { code?: string })
-    | null;
+    | null
 
   if (!response.ok) {
     throw new ApiError(
       body?.message ?? "Request failed",
       response.status,
-      body?.code,
-    );
+      body?.code
+    )
   }
 
-  return (body as Envelope<T>).data;
+  return (body as Envelope<T>).data
 }

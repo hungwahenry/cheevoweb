@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { AuditTrail } from "@/components/common/audit-trail";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDateTime } from "@/lib/format";
-import { useReport } from "../../hooks/detail/use-report";
-import { REPORT_STATUS_VARIANT } from "../reports-table";
-import { ReportActions } from "./report-actions";
+import { AuditTrail } from "@/components/common/audit-trail"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { Badge } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDateTime } from "@/lib/format"
+import { useReport } from "../../hooks/detail/use-report"
+import { REPORT_STATUS_VARIANT } from "../reports-table"
+import { ReportActions } from "./report-actions"
 
 export function ReportDetail({ id }: { id: string }) {
-  const { data: report, isLoading, isError } = useReport(id);
+  const { data: report, isLoading, isError } = useReport(id)
 
-  if (isLoading) return <Skeleton className="h-40 w-full" />;
+  if (isLoading) return <Skeleton className="h-40 w-full" />
   if (isError || !report) {
-    return <Empty>This report could not be loaded.</Empty>;
+    return <Empty>This report could not be loaded.</Empty>
   }
 
   return (
@@ -39,17 +39,17 @@ export function ReportDetail({ id }: { id: string }) {
         <DetailSection title="Report">
           <div className="space-y-3 text-sm">
             <div>
-              <p className="text-muted-foreground text-xs">Reporter notes</p>
+              <p className="text-xs text-muted-foreground">Reporter notes</p>
               <p>{report.details || "—"}</p>
             </div>
             {report.resolution_note && (
               <div>
-                <p className="text-muted-foreground text-xs">Resolution</p>
+                <p className="text-xs text-muted-foreground">Resolution</p>
                 <p>{report.resolution_note}</p>
               </div>
             )}
             {report.reviewed_at && (
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-muted-foreground">
                 Reviewed {formatDateTime(report.reviewed_at)}
                 {report.reviewed_by ? ` by ${report.reviewed_by.label}` : ""}
               </p>
@@ -64,10 +64,7 @@ export function ReportDetail({ id }: { id: string }) {
             ) : (
               <Empty>Target was removed.</Empty>
             )}
-            <EntityRefItem
-              entity={report.reporter}
-              sublabel="Reporter"
-            />
+            <EntityRefItem entity={report.reporter} sublabel="Reporter" />
           </div>
         </DetailSection>
       </div>
@@ -76,5 +73,5 @@ export function ReportDetail({ id }: { id: string }) {
         <AuditTrail entries={report.audit_trail} />
       </DetailSection>
     </div>
-  );
+  )
 }

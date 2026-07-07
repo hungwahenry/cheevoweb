@@ -1,13 +1,13 @@
-import { formatDateTime } from "@/lib/format";
-import type { AuditEntry } from "@/lib/api/types";
+import { formatDateTime } from "@/lib/format"
+import type { AuditEntry } from "@/lib/api/types"
 
 export function AuditTrail({ entries }: { entries: AuditEntry[] }) {
   if (entries.length === 0) {
     return (
-      <p className="text-muted-foreground text-sm">
+      <p className="text-sm text-muted-foreground">
         No admin actions recorded.
       </p>
-    );
+    )
   }
 
   return (
@@ -17,17 +17,19 @@ export function AuditTrail({ entries }: { entries: AuditEntry[] }) {
           <div className="min-w-0">
             <p className="text-sm font-medium">{entry.action}</p>
             {entry.reason && (
-              <p className="text-muted-foreground truncate text-sm">
+              <p className="truncate text-sm text-muted-foreground">
                 {entry.reason}
               </p>
             )}
-            <p className="text-muted-foreground text-xs">by {entry.admin.label}</p>
+            <p className="text-xs text-muted-foreground">
+              by {entry.admin.label}
+            </p>
           </div>
-          <time className="text-muted-foreground shrink-0 text-xs">
+          <time className="shrink-0 text-xs text-muted-foreground">
             {formatDateTime(entry.created_at)}
           </time>
         </li>
       ))}
     </ul>
-  );
+  )
 }

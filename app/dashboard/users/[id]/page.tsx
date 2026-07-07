@@ -1,14 +1,14 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { UserDetail } from "@/features/admin/users/components/detail/user-detail";
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { UserDetail } from "@/features/admin/users/components/detail/user-detail"
 
 export default async function UserDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>
 }) {
-  const { id } = await params;
+  const { id } = await params
 
   return (
     <div className="space-y-6">
@@ -20,5 +20,5 @@ export default async function UserDetailPage({
       </Button>
       <UserDetail id={id} />
     </div>
-  );
+  )
 }

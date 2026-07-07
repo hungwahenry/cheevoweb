@@ -1,45 +1,45 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Trash2 } from "lucide-react";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { useState } from "react";
-import { ConfirmDialog } from "@/components/common/confirm-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Trash2 } from "lucide-react"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { useState } from "react"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { DataTableSearch } from "@/components/data-table/data-table-search";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useDeleteSuppression } from "../../hooks/suppressions/use-delete-suppression";
-import { useSuppressions } from "../../hooks/suppressions/use-suppressions";
-import type { Suppression } from "../../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { DataTableSearch } from "@/components/data-table/data-table-search"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useDeleteSuppression } from "../../hooks/suppressions/use-delete-suppression"
+import { useSuppressions } from "../../hooks/suppressions/use-suppressions"
+import type { Suppression } from "../../types"
 
-const REASON = ["all", "unsubscribed", "bounced", "complained"] as const;
+const REASON = ["all", "unsubscribed", "bounced", "complained"] as const
 
 export function SuppressionsTable() {
-  const [{ page, per_page, q }, setTable] = useTableParams();
+  const [{ page, per_page, q }, setTable] = useTableParams()
   const [{ reason }, setFilters] = useQueryStates(
     { reason: parseAsStringLiteral(REASON).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
-  const [deleting, setDeleting] = useState<Suppression | null>(null);
-  const remove = useDeleteSuppression();
+    { history: "push", clearOnDefault: true }
+  )
+  const [deleting, setDeleting] = useState<Suppression | null>(null)
+  const remove = useDeleteSuppression()
 
   const { data, isLoading, isFetching } = useSuppressions({
     page,
     per_page,
     q: q || undefined,
     reason: reason === "all" ? undefined : reason,
-  });
+  })
 
   const columns: ColumnDef<Suppression>[] = [
     { accessorKey: "email", header: "Email" },
@@ -56,7 +56,7 @@ export function SuppressionsTable() {
       accessorKey: "created_at",
       header: "Suppressed",
       cell: ({ row }) => (
-        <span className="text-muted-foreground text-sm">
+        <span className="text-sm text-muted-foreground">
           {formatDate(row.original.created_at)}
         </span>
       ),
@@ -72,12 +72,12 @@ export function SuppressionsTable() {
             aria-label="Remove"
             onClick={() => setDeleting(row.original)}
           >
-            <Trash2 className="text-destructive size-4" />
+            <Trash2 className="size-4 text-destructive" />
           </Button>
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <div className="space-y-4">
@@ -90,8 +90,8 @@ export function SuppressionsTable() {
         <Select
           value={reason}
           onValueChange={(value) => {
-            void setFilters({ reason: value as (typeof REASON)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ reason: value as (typeof REASON)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-40">
@@ -130,10 +130,10 @@ export function SuppressionsTable() {
         pending={remove.isPending}
         onConfirm={() => {
           if (deleting) {
-            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) });
+            remove.mutate(deleting.id, { onSuccess: () => setDeleting(null) })
           }
         }}
       />
     </div>
-  );
+  )
 }

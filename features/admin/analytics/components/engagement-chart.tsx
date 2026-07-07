@@ -1,13 +1,8 @@
-"use client";
+"use client"
 
-import { format } from "date-fns";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { format } from "date-fns"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartLegend,
@@ -15,19 +10,19 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useEngagement } from "../hooks/use-engagement";
+} from "@/components/ui/chart"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useEngagement } from "../hooks/use-engagement"
 
 const config = {
   comments: { label: "Comments", color: "var(--chart-1)" },
   rsvps: { label: "RSVPs", color: "var(--chart-2)" },
   subscriptions: { label: "Subscriptions", color: "var(--chart-3)" },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 export function EngagementChart({ days = 30 }: { days?: number }) {
-  const { data, isLoading } = useEngagement(days);
-  const series = data?.series ?? [];
+  const { data, isLoading } = useEngagement(days)
+  const series = data?.series ?? []
 
   return (
     <Card>
@@ -38,7 +33,7 @@ export function EngagementChart({ days = 30 }: { days?: number }) {
         {isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : series.length === 0 ? (
-          <p className="text-muted-foreground py-20 text-center text-sm">
+          <p className="py-20 text-center text-sm text-muted-foreground">
             No activity in this range.
           </p>
         ) : (
@@ -92,5 +87,5 @@ export function EngagementChart({ days = 30 }: { days?: number }) {
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

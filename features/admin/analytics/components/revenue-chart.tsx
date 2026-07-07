@@ -1,39 +1,37 @@
-"use client";
+"use client"
 
-import { format } from "date-fns";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { format } from "date-fns"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatMoney } from "@/lib/format";
-import { useRevenue } from "../hooks/use-revenue";
-import type { AnalyticsInterval } from "../types";
+} from "@/components/ui/chart"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatMoney } from "@/lib/format"
+import { useRevenue } from "../hooks/use-revenue"
+import type { AnalyticsInterval } from "../types"
 
 const config = {
   gmv: { label: "Revenue", color: "var(--chart-1)" },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 interface RevenueChartProps {
-  interval?: AnalyticsInterval;
-  days?: number;
+  interval?: AnalyticsInterval
+  days?: number
 }
 
-export function RevenueChart({ interval = "day", days = 30 }: RevenueChartProps) {
-  const { data, isLoading } = useRevenue(interval, days);
+export function RevenueChart({
+  interval = "day",
+  days = 30,
+}: RevenueChartProps) {
+  const { data, isLoading } = useRevenue(interval, days)
   const series = (data?.series ?? []).map((point) => ({
     bucket: point.bucket,
     gmv: point.gmv_minor / 100,
-  }));
+  }))
 
   return (
     <Card>
@@ -44,7 +42,7 @@ export function RevenueChart({ interval = "day", days = 30 }: RevenueChartProps)
         {isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : series.length === 0 ? (
-          <p className="text-muted-foreground py-20 text-center text-sm">
+          <p className="py-20 text-center text-sm text-muted-foreground">
             No paid orders in this range.
           </p>
         ) : (
@@ -87,5 +85,5 @@ export function RevenueChart({ interval = "day", days = 30 }: RevenueChartProps)
         )}
       </CardContent>
     </Card>
-  );
+  )
 }

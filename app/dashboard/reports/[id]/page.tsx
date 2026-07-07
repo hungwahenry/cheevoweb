@@ -1,14 +1,14 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ReportDetail } from "@/features/admin/reports/components/detail/report-detail";
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ReportDetail } from "@/features/admin/reports/components/detail/report-detail"
 
 export default async function ReportDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>
 }) {
-  const { id } = await params;
+  const { id } = await params
   return (
     <div className="space-y-6">
       <Button asChild variant="ghost" size="sm" className="-ml-2">
@@ -19,5 +19,5 @@ export default async function ReportDetailPage({
       </Button>
       <ReportDetail id={id} />
     </div>
-  );
+  )
 }

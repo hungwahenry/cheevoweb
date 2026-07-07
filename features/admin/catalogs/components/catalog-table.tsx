@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Pencil, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { DataTable } from "@/components/data-table/data-table";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Pencil, Plus, Trash2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { DataTable } from "@/components/data-table/data-table"
 
 interface CatalogTableProps<T> {
-  singular: string;
-  columns: ColumnDef<T, unknown>[];
-  data: T[];
-  isLoading?: boolean;
-  onAdd: () => void;
-  onEdit: (row: T) => void;
-  onDelete: (row: T) => void;
+  singular: string
+  columns: ColumnDef<T, unknown>[]
+  data: T[]
+  isLoading?: boolean
+  onAdd: () => void
+  onEdit: (row: T) => void
+  onDelete: (row: T) => void
 }
 
 export function CatalogTable<T>({
@@ -45,12 +45,12 @@ export function CatalogTable<T>({
             aria-label="Delete"
             onClick={() => onDelete(row.original)}
           >
-            <Trash2 className="text-destructive size-4" />
+            <Trash2 className="size-4 text-destructive" />
           </Button>
         </div>
       ),
     },
-  ];
+  ]
 
   return (
     <div className="space-y-4">
@@ -67,5 +67,5 @@ export function CatalogTable<T>({
         emptyMessage={`No ${singular.toLowerCase()}s yet.`}
       />
     </div>
-  );
+  )
 }

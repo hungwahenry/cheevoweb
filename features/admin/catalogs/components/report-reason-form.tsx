@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { reportReasonSchema, type ReportReasonValues } from "../schemas";
-import type { ReportReason, ReportScope } from "../types";
+} from "@/components/ui/dialog"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
+import { reportReasonSchema, type ReportReasonValues } from "../schemas"
+import type { ReportReason, ReportScope } from "../types"
 
 const SCOPES: { value: ReportScope; label: string }[] = [
   { value: "event", label: "Event" },
   { value: "comment", label: "Comment" },
   { value: "user", label: "User" },
   { value: "organisation", label: "Organisation" },
-];
+]
 
 const EMPTY: ReportReasonValues = {
   label: "",
@@ -35,14 +35,14 @@ const EMPTY: ReportReasonValues = {
   requires_details: false,
   display_order: 0,
   is_active: true,
-};
+}
 
 interface ReportReasonFormProps {
-  open: boolean;
-  item: ReportReason | null;
-  pending?: boolean;
-  onOpenChange: (open: boolean) => void;
-  onSubmit: (values: ReportReasonValues) => void;
+  open: boolean
+  item: ReportReason | null
+  pending?: boolean
+  onOpenChange: (open: boolean) => void
+  onSubmit: (values: ReportReasonValues) => void
 }
 
 export function ReportReasonForm({
@@ -55,7 +55,7 @@ export function ReportReasonForm({
   const form = useForm<ReportReasonValues>({
     resolver: zodResolver(reportReasonSchema),
     defaultValues: EMPTY,
-  });
+  })
 
   useEffect(() => {
     if (open) {
@@ -70,10 +70,10 @@ export function ReportReasonForm({
               display_order: item.display_order,
               is_active: item.is_active,
             }
-          : EMPTY,
-      );
+          : EMPTY
+      )
     }
-  }, [open, item, form]);
+  }, [open, item, form])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -128,7 +128,7 @@ export function ReportReasonForm({
                           field.onChange(
                             checked
                               ? [...field.value, scope.value]
-                              : field.value.filter((v) => v !== scope.value),
+                              : field.value.filter((v) => v !== scope.value)
                           )
                         }
                       />
@@ -194,5 +194,5 @@ export function ReportReasonForm({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

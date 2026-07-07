@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface DataTablePaginationProps {
-  page: number;
-  lastPage: number;
-  total: number;
-  onPageChange: (page: number) => void;
-  isLoading?: boolean;
+  page: number
+  lastPage: number
+  total: number
+  onPageChange: (page: number) => void
+  isLoading?: boolean
 }
 
 export function DataTablePagination({
@@ -20,7 +20,7 @@ export function DataTablePagination({
 }: DataTablePaginationProps) {
   return (
     <div className="flex items-center justify-between px-1 py-2">
-      <p className="text-muted-foreground text-sm">
+      <p className="text-sm text-muted-foreground">
         {total.toLocaleString()} {total === 1 ? "result" : "results"}
       </p>
       <div className="flex items-center gap-2">
@@ -47,5 +47,5 @@ export function DataTablePagination({
         </Button>
       </div>
     </div>
-  );
+  )
 }

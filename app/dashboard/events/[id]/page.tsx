@@ -1,14 +1,14 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { EventDetail } from "@/features/admin/events/components/detail/event-detail";
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { EventDetail } from "@/features/admin/events/components/detail/event-detail"
 
 export default async function EventDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>
 }) {
-  const { id } = await params;
+  const { id } = await params
   return (
     <div className="space-y-6">
       <Button asChild variant="ghost" size="sm" className="-ml-2">
@@ -19,5 +19,5 @@ export default async function EventDetailPage({
       </Button>
       <EventDetail id={id} />
     </div>
-  );
+  )
 }

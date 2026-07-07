@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { Plus } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { Plus } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useAnnouncements } from "../hooks/use-announcements";
-import type { AnnouncementRow, BroadcastStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useAnnouncements } from "../hooks/use-announcements"
+import type { AnnouncementRow, BroadcastStatus } from "../types"
 
-const KIND = ["all", "system", "marketing"] as const;
+const KIND = ["all", "system", "marketing"] as const
 const STATUS = [
   "all",
   "draft",
@@ -30,7 +30,7 @@ const STATUS = [
   "sent",
   "cancelled",
   "failed",
-] as const;
+] as const
 
 export const ANNOUNCEMENT_STATUS_VARIANT: Record<
   BroadcastStatus,
@@ -42,16 +42,16 @@ export const ANNOUNCEMENT_STATUS_VARIANT: Record<
   scheduled: "outline",
   cancelled: "outline",
   failed: "destructive",
-};
+}
 
 const columns: ColumnDef<AnnouncementRow>[] = [
   {
     id: "title",
     header: "Title",
     cell: ({ row }) => (
-      <div className="min-w-0 max-w-md">
+      <div className="max-w-md min-w-0">
         <p className="truncate font-medium">{row.original.title}</p>
-        <p className="text-muted-foreground truncate text-xs">
+        <p className="truncate text-xs text-muted-foreground">
           {row.original.channels.join(", ")}
         </p>
       </div>
@@ -94,30 +94,30 @@ const columns: ColumnDef<AnnouncementRow>[] = [
     accessorKey: "created_at",
     header: "Created",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.created_at)}
       </span>
     ),
   },
-];
+]
 
 export function AnnouncementsTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ kind, status }, setFilters] = useQueryStates(
     {
       kind: parseAsStringLiteral(KIND).withDefault("all"),
       status: parseAsStringLiteral(STATUS).withDefault("all"),
     },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = useAnnouncements({
     page,
     per_page,
     kind: kind === "all" ? undefined : kind,
     status: status === "all" ? undefined : status,
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -126,8 +126,8 @@ export function AnnouncementsTable() {
           <Select
             value={kind}
             onValueChange={(value) => {
-              void setFilters({ kind: value as (typeof KIND)[number] });
-              void setTable({ page: 1 });
+              void setFilters({ kind: value as (typeof KIND)[number] })
+              void setTable({ page: 1 })
             }}
           >
             <SelectTrigger className="w-36">
@@ -142,8 +142,8 @@ export function AnnouncementsTable() {
           <Select
             value={status}
             onValueChange={(value) => {
-              void setFilters({ status: value as (typeof STATUS)[number] });
-              void setTable({ page: 1 });
+              void setFilters({ status: value as (typeof STATUS)[number] })
+              void setTable({ page: 1 })
             }}
           >
             <SelectTrigger className="w-36">
@@ -185,5 +185,5 @@ export function AnnouncementsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

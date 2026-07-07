@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { LogOut } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,16 +10,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useLogout } from "@/features/admin/auth/hooks/use-logout";
-import { useSession } from "@/features/admin/auth/hooks/use-session";
+} from "@/components/ui/dropdown-menu"
+import { useLogout } from "@/features/admin/auth/hooks/use-logout"
+import { useSession } from "@/features/admin/auth/hooks/use-session"
 
 export function UserMenu() {
-  const { data: user } = useSession();
-  const logout = useLogout();
-  const email = user?.email ?? "";
-  const avatarUrl = user?.profile?.avatar_url ?? undefined;
-  const initials = email.slice(0, 2).toUpperCase() || "··";
+  const { data: user } = useSession()
+  const logout = useLogout()
+  const email = user?.email ?? ""
+  const avatarUrl = user?.profile?.avatar_url ?? undefined
+  const initials = email.slice(0, 2).toUpperCase() || "··"
 
   return (
     <DropdownMenu>
@@ -45,5 +45,5 @@ export function UserMenu() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

@@ -1,27 +1,22 @@
-"use client";
+"use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { AuditTrail } from "@/components/common/audit-trail";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatCard } from "@/components/common/stat-card";
-import { formatDate, formatDateTime, formatMoney } from "@/lib/format";
-import { useUser } from "../../hooks/detail/use-user";
-import { UserActions } from "./user-actions";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { AuditTrail } from "@/components/common/audit-trail"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatCard } from "@/components/common/stat-card"
+import { formatDate, formatDateTime, formatMoney } from "@/lib/format"
+import { useUser } from "../../hooks/detail/use-user"
+import { UserActions } from "./user-actions"
 
 function Section({
   title,
   children,
 }: {
-  title: string;
-  children: React.ReactNode;
+  title: string
+  children: React.ReactNode
 }) {
   return (
     <Card>
@@ -30,15 +25,15 @@ function Section({
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
-  );
+  )
 }
 
 function Empty({ children = "None." }: { children?: string }) {
-  return <p className="text-muted-foreground text-sm">{children}</p>;
+  return <p className="text-sm text-muted-foreground">{children}</p>
 }
 
 export function UserDetail({ id }: { id: string }) {
-  const { data: user, isLoading, isError } = useUser(id);
+  const { data: user, isLoading, isError } = useUser(id)
 
   if (isLoading) {
     return (
@@ -50,15 +45,15 @@ export function UserDetail({ id }: { id: string }) {
           ))}
         </div>
       </div>
-    );
+    )
   }
 
   if (isError || !user) {
-    return <Empty>This user could not be loaded.</Empty>;
+    return <Empty>This user could not be loaded.</Empty>
   }
 
   const name =
-    user.profile?.display_name ?? user.profile?.username ?? user.email;
+    user.profile?.display_name ?? user.profile?.username ?? user.email
 
   return (
     <div className="space-y-6">
@@ -66,11 +61,13 @@ export function UserDetail({ id }: { id: string }) {
         <div className="flex items-center gap-4">
           <Avatar className="size-14">
             <AvatarImage src={user.profile?.avatar_url} alt="" />
-            <AvatarFallback>{user.email.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarFallback>
+              {user.email.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
           </Avatar>
           <div className="space-y-1">
             <h1 className="text-xl font-semibold tracking-tight">{name}</h1>
-            <p className="text-muted-foreground text-sm">{user.email}</p>
+            <p className="text-sm text-muted-foreground">{user.email}</p>
             <div className="flex items-center gap-2 pt-1">
               <Badge variant={user.role === "admin" ? "default" : "secondary"}>
                 {user.role}
@@ -81,7 +78,7 @@ export function UserDetail({ id }: { id: string }) {
                 <Badge variant="outline">Active</Badge>
               )}
               {user.profile?.city && (
-                <span className="text-muted-foreground text-sm">
+                <span className="text-sm text-muted-foreground">
                   {user.profile.city}
                 </span>
               )}
@@ -178,7 +175,7 @@ export function UserDetail({ id }: { id: string }) {
                   className="flex items-center justify-between gap-3 text-sm"
                 >
                   <span className="truncate">{session.name}</span>
-                  <time className="text-muted-foreground shrink-0 text-xs">
+                  <time className="shrink-0 text-xs text-muted-foreground">
                     {session.last_used_at
                       ? formatDateTime(session.last_used_at)
                       : "never used"}
@@ -196,5 +193,5 @@ export function UserDetail({ id }: { id: string }) {
         <AuditTrail entries={user.audit_trail} />
       </Section>
     </div>
-  );
+  )
 }

@@ -1,25 +1,32 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate } from "@/lib/format";
-import { useBroadcasts } from "../hooks/use-broadcasts";
-import type { BroadcastRow, BroadcastStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate } from "@/lib/format"
+import { useBroadcasts } from "../hooks/use-broadcasts"
+import type { BroadcastRow, BroadcastStatus } from "../types"
 
-const STATUS = ["all", "queued", "sending", "sent", "failed", "cancelled"] as const;
+const STATUS = [
+  "all",
+  "queued",
+  "sending",
+  "sent",
+  "failed",
+  "cancelled",
+] as const
 
 export const BROADCAST_STATUS_VARIANT: Record<
   BroadcastStatus,
@@ -30,16 +37,16 @@ export const BROADCAST_STATUS_VARIANT: Record<
   sending: "secondary",
   cancelled: "outline",
   failed: "destructive",
-};
+}
 
 const columns: ColumnDef<BroadcastRow>[] = [
   {
     id: "subject",
     header: "Broadcast",
     cell: ({ row }) => (
-      <div className="min-w-0 max-w-md">
+      <div className="max-w-md min-w-0">
         <p className="truncate font-medium">{row.original.subject}</p>
-        <p className="text-muted-foreground truncate text-xs">
+        <p className="truncate text-xs text-muted-foreground">
           {row.original.organisation.label} · {row.original.event.label}
         </p>
       </div>
@@ -71,26 +78,26 @@ const columns: ColumnDef<BroadcastRow>[] = [
     accessorKey: "created_at",
     header: "Created",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.created_at)}
       </span>
     ),
   },
-];
+]
 
 export function BroadcastsTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ status }, setFilters] = useQueryStates(
     { status: parseAsStringLiteral(STATUS).withDefault("all") },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = useBroadcasts({
     page,
     per_page,
     status: status === "all" ? undefined : status,
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -98,8 +105,8 @@ export function BroadcastsTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-36">
@@ -115,7 +122,10 @@ export function BroadcastsTable() {
           </SelectContent>
         </Select>
         {status !== "all" && (
-          <Button variant="ghost" onClick={() => void setFilters({ status: "all" })}>
+          <Button
+            variant="ghost"
+            onClick={() => void setFilters({ status: "all" })}
+          >
             Reset
           </Button>
         )}
@@ -139,5 +149,5 @@ export function BroadcastsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

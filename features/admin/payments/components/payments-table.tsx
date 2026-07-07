@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { type ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { parseAsStringLiteral, useQueryStates } from "nuqs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { type ColumnDef } from "@tanstack/react-table"
+import { useRouter } from "next/navigation"
+import { parseAsStringLiteral, useQueryStates } from "nuqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DataTable } from "@/components/data-table/data-table";
-import { DataTablePagination } from "@/components/data-table/data-table-pagination";
-import { useTableParams } from "@/lib/table/use-table-params";
-import { formatDate, formatMoney } from "@/lib/format";
-import { usePayments } from "../hooks/use-payments";
-import type { PaymentRow, PaymentStatus } from "../types";
+} from "@/components/ui/select"
+import { DataTable } from "@/components/data-table/data-table"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
+import { useTableParams } from "@/lib/table/use-table-params"
+import { formatDate, formatMoney } from "@/lib/format"
+import { usePayments } from "../hooks/use-payments"
+import type { PaymentRow, PaymentStatus } from "../types"
 
 const STATUS = [
   "all",
@@ -26,8 +26,8 @@ const STATUS = [
   "failed",
   "abandoned",
   "refunded",
-] as const;
-const PROVIDER = ["all", "paystack", "flutterwave"] as const;
+] as const
+const PROVIDER = ["all", "paystack", "flutterwave"] as const
 
 export const PAYMENT_STATUS_VARIANT: Record<
   PaymentStatus,
@@ -38,7 +38,7 @@ export const PAYMENT_STATUS_VARIANT: Record<
   refunded: "outline",
   failed: "destructive",
   abandoned: "destructive",
-};
+}
 
 const columns: ColumnDef<PaymentRow>[] = [
   {
@@ -46,7 +46,7 @@ const columns: ColumnDef<PaymentRow>[] = [
     header: "Payment",
     cell: ({ row }) => (
       <div className="min-w-0">
-        <code className="text-muted-foreground text-xs">
+        <code className="text-xs text-muted-foreground">
           {row.original.reference}
         </code>
         <p className="truncate text-sm">{row.original.user.label}</p>
@@ -85,32 +85,32 @@ const columns: ColumnDef<PaymentRow>[] = [
     accessorKey: "created_at",
     header: "Created",
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-sm text-muted-foreground">
         {formatDate(row.original.created_at)}
       </span>
     ),
   },
-];
+]
 
 export function PaymentsTable() {
-  const router = useRouter();
-  const [{ page, per_page }, setTable] = useTableParams();
+  const router = useRouter()
+  const [{ page, per_page }, setTable] = useTableParams()
   const [{ status, provider }, setFilters] = useQueryStates(
     {
       status: parseAsStringLiteral(STATUS).withDefault("all"),
       provider: parseAsStringLiteral(PROVIDER).withDefault("all"),
     },
-    { history: "push", clearOnDefault: true },
-  );
+    { history: "push", clearOnDefault: true }
+  )
 
   const { data, isLoading, isFetching } = usePayments({
     page,
     per_page,
     status: status === "all" ? undefined : status,
     provider: provider === "all" ? undefined : provider,
-  });
+  })
 
-  const isFiltered = status !== "all" || provider !== "all";
+  const isFiltered = status !== "all" || provider !== "all"
 
   return (
     <div className="space-y-4">
@@ -118,8 +118,8 @@ export function PaymentsTable() {
         <Select
           value={status}
           onValueChange={(value) => {
-            void setFilters({ status: value as (typeof STATUS)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ status: value as (typeof STATUS)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-40">
@@ -137,8 +137,8 @@ export function PaymentsTable() {
         <Select
           value={provider}
           onValueChange={(value) => {
-            void setFilters({ provider: value as (typeof PROVIDER)[number] });
-            void setTable({ page: 1 });
+            void setFilters({ provider: value as (typeof PROVIDER)[number] })
+            void setTable({ page: 1 })
           }}
         >
           <SelectTrigger className="w-36">
@@ -178,5 +178,5 @@ export function PaymentsTable() {
         isLoading={isFetching}
       />
     </div>
-  );
+  )
 }

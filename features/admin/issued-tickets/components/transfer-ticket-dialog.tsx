@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { UserPicker, type PickedUser } from "@/components/common/user-picker";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { UserPicker, type PickedUser } from "@/components/common/user-picker"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,16 +10,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/components/ui/dialog"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
 
 interface TransferTicketDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  pending?: boolean;
-  onSubmit: (toUserId: string, reason?: string) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  pending?: boolean
+  onSubmit: (toUserId: string, reason?: string) => void
 }
 
 export function TransferTicketDialog({
@@ -28,15 +28,15 @@ export function TransferTicketDialog({
   pending,
   onSubmit,
 }: TransferTicketDialogProps) {
-  const [user, setUser] = useState<PickedUser | null>(null);
-  const [reason, setReason] = useState("");
+  const [user, setUser] = useState<PickedUser | null>(null)
+  const [reason, setReason] = useState("")
 
   function handleOpenChange(next: boolean) {
     if (!next) {
-      setUser(null);
-      setReason("");
+      setUser(null)
+      setReason("")
     }
-    onOpenChange(next);
+    onOpenChange(next)
   }
 
   return (
@@ -76,5 +76,5 @@ export function TransferTicketDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

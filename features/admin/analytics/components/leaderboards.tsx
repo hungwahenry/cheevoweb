@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { useLeaderboards } from "../hooks/use-leaderboards";
-import { LeaderboardCard } from "./leaderboard-card";
-import { RevenueByCategory } from "./revenue-by-category";
-import { TopCities } from "./top-cities";
+import { Skeleton } from "@/components/ui/skeleton"
+import { useLeaderboards } from "../hooks/use-leaderboards"
+import { LeaderboardCard } from "./leaderboard-card"
+import { RevenueByCategory } from "./revenue-by-category"
+import { TopCities } from "./top-cities"
 
 export function Leaderboards({ days }: { days: number }) {
-  const { data, isLoading } = useLeaderboards(days);
+  const { data, isLoading } = useLeaderboards(days)
 
   if (isLoading || !data) {
     return (
@@ -16,7 +16,7 @@ export function Leaderboards({ days }: { days: number }) {
           <Skeleton key={i} className="h-56" />
         ))}
       </div>
-    );
+    )
   }
 
   return (
@@ -42,5 +42,5 @@ export function Leaderboards({ days }: { days: number }) {
       <RevenueByCategory items={data.by_category} />
       <TopCities items={data.top_cities} />
     </div>
-  );
+  )
 }

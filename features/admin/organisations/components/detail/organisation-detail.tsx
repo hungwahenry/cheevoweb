@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { AuditTrail } from "@/components/common/audit-trail";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { EntityRefItem } from "@/components/common/entity-ref";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDate, formatMoney } from "@/lib/format";
-import { useOrganisation } from "../../hooks/detail/use-organisation";
-import { OrganisationActions } from "./organisation-actions";
+import { AuditTrail } from "@/components/common/audit-trail"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { EntityRefItem } from "@/components/common/entity-ref"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDate, formatMoney } from "@/lib/format"
+import { useOrganisation } from "../../hooks/detail/use-organisation"
+import { OrganisationActions } from "./organisation-actions"
 
 export function OrganisationDetail({ id }: { id: string }) {
-  const { data: org, isLoading, isError } = useOrganisation(id);
+  const { data: org, isLoading, isError } = useOrganisation(id)
 
   if (isLoading) {
     return (
@@ -21,10 +21,10 @@ export function OrganisationDetail({ id }: { id: string }) {
         <Skeleton className="h-20 w-full" />
         <Skeleton className="h-24 w-full" />
       </div>
-    );
+    )
   }
   if (isError || !org) {
-    return <Empty>This organisation could not be loaded.</Empty>;
+    return <Empty>This organisation could not be loaded.</Empty>
   }
 
   return (
@@ -49,18 +49,28 @@ export function OrganisationDetail({ id }: { id: string }) {
       {org.suspended_at && org.suspended_reason && (
         <Card className="border-destructive/40">
           <CardContent className="text-sm">
-            <span className="font-medium">Suspended:</span> {org.suspended_reason}
+            <span className="font-medium">Suspended:</span>{" "}
+            {org.suspended_reason}
           </CardContent>
         </Card>
       )}
 
       <StatGrid
         stats={[
-          { label: "Revenue", value: formatMoney(org.stats.total_revenue_minor) },
-          { label: "Tickets sold", value: org.stats.tickets_sold.toLocaleString() },
+          {
+            label: "Revenue",
+            value: formatMoney(org.stats.total_revenue_minor),
+          },
+          {
+            label: "Tickets sold",
+            value: org.stats.tickets_sold.toLocaleString(),
+          },
           { label: "Events", value: org.stats.events_count },
           { label: "Members", value: org.stats.members_count },
-          { label: "Subscribers", value: org.stats.subscribers_count.toLocaleString() },
+          {
+            label: "Subscribers",
+            value: org.stats.subscribers_count.toLocaleString(),
+          },
           { label: "Paid out", value: formatMoney(org.stats.paid_out_minor) },
           { label: "Reports against", value: org.stats.reports_against },
         ]}
@@ -137,5 +147,5 @@ export function OrganisationDetail({ id }: { id: string }) {
         <AuditTrail entries={org.audit_trail} />
       </DetailSection>
     </div>
-  );
+  )
 }

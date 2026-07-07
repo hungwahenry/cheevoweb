@@ -1,41 +1,41 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ImagePlus, Trash2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
-import { useUpdateWelcome, useWelcome } from "../hooks/use-welcome";
-import { welcomeSchema, type WelcomeValues } from "../schemas";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ImagePlus, Trash2 } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Field, FieldError, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { useUpdateWelcome, useWelcome } from "../hooks/use-welcome"
+import { welcomeSchema, type WelcomeValues } from "../schemas"
 
 export function WelcomeForm() {
-  const { data, isLoading } = useWelcome();
-  const update = useUpdateWelcome();
-  const fileInput = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const { data, isLoading } = useWelcome()
+  const update = useUpdateWelcome()
+  const fileInput = useRef<HTMLInputElement>(null)
+  const [file, setFile] = useState<File | null>(null)
 
   const form = useForm<WelcomeValues>({
     resolver: zodResolver(welcomeSchema),
     defaultValues: { headline: "", subheadline: "" },
-  });
+  })
 
   useEffect(() => {
     if (data) {
-      form.reset({ headline: data.headline, subheadline: data.subheadline });
+      form.reset({ headline: data.headline, subheadline: data.subheadline })
     }
-  }, [data, form]);
+  }, [data, form])
 
   const preview = file
     ? URL.createObjectURL(file)
-    : (data?.background_url ?? null);
+    : (data?.background_url ?? null)
 
-  if (isLoading) return <Skeleton className="h-80 w-full max-w-xl" />;
+  if (isLoading) return <Skeleton className="h-80 w-full max-w-xl" />
 
   return (
     <Card className="max-w-xl">
@@ -44,8 +44,7 @@ export function WelcomeForm() {
           <FieldLabel>Background image</FieldLabel>
           <div className="space-y-2">
             {preview ? (
-              <div className="bg-muted relative aspect-video overflow-hidden rounded-md">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="relative aspect-video overflow-hidden rounded-md bg-muted">
                 <img
                   src={preview}
                   alt=""
@@ -53,7 +52,7 @@ export function WelcomeForm() {
                 />
               </div>
             ) : (
-              <div className="bg-muted text-muted-foreground flex aspect-video items-center justify-center rounded-md text-sm">
+              <div className="flex aspect-video items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
                 No background set
               </div>
             )}
@@ -94,8 +93,8 @@ export function WelcomeForm() {
           onSubmit={form.handleSubmit((values) =>
             update.mutate(
               { ...values, background: file },
-              { onSuccess: () => setFile(null) },
-            ),
+              { onSuccess: () => setFile(null) }
+            )
           )}
           className="space-y-4"
         >
@@ -125,5 +124,5 @@ export function WelcomeForm() {
         </form>
       </CardContent>
     </Card>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { DetailHeader } from "@/components/common/detail-header";
-import { DetailSection, Empty } from "@/components/common/detail-section";
-import { StatGrid } from "@/components/common/stat-grid";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDateTime, formatMoney } from "@/lib/format";
-import { usePayout } from "../../hooks/detail/use-payout";
-import { PAYOUT_STATUS_VARIANT } from "../payouts-table";
-import { PayoutActions } from "./payout-actions";
+import Link from "next/link"
+import { DetailHeader } from "@/components/common/detail-header"
+import { DetailSection, Empty } from "@/components/common/detail-section"
+import { StatGrid } from "@/components/common/stat-grid"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import { formatDateTime, formatMoney } from "@/lib/format"
+import { usePayout } from "../../hooks/detail/use-payout"
+import { PAYOUT_STATUS_VARIANT } from "../payouts-table"
+import { PayoutActions } from "./payout-actions"
 
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
@@ -18,15 +18,15 @@ function Row({ label, value }: { label: string; value: React.ReactNode }) {
       <span className="text-muted-foreground">{label}</span>
       <span className="text-right">{value || "—"}</span>
     </div>
-  );
+  )
 }
 
 export function PayoutDetail({ id }: { id: string }) {
-  const { data: payout, isLoading, isError } = usePayout(id);
+  const { data: payout, isLoading, isError } = usePayout(id)
 
-  if (isLoading) return <Skeleton className="h-40 w-full" />;
+  if (isLoading) return <Skeleton className="h-40 w-full" />
   if (isError || !payout) {
-    return <Empty>This payout could not be loaded.</Empty>;
+    return <Empty>This payout could not be loaded.</Empty>
   }
 
   return (
@@ -87,16 +87,16 @@ export function PayoutDetail({ id }: { id: string }) {
               }
             />
             <Row label="Requested by" value={payout.requested_by.email} />
-            <Row
-              label="Reviewed by"
-              value={payout.reviewed_by?.email ?? "—"}
-            />
+            <Row label="Reviewed by" value={payout.reviewed_by?.email ?? "—"} />
             <Row
               label="Requested"
               value={formatDateTime(payout.requested_at)}
             />
             {payout.approved_at && (
-              <Row label="Approved" value={formatDateTime(payout.approved_at)} />
+              <Row
+                label="Approved"
+                value={formatDateTime(payout.approved_at)}
+              />
             )}
             {payout.paid_at && (
               <Row label="Paid" value={formatDateTime(payout.paid_at)} />
@@ -108,5 +108,5 @@ export function PayoutDetail({ id }: { id: string }) {
         </DetailSection>
       </div>
     </div>
-  );
+  )
 }
