@@ -2,7 +2,7 @@
 
 import { Play } from "lucide-react"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"

@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { ActionItems } from "@/features/admin/analytics/components/action-items"
 import { OverviewCards } from "@/features/admin/analytics/components/overview-cards"
 import { RevenueChart } from "@/features/admin/analytics/components/revenue-chart"

@@ -3,7 +3,7 @@
 import { type ColumnDef } from "@tanstack/react-table"
 import { Pencil, Plus, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { DataTable } from "@/components/data-table/data-table"
+import { DataTable } from "@/components/admin/data-table/data-table"
 
 interface CatalogTableProps<T> {
   singular: string

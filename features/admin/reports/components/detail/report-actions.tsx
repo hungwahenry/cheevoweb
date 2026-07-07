@@ -2,7 +2,7 @@
 
 import { Gavel, PlayCircle, XCircle } from "lucide-react"
 import { useState } from "react"
-import { ReasonDialog } from "@/components/common/reason-dialog"
+import { ReasonDialog } from "@/components/admin/common/reason-dialog"
 import { Button } from "@/components/ui/button"
 import { useReportActions } from "../../hooks/detail/use-report-actions"
 import type { ReportDetail } from "../../types"

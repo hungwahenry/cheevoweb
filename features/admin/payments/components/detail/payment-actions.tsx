@@ -2,7 +2,7 @@
 
 import { CheckCircle2, RefreshCw } from "lucide-react"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
 import { Button } from "@/components/ui/button"
 import { usePaymentActions } from "../../hooks/detail/use-payment-actions"
 import type { PaymentDetail } from "../../types"

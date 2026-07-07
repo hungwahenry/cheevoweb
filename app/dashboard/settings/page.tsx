@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ConfigsTable } from "@/features/admin/settings/components/configs-table"
 import { FlagsTable } from "@/features/admin/settings/components/flags-table"

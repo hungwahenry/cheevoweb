@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { PaymentsTable } from "@/features/admin/payments/components/payments-table"
 
 export default function PaymentsPage() {

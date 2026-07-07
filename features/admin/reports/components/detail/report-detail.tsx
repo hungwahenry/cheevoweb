@@ -1,9 +1,9 @@
 "use client"
 
-import { AuditTrail } from "@/components/common/audit-trail"
-import { DetailHeader } from "@/components/common/detail-header"
-import { DetailSection, Empty } from "@/components/common/detail-section"
-import { EntityRefItem } from "@/components/common/entity-ref"
+import { AuditTrail } from "@/components/admin/common/audit-trail"
+import { DetailHeader } from "@/components/admin/common/detail-header"
+import { DetailSection, Empty } from "@/components/admin/common/detail-section"
+import { EntityRefItem } from "@/components/admin/common/entity-ref"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 import { formatDateTime } from "@/lib/format"

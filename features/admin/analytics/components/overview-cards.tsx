@@ -1,6 +1,6 @@
 "use client"
 
-import { StatCard } from "@/components/common/stat-card"
+import { StatCard } from "@/components/admin/common/stat-card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { formatMoney } from "@/lib/format"
 import { useOverview } from "../hooks/use-overview"

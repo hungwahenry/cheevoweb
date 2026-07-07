@@ -1,6 +1,6 @@
 "use client"
 
-import { StatCard } from "@/components/common/stat-card"
+import { StatCard } from "@/components/admin/common/stat-card"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"

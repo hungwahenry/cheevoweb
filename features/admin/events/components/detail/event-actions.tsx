@@ -2,7 +2,7 @@
 
 import { EyeOff, Lock, LockOpen, Trash2, History } from "lucide-react"
 import { useState } from "react"
-import { ReasonDialog } from "@/components/common/reason-dialog"
+import { ReasonDialog } from "@/components/admin/common/reason-dialog"
 import { Button } from "@/components/ui/button"
 import { useEventActions } from "../../hooks/detail/use-event-actions"
 import type { EventDetail } from "../../types"

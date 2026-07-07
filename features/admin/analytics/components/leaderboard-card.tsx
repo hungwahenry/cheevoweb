@@ -1,6 +1,6 @@
 "use client"
 
-import { EntityRefItem } from "@/components/common/entity-ref"
+import { EntityRefItem } from "@/components/admin/common/entity-ref"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { EntityRef } from "@/lib/api/types"
 import { formatMoney } from "@/lib/format"

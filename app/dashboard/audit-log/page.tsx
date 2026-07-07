@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { AuditLogTable } from "@/features/admin/audit-log/components/audit-log-table"
 
 export default function AuditLogPage() {

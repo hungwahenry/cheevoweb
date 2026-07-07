@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { OrdersTable } from "@/features/admin/orders/components/orders-table"
 
 export default function OrdersPage() {

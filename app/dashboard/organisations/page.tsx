@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { OrganisationsTable } from "@/features/admin/organisations/components/organisations-table"
 
 export default function OrganisationsPage() {

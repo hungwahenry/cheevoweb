@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { EventsTable } from "@/features/admin/events/components/events-table"
 
 export default function EventsPage() {

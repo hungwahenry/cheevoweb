@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { AnnouncementsTable } from "@/features/admin/announcements/components/announcements-table"
 
 export default function AnnouncementsPage() {

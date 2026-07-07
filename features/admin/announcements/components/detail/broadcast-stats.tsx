@@ -1,7 +1,7 @@
 "use client"
 
-import { DetailSection, Empty } from "@/components/common/detail-section"
-import { StatGrid } from "@/components/common/stat-grid"
+import { DetailSection, Empty } from "@/components/admin/common/detail-section"
+import { StatGrid } from "@/components/admin/common/stat-grid"
 import type { AnnouncementDetail } from "../../types"
 
 export function BroadcastStats({

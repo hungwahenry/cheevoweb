@@ -13,9 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { DataTable } from "@/components/data-table/data-table"
-import { DataTablePagination } from "@/components/data-table/data-table-pagination"
-import { DataTableSearch } from "@/components/data-table/data-table-search"
+import { DataTable } from "@/components/admin/data-table/data-table"
+import { DataTablePagination } from "@/components/admin/data-table/data-table-pagination"
+import { DataTableSearch } from "@/components/admin/data-table/data-table-search"
 import { useTableParams } from "@/lib/table/use-table-params"
 import { formatDate } from "@/lib/format"
 import { useOrganisations } from "../hooks/use-organisations"

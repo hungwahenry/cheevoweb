@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { DetailHeader } from "@/components/common/detail-header"
-import { DetailSection, Empty } from "@/components/common/detail-section"
-import { StatGrid } from "@/components/common/stat-grid"
+import { DetailHeader } from "@/components/admin/common/detail-header"
+import { DetailSection, Empty } from "@/components/admin/common/detail-section"
+import { StatGrid } from "@/components/admin/common/stat-grid"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"

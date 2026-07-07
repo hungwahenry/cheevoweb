@@ -2,8 +2,8 @@
 
 import { Ban, CheckCircle2, Undo2 } from "lucide-react"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
-import { ReasonDialog } from "@/components/common/reason-dialog"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
+import { ReasonDialog } from "@/components/admin/common/reason-dialog"
 import { Button } from "@/components/ui/button"
 import { formatMoney } from "@/lib/format"
 import { useOrderActions } from "../../hooks/detail/use-order-actions"

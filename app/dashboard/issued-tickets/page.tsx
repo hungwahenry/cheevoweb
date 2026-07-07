@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { IssuedTicketsTable } from "@/features/admin/issued-tickets/components/issued-tickets-table"
 
 export default function IssuedTicketsPage() {

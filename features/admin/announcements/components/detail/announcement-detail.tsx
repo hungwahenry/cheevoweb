@@ -2,9 +2,9 @@
 
 import { Ban, CalendarClock, Send, Trash2 } from "lucide-react"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
-import { DetailHeader } from "@/components/common/detail-header"
-import { Empty } from "@/components/common/detail-section"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
+import { DetailHeader } from "@/components/admin/common/detail-header"
+import { Empty } from "@/components/admin/common/detail-section"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"

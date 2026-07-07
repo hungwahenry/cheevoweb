@@ -2,7 +2,7 @@
 
 import { Ban, ShieldCheck, Trash2, UserCog } from "lucide-react"
 import { useState } from "react"
-import { ReasonDialog } from "@/components/common/reason-dialog"
+import { ReasonDialog } from "@/components/admin/common/reason-dialog"
 import { Button } from "@/components/ui/button"
 import { useDeleteOrganisation } from "../../hooks/detail/use-delete-organisation"
 import { useSuspendOrganisation } from "../../hooks/detail/use-suspend-organisation"

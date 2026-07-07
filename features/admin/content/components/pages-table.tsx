@@ -3,7 +3,7 @@
 import { type ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal, Plus } from "lucide-react"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { DataTable } from "@/components/data-table/data-table"
+import { DataTable } from "@/components/admin/data-table/data-table"
 import { formatDate } from "@/lib/format"
 import { usePageMutations } from "../hooks/use-page-mutations"
 import { usePages } from "../hooks/use-pages"

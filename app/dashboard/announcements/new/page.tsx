@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { Button } from "@/components/ui/button"
 import { NewBroadcast } from "@/features/admin/announcements/components/new-broadcast"
 

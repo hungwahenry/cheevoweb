@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { ReportsTable } from "@/features/admin/reports/components/reports-table"
 
 export default function ReportsPage() {

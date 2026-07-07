@@ -2,7 +2,7 @@
 
 import { type ColumnDef } from "@tanstack/react-table"
 import { useState } from "react"
-import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { ConfirmDialog } from "@/components/admin/common/confirm-dialog"
 import { Badge } from "@/components/ui/badge"
 import { useCatalog } from "../hooks/use-catalog"
 import { useCatalogMutations } from "../hooks/use-catalog-mutations"

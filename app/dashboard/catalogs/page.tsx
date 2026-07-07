@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/layout/page-header"
+import { PageHeader } from "@/components/admin/layout/page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ReportReasonsCatalog } from "@/features/admin/catalogs/components/report-reasons-catalog"
 import { SimpleCatalog } from "@/features/admin/catalogs/components/simple-catalog"
