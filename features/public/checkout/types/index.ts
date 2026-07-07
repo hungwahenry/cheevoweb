@@ -28,6 +28,7 @@ export type IssuedTicketView = {
   code: string
   status: "valid" | "scanned" | "revoked"
   event_id: string
+  event_ticket_id: string
   scanned_at: string | null
   created_at: string
 }
@@ -44,6 +45,7 @@ export type OrderView = {
   created_at: string
   items?: {
     id: string
+    event_ticket_id: string
     ticket_name: string
     quantity: number
     unit_price_minor: number

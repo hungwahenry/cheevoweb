@@ -1,11 +1,14 @@
 import { Badge } from "@/components/ui/badge"
 import { formatMoney } from "@/lib/format"
 import type { OrderView } from "@/features/public/checkout/types"
-import { TicketQr } from "./ticket-qr"
+import { TicketCard } from "./ticket-card"
 
 export function OrderTickets({ order }: { order: OrderView }) {
   const paid = order.status === "paid"
   const tickets = order.issued_tickets ?? []
+  const ticketNameById = new Map(
+    (order.items ?? []).map((item) => [item.event_ticket_id, item.ticket_name])
+  )
 
   return (
     <div>
@@ -29,28 +32,13 @@ export function OrderTickets({ order }: { order: OrderView }) {
 
       {tickets.length > 0 ? (
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {tickets.map((ticket, index) => (
-            <div
+          {tickets.map((ticket) => (
+            <TicketCard
               key={ticket.id}
-              className="flex items-center gap-4 rounded-2xl border border-border p-4"
-            >
-              <TicketQr value={ticket.code} />
-              <div className="min-w-0">
-                <p className="text-[11px] font-semibold tracking-[0.14em] text-foreground/45 uppercase">
-                  Ticket {index + 1}
-                </p>
-                <p className="mt-1 font-mono text-xs break-all text-foreground/70">
-                  {ticket.code}
-                </p>
-                <p className="mt-2 text-xs text-foreground/55">
-                  {ticket.status === "scanned"
-                    ? "Checked in"
-                    : ticket.status === "revoked"
-                      ? "Revoked"
-                      : "Show this QR at the door"}
-                </p>
-              </div>
-            </div>
+              name={ticketNameById.get(ticket.event_ticket_id) ?? "Ticket"}
+              code={ticket.code}
+              status={ticket.status}
+            />
           ))}
         </div>
       ) : (
