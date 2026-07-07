@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
 import { Providers } from "@/components/providers/providers"
 import { APPLE_APP_ID } from "@/features/public/shell/config/site"
 import { cn } from "@/lib/utils"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -52,8 +52,8 @@ export default function RootLayout({
       className={cn(
         "antialiased",
         fontMono.variable,
-        "font-sans",
-        inter.variable
+        fontSans.variable,
+        "font-sans"
       )}
     >
       <body>
