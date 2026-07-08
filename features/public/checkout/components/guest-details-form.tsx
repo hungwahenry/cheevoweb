@@ -9,10 +9,12 @@ const EMAIL_RE = /.+@.+\..+/
 export function GuestDetailsForm({
   submitLabel,
   submitting,
+  disabled,
   onSubmit,
 }: {
   submitLabel: string
   submitting: boolean
+  disabled?: boolean
   onSubmit: (buyer: GuestBuyer) => void
 }) {
   const [email, setEmail] = useState("")
@@ -68,7 +70,7 @@ export function GuestDetailsForm({
       <Button
         size="lg"
         className="w-full"
-        disabled={submitting}
+        disabled={submitting || disabled}
         onClick={submit}
       >
         {submitting ? <Spinner /> : submitLabel}

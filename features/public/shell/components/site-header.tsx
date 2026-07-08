@@ -15,12 +15,20 @@ export function SiteHeader() {
             className="h-6 w-auto md:h-7"
           />
         </Link>
-        <Link
-          href="/organizers"
-          className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-        >
-          For Organizers
-        </Link>
+        <nav className="flex items-center gap-6">
+          <Link
+            href="/events"
+            className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          >
+            Events
+          </Link>
+          <Link
+            href="/organizers"
+            className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          >
+            For Organizers
+          </Link>
+        </nav>
       </div>
     </header>
   )
