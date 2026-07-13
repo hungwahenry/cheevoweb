@@ -51,7 +51,7 @@ export default async function Organizers() {
           },
           {
             q: "What can attendees pay with?",
-            a: "Cards and local payment options via Paystack and Flutterwave, in Naira and other supported currencies.",
+            a: "Cards and local payment options via Paystack, in Naira and other supported currencies.",
           },
         ]}
       />

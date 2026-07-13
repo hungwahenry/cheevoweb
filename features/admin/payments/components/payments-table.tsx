@@ -27,7 +27,7 @@ const STATUS = [
   "abandoned",
   "refunded",
 ] as const
-const PROVIDER = ["all", "paystack", "flutterwave"] as const
+const PROVIDER = ["all", "paystack"] as const
 
 export const PAYMENT_STATUS_VARIANT: Record<
   PaymentStatus,
@@ -147,7 +147,6 @@ export function PaymentsTable() {
           <SelectContent>
             <SelectItem value="all">All providers</SelectItem>
             <SelectItem value="paystack">Paystack</SelectItem>
-            <SelectItem value="flutterwave">Flutterwave</SelectItem>
           </SelectContent>
         </Select>
         {isFiltered && (
