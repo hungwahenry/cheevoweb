@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import {
   Banknote,
   BarChart3,
+  Bell,
   Building2,
   CalendarDays,
   CreditCard,
@@ -39,6 +40,7 @@ const NAV_GROUPS = [
     items: [
       { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
       { title: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+      { title: "Alerts", href: "/dashboard/notifications", icon: Bell },
     ],
   },
   {
