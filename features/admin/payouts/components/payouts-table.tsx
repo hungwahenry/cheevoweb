@@ -22,6 +22,7 @@ import type { Payout, PayoutStatus } from "../types"
 const STATUS = [
   "all",
   "requested",
+  "pending_review",
   "approved",
   "processing",
   "paid",
@@ -35,6 +36,7 @@ export const PAYOUT_STATUS_VARIANT: Record<
 > = {
   paid: "default",
   requested: "secondary",
+  pending_review: "secondary",
   approved: "outline",
   processing: "outline",
   rejected: "destructive",
@@ -71,7 +73,7 @@ const columns: ColumnDef<Payout>[] = [
         variant={PAYOUT_STATUS_VARIANT[row.original.status]}
         className="capitalize"
       >
-        {row.original.status}
+        {row.original.status.replace("_", " ")}
       </Badge>
     ),
   },
@@ -116,6 +118,7 @@ export function PayoutsTable() {
           <SelectContent>
             <SelectItem value="all">All statuses</SelectItem>
             <SelectItem value="requested">Requested</SelectItem>
+            <SelectItem value="pending_review">Pending review</SelectItem>
             <SelectItem value="approved">Approved</SelectItem>
             <SelectItem value="processing">Processing</SelectItem>
             <SelectItem value="paid">Paid</SelectItem>

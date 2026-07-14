@@ -39,7 +39,7 @@ export function PayoutDetail({ id }: { id: string }) {
             variant={PAYOUT_STATUS_VARIANT[payout.status]}
             className="capitalize"
           >
-            {payout.status}
+            {payout.status.replace("_", " ")}
           </Badge>
         }
         actions={<PayoutActions payout={payout} />}
@@ -100,6 +100,9 @@ export function PayoutDetail({ id }: { id: string }) {
             )}
             {payout.paid_at && (
               <Row label="Paid" value={formatDateTime(payout.paid_at)} />
+            )}
+            {payout.rejected_at && (
+              <Row label="Rejected" value={formatDateTime(payout.rejected_at)} />
             )}
             {payout.review_notes && (
               <Row label="Notes" value={payout.review_notes} />
