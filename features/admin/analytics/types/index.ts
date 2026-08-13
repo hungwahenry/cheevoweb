@@ -15,6 +15,21 @@ export interface AnalyticsOverview {
   events: { total: number; published: number; past: number }
   orders: { total: number; paid: number; refunded: number; pending: number }
   gmv: { currency: string; total_minor: number; last_30d_minor: number }
+  platform: {
+    currency: string
+    earnings_minor: number
+    fees_minor: number
+    processing_minor: number
+    profit_minor: number
+    profit_last_30d_minor: number
+    take_rate: number
+  }
+  refunds: {
+    currency: string
+    count: number
+    total_minor: number
+    fees_minor: number
+  }
   action_items: {
     open_reports: number
     pending_payouts: number
@@ -27,6 +42,9 @@ export type AnalyticsInterval = "day" | "week" | "month"
 export interface RevenuePoint {
   bucket: string
   gmv_minor: number
+  fees_minor: number
+  processing_minor: number
+  profit_minor: number
   orders: number
 }
 

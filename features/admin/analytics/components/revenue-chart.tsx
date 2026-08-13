@@ -5,6 +5,8 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -16,6 +18,7 @@ import type { AnalyticsInterval } from "../types"
 
 const config = {
   gmv: { label: "Revenue", color: "var(--chart-1)" },
+  profit: { label: "Profit", color: "var(--chart-2)" },
 } satisfies ChartConfig
 
 interface RevenueChartProps {
@@ -31,12 +34,13 @@ export function RevenueChart({
   const series = (data?.series ?? []).map((point) => ({
     bucket: point.bucket,
     gmv: point.gmv_minor / 100,
+    profit: point.profit_minor / 100,
   }))
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">Revenue</CardTitle>
+        <CardTitle className="text-base">Revenue &amp; profit</CardTitle>
       </CardHeader>
       <CardContent>
         {isLoading ? (
@@ -73,11 +77,19 @@ export function RevenueChart({
                   />
                 }
               />
+              <ChartLegend content={<ChartLegendContent />} />
               <Area
                 dataKey="gmv"
                 type="natural"
                 stroke="var(--color-gmv)"
                 fill="var(--color-gmv)"
+                fillOpacity={0.15}
+              />
+              <Area
+                dataKey="profit"
+                type="natural"
+                stroke="var(--color-profit)"
+                fill="var(--color-profit)"
                 fillOpacity={0.15}
               />
             </AreaChart>
