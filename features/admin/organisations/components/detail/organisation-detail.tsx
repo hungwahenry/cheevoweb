@@ -8,7 +8,7 @@ import { StatGrid } from "@/components/admin/common/stat-grid"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { formatDate, formatMoney } from "@/lib/format"
+import { formatDate, formatDateTime, formatMoney } from "@/lib/format"
 import { useOrganisation } from "../../hooks/detail/use-organisation"
 import { OrganisationActions } from "./organisation-actions"
 
@@ -71,10 +71,58 @@ export function OrganisationDetail({ id }: { id: string }) {
             label: "Subscribers",
             value: org.stats.subscribers_count.toLocaleString(),
           },
-          { label: "Paid out", value: formatMoney(org.stats.paid_out_minor) },
           { label: "Reports against", value: org.stats.reports_against },
         ]}
       />
+
+      <DetailSection title="Balance & payouts">
+        <div className="space-y-3">
+          <StatGrid
+            stats={[
+              {
+                label: "Available",
+                value: formatMoney(org.balance.available_minor),
+              },
+              {
+                label: "On hold",
+                value: formatMoney(org.balance.on_hold_minor),
+              },
+              {
+                label: "In-flight",
+                value: formatMoney(org.balance.in_flight_minor),
+              },
+              {
+                label: "Paid out",
+                value: formatMoney(org.balance.paid_out_minor),
+              },
+            ]}
+          />
+          {Object.keys(org.balance.payout_counts).length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(org.balance.payout_counts).map(
+                ([status, count]) => (
+                  <Badge
+                    key={status}
+                    variant={status === "failed" ? "destructive" : "secondary"}
+                    className="capitalize"
+                  >
+                    {status.replace(/_/g, " ")}: {count}
+                  </Badge>
+                ),
+              )}
+            </div>
+          )}
+          {(org.balance.payout_retry_after ||
+            org.balance.payout_paused_until) && (
+            <p className="text-muted-foreground text-xs">
+              {org.balance.payout_retry_after &&
+                `Retry backoff until ${formatDateTime(org.balance.payout_retry_after)}. `}
+              {org.balance.payout_paused_until &&
+                `Payouts paused (bank change) until ${formatDateTime(org.balance.payout_paused_until)}.`}
+            </p>
+          )}
+        </div>
+      </DetailSection>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <DetailSection title="Members">

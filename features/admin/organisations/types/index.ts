@@ -25,6 +25,18 @@ export interface OrgStats {
   reports_against: number
 }
 
+export interface OrgBalance {
+  currency: string
+  available_minor: number
+  on_hold_minor: number
+  in_flight_minor: number
+  paid_out_minor: number
+  has_in_flight_payout: boolean
+  payout_retry_after: string | null
+  payout_paused_until: string | null
+  payout_counts: Record<string, number>
+}
+
 export interface OrgMemberRef extends EntityRef {
   role: string
 }
@@ -40,6 +52,7 @@ export interface OrgBroadcastRecent extends EntityRef {
 }
 
 export interface OrganisationDetail extends OrganisationCore {
+  balance: OrgBalance
   stats: OrgStats
   members: OrgMemberRef[]
   events_recent: EntityRef[]
