@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Check, RefreshCw, X } from "lucide-react"
+import { Banknote, Check, RefreshCw, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -18,9 +18,11 @@ import { usePayoutActions } from "../../hooks/detail/use-payout-actions"
 import type { Payout } from "../../types"
 
 export function PayoutActions({ payout }: { payout: Payout }) {
-  const { retry, approve, reject } = usePayoutActions(payout.id)
+  const { retry, approve, reject, settle } = usePayoutActions(payout.id)
   const [rejectOpen, setRejectOpen] = useState(false)
+  const [settleOpen, setSettleOpen] = useState(false)
   const [notes, setNotes] = useState("")
+  const [settleNotes, setSettleNotes] = useState("")
 
   if (payout.status === "pending_review") {
     return (
@@ -90,6 +92,53 @@ export function PayoutActions({ payout }: { payout: Payout }) {
           <RefreshCw />
           Retry transfer
         </Button>
+        <Dialog open={settleOpen} onOpenChange={setSettleOpen}>
+          <DialogTrigger asChild>
+            <Button variant="outline" disabled={settle.isPending}>
+              <Banknote />
+              Mark settled off-platform
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Settle off-platform</DialogTitle>
+              <DialogDescription>
+                Use this only if you paid this organiser directly (e.g. bank
+                transfer) because the platform transfer could not go through. It
+                marks the payout as paid and removes the amount from their
+                available balance, so they cannot withdraw it again.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-2">
+              <Label htmlFor="settle-notes">Reference / reason</Label>
+              <Textarea
+                id="settle-notes"
+                value={settleNotes}
+                onChange={(event) => setSettleNotes(event.target.value)}
+                placeholder="Bank transfer ref, amount, and why…"
+                maxLength={500}
+              />
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setSettleOpen(false)}>
+                Cancel
+              </Button>
+              <Button
+                disabled={settle.isPending || settleNotes.trim().length === 0}
+                onClick={() =>
+                  settle.mutate(settleNotes.trim(), {
+                    onSuccess: () => {
+                      setSettleOpen(false)
+                      setSettleNotes("")
+                    },
+                  })
+                }
+              >
+                Mark as settled
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     )
   }

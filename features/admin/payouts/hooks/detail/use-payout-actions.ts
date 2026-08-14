@@ -4,6 +4,7 @@ import { getErrorMessage } from "@/lib/api/errors"
 import { approvePayout } from "../../api/detail/approve-payout"
 import { rejectPayout } from "../../api/detail/reject-payout"
 import { retryPayout } from "../../api/detail/retry-payout"
+import { settlePayout } from "../../api/detail/settle-payout"
 
 export function usePayoutActions(id: string) {
   const qc = useQueryClient()
@@ -40,5 +41,14 @@ export function usePayoutActions(id: string) {
     onError,
   })
 
-  return { retry, approve, reject }
+  const settle = useMutation({
+    mutationFn: (notes: string) => settlePayout(id, notes),
+    onSuccess: () => {
+      toast.success("Payout marked as settled off-platform.")
+      refresh()
+    },
+    onError,
+  })
+
+  return { retry, approve, reject, settle }
 }
