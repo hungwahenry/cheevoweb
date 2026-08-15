@@ -21,6 +21,7 @@ interface AdjustBalanceDialogProps {
   orgId: string
   direction: "credit" | "debit"
   availableMinor: number
+  onHoldMinor: number
   open: boolean
   onOpenChange: (open: boolean) => void
 }
@@ -29,6 +30,7 @@ export function AdjustBalanceDialog({
   orgId,
   direction,
   availableMinor,
+  onHoldMinor,
   open,
   onOpenChange,
 }: AdjustBalanceDialogProps) {
@@ -39,7 +41,8 @@ export function AdjustBalanceDialog({
   const naira = Number(amount)
   const amountMinor = Math.round(naira * 100)
   const isCredit = direction === "credit"
-  const overDebit = !isCredit && amountMinor > availableMinor
+  const debitableMinor = availableMinor + onHoldMinor
+  const overDebit = !isCredit && amountMinor > debitableMinor
   const valid =
     amount.trim() !== "" &&
     Number.isFinite(naira) &&
@@ -83,12 +86,14 @@ export function AdjustBalanceDialog({
             />
             {!isCredit && (
               <p className="text-muted-foreground text-xs">
-                Available: {formatMoney(availableMinor)}
+                Available {formatMoney(availableMinor)} · On hold{" "}
+                {formatMoney(onHoldMinor)}. Debiting past available draws from
+                held funds.
               </p>
             )}
             {overDebit && (
               <p className="text-destructive text-xs">
-                Exceeds the available balance.
+                Exceeds available + held ({formatMoney(debitableMinor)}).
               </p>
             )}
           </Field>

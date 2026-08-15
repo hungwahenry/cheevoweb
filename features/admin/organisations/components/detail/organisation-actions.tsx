@@ -91,6 +91,7 @@ export function OrganisationActions({ org }: { org: OrganisationDetail }) {
         orgId={org.id}
         direction={dialog === "debit" ? "debit" : "credit"}
         availableMinor={org.balance.available_minor}
+        onHoldMinor={org.balance.on_hold_minor}
         open={dialog === "credit" || dialog === "debit"}
         onOpenChange={(open) => !open && close()}
       />
