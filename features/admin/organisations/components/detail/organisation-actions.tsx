@@ -1,6 +1,13 @@
 "use client"
 
-import { Ban, ShieldCheck, Trash2, UserCog } from "lucide-react"
+import {
+  Ban,
+  MinusCircle,
+  PlusCircle,
+  ShieldCheck,
+  Trash2,
+  UserCog,
+} from "lucide-react"
 import { useState } from "react"
 import { ReasonDialog } from "@/components/admin/common/reason-dialog"
 import { Button } from "@/components/ui/button"
@@ -8,12 +15,13 @@ import { useDeleteOrganisation } from "../../hooks/detail/use-delete-organisatio
 import { useSuspendOrganisation } from "../../hooks/detail/use-suspend-organisation"
 import { useUnsuspendOrganisation } from "../../hooks/detail/use-unsuspend-organisation"
 import type { OrganisationDetail } from "../../types"
+import { AdjustBalanceDialog } from "./adjust-balance-dialog"
 import { ChangeOwnerDialog } from "./change-owner-dialog"
 
 export function OrganisationActions({ org }: { org: OrganisationDetail }) {
-  const [dialog, setDialog] = useState<null | "suspend" | "delete" | "owner">(
-    null
-  )
+  const [dialog, setDialog] = useState<
+    null | "suspend" | "delete" | "owner" | "credit" | "debit"
+  >(null)
   const suspend = useSuspendOrganisation(org.id)
   const unsuspend = useUnsuspendOrganisation(org.id)
   const remove = useDeleteOrganisation(org.id)
@@ -24,6 +32,14 @@ export function OrganisationActions({ org }: { org: OrganisationDetail }) {
       <Button variant="outline" onClick={() => setDialog("owner")}>
         <UserCog />
         Change owner
+      </Button>
+      <Button variant="outline" onClick={() => setDialog("credit")}>
+        <PlusCircle />
+        Credit
+      </Button>
+      <Button variant="outline" onClick={() => setDialog("debit")}>
+        <MinusCircle />
+        Debit
       </Button>
       {org.suspended_at ? (
         <Button
@@ -70,6 +86,13 @@ export function OrganisationActions({ org }: { org: OrganisationDetail }) {
         open={dialog === "owner"}
         onOpenChange={(open) => !open && close()}
         members={org.members}
+      />
+      <AdjustBalanceDialog
+        orgId={org.id}
+        direction={dialog === "debit" ? "debit" : "credit"}
+        availableMinor={org.balance.available_minor}
+        open={dialog === "credit" || dialog === "debit"}
+        onOpenChange={(open) => !open && close()}
       />
     </div>
   )
